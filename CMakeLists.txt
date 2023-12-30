@@ -7,8 +7,8 @@ include(add_git_submodule.cmake)
 execute_process(COMMAND bash -c "cd ${CMAKE_CURRENT_SOURCE_DIR}/extern/portaudio && sudo ./configure --enable-shared")
 add_submodule(extern/portaudio)
 add_subdirectory(src)
-if (UNIX) {
-    if (APPLE) {
+if (UNIX) 
+    if (APPLE) 
         target_link_libraries(audiointerface PRIVATE
             "-framework CoreAudio"
             "-framework AudioToolbox"
@@ -16,8 +16,8 @@ if (UNIX) {
             "-framework CoreFoundation"
             "-framework CoreServices"
         )
-    }
-}
+    endif ()
+endif ()
 
 target_include_directories(audiointerface PUBLIC extern/portaudio/include)
 target_include_directories(audiointerface PUBLIC inc/aud)
