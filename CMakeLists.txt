@@ -17,7 +17,7 @@ if (UNIX)
             "-framework CoreServices"
         )
     else ()
-        add_compile_options("-lrt -lm -lasound")
+        add_compile_options(-lrt -lm -lasound)
     endif ()
 endif ()
 
