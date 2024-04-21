@@ -119,7 +119,7 @@
 			"destination" : "lib",
 			"paths" : 
 			[
-				"extern/portaudio/libportaudio.a"
+				"lib/libportaudio.a"
 			],
 			"targetId" : "PortAudio::@3192faabc73fce94ca44",
 			"targetIndex" : 0,

@@ -23,7 +23,7 @@
 				{
 					"build" : "extern/portaudio",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-extern.portaudio-Release-c38953af76a24e6c8e3d.json",
+					"jsonFile" : "directory-extern.portaudio-Release-2c43fff825b3b311844c.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.1.0"
@@ -107,14 +107,14 @@
 				{
 					"directoryIndex" : 1,
 					"id" : "PortAudio::@3192faabc73fce94ca44",
-					"jsonFile" : "target-PortAudio-Release-98015debe6414c2b1186.json",
+					"jsonFile" : "target-PortAudio-Release-6299c54ec2c2ee10b406.json",
 					"name" : "PortAudio",
 					"projectIndex" : 1
 				},
 				{
 					"directoryIndex" : 2,
 					"id" : "audiointerface::@145eef247bfb46b6828c",
-					"jsonFile" : "target-audiointerface-Release-cb5dc9e5857e9c778b9c.json",
+					"jsonFile" : "target-audiointerface-Release-050038e60b0d74de2763.json",
 					"name" : "audiointerface",
 					"projectIndex" : 0
 				},

@@ -3,7 +3,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "extern/portaudio/libportaudio.a"
+			"path" : "lib/libportaudio.a"
 		}
 	],
 	"backtrace" : 1,

@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "../bin/audiointerface"
+  "../bin/audiointerface.pdb"
   "CMakeFiles/audiointerface.dir/aud/audiointerface.cpp.o"
   "CMakeFiles/audiointerface.dir/aud/audiointerface.cpp.o.d"
   "CMakeFiles/audiointerface.dir/aud/bufferservice.cpp.o"
@@ -17,8 +19,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/audiointerface.dir/aud/wtoscillator.cpp.o.d"
   "CMakeFiles/audiointerface.dir/main.cpp.o"
   "CMakeFiles/audiointerface.dir/main.cpp.o.d"
-  "audiointerface"
-  "audiointerface.pdb"
 )
 
 # Per-language clean rules from dependency scanning.

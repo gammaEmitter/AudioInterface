@@ -1,4 +1,4 @@
-target_sources(audiointerface PRIVATE
+set(SRCS 
     audiointerface.cpp
     bus.cpp
     bufferservice.cpp
@@ -8,3 +8,6 @@ target_sources(audiointerface PRIVATE
     wavetable.cpp
     wtoscillator.cpp
     )
+
+target_sources(audiointerface PRIVATE ${SRCS})
+add_library(audiointerface PRIVATE ${SRCS}

@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "src/audiointerface"
+			"path" : "bin/audiointerface"
 		}
 	],
 	"backtrace" : 1,
@@ -39,31 +39,31 @@
 			{
 				"command" : 1,
 				"file" : 1,
-				"line" : 38,
+				"line" : 44,
 				"parent" : 2
 			},
 			{
 				"command" : 2,
 				"file" : 1,
-				"line" : 12,
+				"line" : 18,
 				"parent" : 2
 			},
 			{
 				"command" : 2,
 				"file" : 1,
-				"line" : 40,
+				"line" : 46,
 				"parent" : 2
 			},
 			{
 				"command" : 3,
 				"file" : 1,
-				"line" : 27,
+				"line" : 33,
 				"parent" : 2
 			},
 			{
 				"command" : 3,
 				"file" : 1,
-				"line" : 28,
+				"line" : 34,
 				"parent" : 2
 			},
 			{
