@@ -5,13 +5,21 @@ Channel::Channel() {
     m_ringbuffer = std::make_unique<Ringbuffer>();
 }
 
-void Channel::add_source(std::unique_ptr<ISignalSource> src){
+ISignalSource* Channel::add_source(std::unique_ptr<ISignalSource> src){
 
     sources.push_back(std::move(src));
     auto tmp = std::bind(&ISignalSource::Out,sources.back().get());    
     m_ringbuffer->set_source(tmp);
+    return sources.back().get();
 }
 
-float Channel::Out()  {
-    return m_ringbuffer->pull();
-};
+Channel& Channel::set_gain (float gain) {
+    if (gain > 1.0f) {
+        m_gain = 1.0f;
+    } else if (gain < -1.0f)  {
+        m_gain = -1.0f;
+    } else {
+        m_gain = gain;
+    }
+    return *this; 
+}

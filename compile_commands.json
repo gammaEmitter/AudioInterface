@@ -1,0 +1,146 @@
+[
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -DPA_LITTLE_ENDIAN -DPA_USE_COREAUDIO=1 -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/os/unix -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/hostapi/coreaudio -std=gnu11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -fPIC -o CMakeFiles/PortAudio.dir/src/common/pa_allocation.c.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common/pa_allocation.c",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common/pa_allocation.c",
+  "output": "extern/portaudio/CMakeFiles/PortAudio.dir/src/common/pa_allocation.c.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -DPA_LITTLE_ENDIAN -DPA_USE_COREAUDIO=1 -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/os/unix -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/hostapi/coreaudio -std=gnu11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -fPIC -o CMakeFiles/PortAudio.dir/src/common/pa_converters.c.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common/pa_converters.c",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common/pa_converters.c",
+  "output": "extern/portaudio/CMakeFiles/PortAudio.dir/src/common/pa_converters.c.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -DPA_LITTLE_ENDIAN -DPA_USE_COREAUDIO=1 -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/os/unix -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/hostapi/coreaudio -std=gnu11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -fPIC -o CMakeFiles/PortAudio.dir/src/common/pa_cpuload.c.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common/pa_cpuload.c",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common/pa_cpuload.c",
+  "output": "extern/portaudio/CMakeFiles/PortAudio.dir/src/common/pa_cpuload.c.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -DPA_LITTLE_ENDIAN -DPA_USE_COREAUDIO=1 -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/os/unix -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/hostapi/coreaudio -std=gnu11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -fPIC -o CMakeFiles/PortAudio.dir/src/common/pa_debugprint.c.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common/pa_debugprint.c",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common/pa_debugprint.c",
+  "output": "extern/portaudio/CMakeFiles/PortAudio.dir/src/common/pa_debugprint.c.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -DPA_LITTLE_ENDIAN -DPA_USE_COREAUDIO=1 -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/os/unix -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/hostapi/coreaudio -std=gnu11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -fPIC -o CMakeFiles/PortAudio.dir/src/common/pa_dither.c.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common/pa_dither.c",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common/pa_dither.c",
+  "output": "extern/portaudio/CMakeFiles/PortAudio.dir/src/common/pa_dither.c.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -DPA_LITTLE_ENDIAN -DPA_USE_COREAUDIO=1 -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/os/unix -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/hostapi/coreaudio -std=gnu11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -fPIC -o CMakeFiles/PortAudio.dir/src/common/pa_front.c.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common/pa_front.c",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common/pa_front.c",
+  "output": "extern/portaudio/CMakeFiles/PortAudio.dir/src/common/pa_front.c.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -DPA_LITTLE_ENDIAN -DPA_USE_COREAUDIO=1 -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/os/unix -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/hostapi/coreaudio -std=gnu11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -fPIC -o CMakeFiles/PortAudio.dir/src/common/pa_process.c.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common/pa_process.c",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common/pa_process.c",
+  "output": "extern/portaudio/CMakeFiles/PortAudio.dir/src/common/pa_process.c.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -DPA_LITTLE_ENDIAN -DPA_USE_COREAUDIO=1 -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/os/unix -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/hostapi/coreaudio -std=gnu11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -fPIC -o CMakeFiles/PortAudio.dir/src/common/pa_ringbuffer.c.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common/pa_ringbuffer.c",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common/pa_ringbuffer.c",
+  "output": "extern/portaudio/CMakeFiles/PortAudio.dir/src/common/pa_ringbuffer.c.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -DPA_LITTLE_ENDIAN -DPA_USE_COREAUDIO=1 -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/os/unix -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/hostapi/coreaudio -std=gnu11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -fPIC -o CMakeFiles/PortAudio.dir/src/common/pa_stream.c.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common/pa_stream.c",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common/pa_stream.c",
+  "output": "extern/portaudio/CMakeFiles/PortAudio.dir/src/common/pa_stream.c.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -DPA_LITTLE_ENDIAN -DPA_USE_COREAUDIO=1 -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/os/unix -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/hostapi/coreaudio -std=gnu11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -fPIC -o CMakeFiles/PortAudio.dir/src/common/pa_trace.c.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common/pa_trace.c",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common/pa_trace.c",
+  "output": "extern/portaudio/CMakeFiles/PortAudio.dir/src/common/pa_trace.c.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -DPA_LITTLE_ENDIAN -DPA_USE_COREAUDIO=1 -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/os/unix -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/hostapi/coreaudio -std=gnu11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -fPIC -o CMakeFiles/PortAudio.dir/src/os/unix/pa_unix_hostapis.c.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/os/unix/pa_unix_hostapis.c",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/os/unix/pa_unix_hostapis.c",
+  "output": "extern/portaudio/CMakeFiles/PortAudio.dir/src/os/unix/pa_unix_hostapis.c.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -DPA_LITTLE_ENDIAN -DPA_USE_COREAUDIO=1 -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/os/unix -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/hostapi/coreaudio -std=gnu11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -fPIC -o CMakeFiles/PortAudio.dir/src/os/unix/pa_unix_util.c.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/os/unix/pa_unix_util.c",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/os/unix/pa_unix_util.c",
+  "output": "extern/portaudio/CMakeFiles/PortAudio.dir/src/os/unix/pa_unix_util.c.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -DPA_LITTLE_ENDIAN -DPA_USE_COREAUDIO=1 -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/os/unix -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/hostapi/coreaudio -std=gnu11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -fPIC -o CMakeFiles/PortAudio.dir/src/hostapi/coreaudio/pa_mac_core.c.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/hostapi/coreaudio/pa_mac_core.c",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/hostapi/coreaudio/pa_mac_core.c",
+  "output": "extern/portaudio/CMakeFiles/PortAudio.dir/src/hostapi/coreaudio/pa_mac_core.c.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -DPA_LITTLE_ENDIAN -DPA_USE_COREAUDIO=1 -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/os/unix -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/hostapi/coreaudio -std=gnu11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -fPIC -o CMakeFiles/PortAudio.dir/src/hostapi/coreaudio/pa_mac_core_blocking.c.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/hostapi/coreaudio/pa_mac_core_blocking.c",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/hostapi/coreaudio/pa_mac_core_blocking.c",
+  "output": "extern/portaudio/CMakeFiles/PortAudio.dir/src/hostapi/coreaudio/pa_mac_core_blocking.c.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -DPA_LITTLE_ENDIAN -DPA_USE_COREAUDIO=1 -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/common -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/os/unix -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/hostapi/coreaudio -std=gnu11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -fPIC -o CMakeFiles/PortAudio.dir/src/hostapi/coreaudio/pa_mac_core_utilities.c.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/hostapi/coreaudio/pa_mac_core_utilities.c",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/src/hostapi/coreaudio/pa_mac_core_utilities.c",
+  "output": "extern/portaudio/CMakeFiles/PortAudio.dir/src/hostapi/coreaudio/pa_mac_core_utilities.c.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -o CMakeFiles/audiointerface.dir/main.cpp.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/main.cpp",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/main.cpp",
+  "output": "src/CMakeFiles/audiointerface.dir/main.cpp.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -o CMakeFiles/audiointerface.dir/aud/audiointerface.cpp.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/audiointerface.cpp",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/audiointerface.cpp",
+  "output": "src/CMakeFiles/audiointerface.dir/aud/audiointerface.cpp.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -o CMakeFiles/audiointerface.dir/aud/bus.cpp.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/bus.cpp",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/bus.cpp",
+  "output": "src/CMakeFiles/audiointerface.dir/aud/bus.cpp.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -o CMakeFiles/audiointerface.dir/aud/bufferservice.cpp.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/bufferservice.cpp",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/bufferservice.cpp",
+  "output": "src/CMakeFiles/audiointerface.dir/aud/bufferservice.cpp.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -o CMakeFiles/audiointerface.dir/aud/channel.cpp.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/channel.cpp",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/channel.cpp",
+  "output": "src/CMakeFiles/audiointerface.dir/aud/channel.cpp.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -o CMakeFiles/audiointerface.dir/aud/ringbuffer.cpp.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/ringbuffer.cpp",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/ringbuffer.cpp",
+  "output": "src/CMakeFiles/audiointerface.dir/aud/ringbuffer.cpp.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -o CMakeFiles/audiointerface.dir/aud/oscillator.cpp.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/oscillator.cpp",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/oscillator.cpp",
+  "output": "src/CMakeFiles/audiointerface.dir/aud/oscillator.cpp.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -o CMakeFiles/audiointerface.dir/aud/wavetable.cpp.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/wavetable.cpp",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/wavetable.cpp",
+  "output": "src/CMakeFiles/audiointerface.dir/aud/wavetable.cpp.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -o CMakeFiles/audiointerface.dir/aud/wtoscillator.cpp.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/wtoscillator.cpp",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/wtoscillator.cpp",
+  "output": "src/CMakeFiles/audiointerface.dir/aud/wtoscillator.cpp.o"
+}
+]

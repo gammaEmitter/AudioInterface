@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <map>
 #include <sstream>
-#include "bufferservice.h"
+#include <string_view>
 #include "portaudio.h"
 #include "ringbuffer.h"
 #include "bus.h"
@@ -21,13 +21,13 @@ class AudioInterface {
         AudioInterface (AudioInterface&& other) = delete;
         AudioInterface& operator=(AudioInterface&& other) = delete;
 
-        AudioInterface& set_OutDevice(const PaDeviceInfo* name);
+        AudioInterface& set_OutDevice(const std::string_view name);
         AudioInterface& set_OutDevice (PaDeviceIndex index);
-        AudioInterface& set_InDevice(const PaDeviceInfo* name);
+        AudioInterface& set_InDevice(const std::string_view name);
         AudioInterface& set_InDevice (PaDeviceIndex index);
         PaDeviceIndex  get_device(const PaDeviceInfo* name) const ;
         const PaDeviceInfo*  get_device (PaDeviceIndex index) const;
-        AudioInterface& add_channel ();
+        Channel* add_channel ();
         MasterBus* master ();
         PaError play();
         PaError record();
@@ -49,6 +49,13 @@ class AudioInterface {
         void populateInStreamInfo();
 
 
+        static int  inOutCallback (const void* inputbuffer, 
+                                void* outputbuffer,
+                                unsigned long framesPerBuffer,
+                                const PaStreamCallbackTimeInfo* timeinfo,
+                                PaStreamCallbackFlags statusflags,
+                                void* userData
+        );
         static int  outputCallback (const void* inputbuffer, 
                                 void* outputbuffer,
                                 unsigned long framesPerBuffer,
@@ -65,7 +72,6 @@ class AudioInterface {
         );
         std::map<PaDeviceIndex, const PaDeviceInfo* > m_devices;
         std::unique_ptr<MasterBus> m_masterbus = nullptr;
-        std::unique_ptr<BufferService> m_bufferservice = nullptr;
         std::unique_ptr<Ringbuffer> m_ringbuffer = nullptr;
         PaError err;
         StreamParameters streaminfo;

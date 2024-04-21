@@ -4,12 +4,13 @@
 #include "ringbuffer.h"
 #include "iodef.h"
 
+inline float _ringbuffer_dummy () {return 0.f;}
 
 Ringbuffer::Ringbuffer() { 
     for (int i = 0; i < _cap; ++i){
         buf[i] = float();
     }
-
+    source = &_ringbuffer_dummy;
     
     read_index = 0;
     write_index = _cap - 1;

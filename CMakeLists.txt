@@ -26,7 +26,13 @@ endif ()
 
 target_include_directories(audiointerface PUBLIC extern/portaudio/include)
 target_include_directories(audiointerface PUBLIC inc/aud)
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release)
+endif()
 
+set(CMAKE_CXX_FLAGS "-Wall -Wextra")
+set(CMAKE_CXX_FLAGS_DEBUG "-g")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 
 target_link_directories(audiointerface PUBLIC ${CMAKE_BINARY_DIR}/extern/portaudio/)

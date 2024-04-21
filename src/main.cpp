@@ -1,15 +1,10 @@
 #include <iostream>
 #include "audiointerface.h"
 int main (int argc, char *argv[]) {
-    
-
-
     AudioInterface af {};
-    af.set_OutDevice(2)
+    af.set_OutDevice(1)
         .master()
-            ->add_channel()
-                ->add_source(std::make_unique<SawOscillator>(440.f));
-    af.set_InDevice(2);
+            ->add_channel()->add_source(std::make_unique<SineOscillator>(440.f));
     af.play();
     std::cin.get();
     return 0;

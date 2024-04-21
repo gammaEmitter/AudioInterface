@@ -1,28 +1,10 @@
-
-
 #include "iodef.h"
 
 class SineOscillator : public ISignalSource {
 public:
-    SineOscillator (float freq) : 
-        m_phase(0),
-        m_gain(0.71), 
-        m_frequencyNorm(freq/AudIO::Samplerate44100), 
-        m_phaseIncr(m_frequencyNorm*AudIO::twoPI) {
-    }
-    void setFreq(float freq) {
-        m_frequencyNorm = freq/AudIO::Samplerate44100;
-        m_phaseIncr = m_frequencyNorm * AudIO::twoPI;
-    }
-    void setGain(float gain) {
-        if (gain >= 1.f) {
-            m_gain = 1.f;
-        } else if (gain <= 0){
-            m_gain = 0.f;
-        } else {
-            m_gain = gain;
-        }
-    }
+    SineOscillator (float freq);
+    void setFreq(float freq);
+    void setGain(float gain);
     inline float Out() override {
         float sample =sin(m_phase); 
         m_phase += m_phaseIncr;
@@ -37,25 +19,9 @@ private:
 };
 class SawOscillator : public ISignalSource {
 public:
-    SawOscillator (float freq) : 
-        m_phase(0),
-        m_gain(0.71), 
-        m_frequencyNorm(freq/AudIO::Samplerate44100), 
-        m_phaseIncr(m_frequencyNorm*AudIO::twoPI) {
-    }
-    void setFreq(float freq) {
-        m_frequencyNorm = freq/AudIO::Samplerate44100;
-        m_phaseIncr = m_frequencyNorm * AudIO::twoPI;
-    }
-    void setGain(float gain) {
-        if (gain >= 1.f) {
-            m_gain = 1.f;
-        } else if (gain <= 0){
-            m_gain = 0.f;
-        } else {
-            m_gain = gain;
-        }
-    }
+    SawOscillator (float freq);
+    void setFreq(float freq);
+    void setGain(float gain);
     inline float Out() override {
         float dt = m_phase / AudIO::twoPI;
         float sample = ((2.f*dt) - 1.f) ; 

@@ -1,0 +1,261 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "src/audiointerface"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_directories",
+			"target_link_libraries",
+			"target_include_directories",
+			"target_sources"
+		],
+		"files" : 
+		[
+			"src/CMakeLists.txt",
+			"CMakeLists.txt",
+			"src/aud/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 1,
+				"parent" : 0
+			},
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 38,
+				"parent" : 2
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 12,
+				"parent" : 2
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 40,
+				"parent" : 2
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 27,
+				"parent" : 2
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 28,
+				"parent" : 2
+			},
+			{
+				"file" : 2
+			},
+			{
+				"command" : 4,
+				"file" : 2,
+				"line" : 1,
+				"parent" : 8
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-O3 -DNDEBUG -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 6,
+					"path" : "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "20"
+			},
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8
+			]
+		}
+	],
+	"id" : "audiointerface::@145eef247bfb46b6828c",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-O3 -DNDEBUG",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-L/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio",
+				"role" : "libraryPath"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-framework CoreAudio",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-framework AudioToolbox",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-framework AudioUnit",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-framework CoreFoundation",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-framework CoreServices",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lportaudio",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "audiointerface",
+	"nameOnDisk" : "audiointerface",
+	"paths" : 
+	{
+		"build" : "src",
+		"source" : "src"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/main.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 9,
+			"compileGroupIndex" : 0,
+			"path" : "src/aud/audiointerface.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 9,
+			"compileGroupIndex" : 0,
+			"path" : "src/aud/bus.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 9,
+			"compileGroupIndex" : 0,
+			"path" : "src/aud/bufferservice.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 9,
+			"compileGroupIndex" : 0,
+			"path" : "src/aud/channel.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 9,
+			"compileGroupIndex" : 0,
+			"path" : "src/aud/ringbuffer.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 9,
+			"compileGroupIndex" : 0,
+			"path" : "src/aud/oscillator.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 9,
+			"compileGroupIndex" : 0,
+			"path" : "src/aud/wavetable.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 9,
+			"compileGroupIndex" : 0,
+			"path" : "src/aud/wtoscillator.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}
