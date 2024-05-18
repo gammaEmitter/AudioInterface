@@ -142,5 +142,53 @@
   "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -o CMakeFiles/audiointerface.dir/aud/wtoscillator.cpp.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/wtoscillator.cpp",
   "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/wtoscillator.cpp",
   "output": "src/CMakeFiles/audiointerface.dir/aud/wtoscillator.cpp.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -o CMakeFiles/audiocomponents.dir/audiointerface.cpp.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/audiointerface.cpp",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/audiointerface.cpp",
+  "output": "src/aud/CMakeFiles/audiocomponents.dir/audiointerface.cpp.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -o CMakeFiles/audiocomponents.dir/bus.cpp.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/bus.cpp",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/bus.cpp",
+  "output": "src/aud/CMakeFiles/audiocomponents.dir/bus.cpp.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -o CMakeFiles/audiocomponents.dir/bufferservice.cpp.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/bufferservice.cpp",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/bufferservice.cpp",
+  "output": "src/aud/CMakeFiles/audiocomponents.dir/bufferservice.cpp.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -o CMakeFiles/audiocomponents.dir/channel.cpp.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/channel.cpp",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/channel.cpp",
+  "output": "src/aud/CMakeFiles/audiocomponents.dir/channel.cpp.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -o CMakeFiles/audiocomponents.dir/ringbuffer.cpp.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/ringbuffer.cpp",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/ringbuffer.cpp",
+  "output": "src/aud/CMakeFiles/audiocomponents.dir/ringbuffer.cpp.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -o CMakeFiles/audiocomponents.dir/oscillator.cpp.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/oscillator.cpp",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/oscillator.cpp",
+  "output": "src/aud/CMakeFiles/audiocomponents.dir/oscillator.cpp.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -o CMakeFiles/audiocomponents.dir/wavetable.cpp.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/wavetable.cpp",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/wavetable.cpp",
+  "output": "src/aud/CMakeFiles/audiocomponents.dir/wavetable.cpp.o"
+},
+{
+  "directory": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include -I/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -o CMakeFiles/audiocomponents.dir/wtoscillator.cpp.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/wtoscillator.cpp",
+  "file": "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/wtoscillator.cpp",
+  "output": "src/aud/CMakeFiles/audiocomponents.dir/wtoscillator.cpp.o"
 }
 ]

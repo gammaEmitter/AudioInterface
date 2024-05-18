@@ -161,6 +161,212 @@ depend:
 	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+# Convenience name for target.
+src/aud/CMakeFiles/audiocomponents.dir/rule:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/aud/CMakeFiles/audiocomponents.dir/rule
+.PHONY : src/aud/CMakeFiles/audiocomponents.dir/rule
+
+# Convenience name for target.
+audiocomponents: src/aud/CMakeFiles/audiocomponents.dir/rule
+.PHONY : audiocomponents
+
+# fast build rule for target.
+audiocomponents/fast:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/build
+.PHONY : audiocomponents/fast
+
+audiointerface.o: audiointerface.cpp.o
+.PHONY : audiointerface.o
+
+# target to build an object file
+audiointerface.cpp.o:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/audiointerface.cpp.o
+.PHONY : audiointerface.cpp.o
+
+audiointerface.i: audiointerface.cpp.i
+.PHONY : audiointerface.i
+
+# target to preprocess a source file
+audiointerface.cpp.i:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/audiointerface.cpp.i
+.PHONY : audiointerface.cpp.i
+
+audiointerface.s: audiointerface.cpp.s
+.PHONY : audiointerface.s
+
+# target to generate assembly for a file
+audiointerface.cpp.s:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/audiointerface.cpp.s
+.PHONY : audiointerface.cpp.s
+
+bufferservice.o: bufferservice.cpp.o
+.PHONY : bufferservice.o
+
+# target to build an object file
+bufferservice.cpp.o:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/bufferservice.cpp.o
+.PHONY : bufferservice.cpp.o
+
+bufferservice.i: bufferservice.cpp.i
+.PHONY : bufferservice.i
+
+# target to preprocess a source file
+bufferservice.cpp.i:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/bufferservice.cpp.i
+.PHONY : bufferservice.cpp.i
+
+bufferservice.s: bufferservice.cpp.s
+.PHONY : bufferservice.s
+
+# target to generate assembly for a file
+bufferservice.cpp.s:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/bufferservice.cpp.s
+.PHONY : bufferservice.cpp.s
+
+bus.o: bus.cpp.o
+.PHONY : bus.o
+
+# target to build an object file
+bus.cpp.o:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/bus.cpp.o
+.PHONY : bus.cpp.o
+
+bus.i: bus.cpp.i
+.PHONY : bus.i
+
+# target to preprocess a source file
+bus.cpp.i:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/bus.cpp.i
+.PHONY : bus.cpp.i
+
+bus.s: bus.cpp.s
+.PHONY : bus.s
+
+# target to generate assembly for a file
+bus.cpp.s:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/bus.cpp.s
+.PHONY : bus.cpp.s
+
+channel.o: channel.cpp.o
+.PHONY : channel.o
+
+# target to build an object file
+channel.cpp.o:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/channel.cpp.o
+.PHONY : channel.cpp.o
+
+channel.i: channel.cpp.i
+.PHONY : channel.i
+
+# target to preprocess a source file
+channel.cpp.i:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/channel.cpp.i
+.PHONY : channel.cpp.i
+
+channel.s: channel.cpp.s
+.PHONY : channel.s
+
+# target to generate assembly for a file
+channel.cpp.s:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/channel.cpp.s
+.PHONY : channel.cpp.s
+
+oscillator.o: oscillator.cpp.o
+.PHONY : oscillator.o
+
+# target to build an object file
+oscillator.cpp.o:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/oscillator.cpp.o
+.PHONY : oscillator.cpp.o
+
+oscillator.i: oscillator.cpp.i
+.PHONY : oscillator.i
+
+# target to preprocess a source file
+oscillator.cpp.i:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/oscillator.cpp.i
+.PHONY : oscillator.cpp.i
+
+oscillator.s: oscillator.cpp.s
+.PHONY : oscillator.s
+
+# target to generate assembly for a file
+oscillator.cpp.s:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/oscillator.cpp.s
+.PHONY : oscillator.cpp.s
+
+ringbuffer.o: ringbuffer.cpp.o
+.PHONY : ringbuffer.o
+
+# target to build an object file
+ringbuffer.cpp.o:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/ringbuffer.cpp.o
+.PHONY : ringbuffer.cpp.o
+
+ringbuffer.i: ringbuffer.cpp.i
+.PHONY : ringbuffer.i
+
+# target to preprocess a source file
+ringbuffer.cpp.i:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/ringbuffer.cpp.i
+.PHONY : ringbuffer.cpp.i
+
+ringbuffer.s: ringbuffer.cpp.s
+.PHONY : ringbuffer.s
+
+# target to generate assembly for a file
+ringbuffer.cpp.s:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/ringbuffer.cpp.s
+.PHONY : ringbuffer.cpp.s
+
+wavetable.o: wavetable.cpp.o
+.PHONY : wavetable.o
+
+# target to build an object file
+wavetable.cpp.o:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/wavetable.cpp.o
+.PHONY : wavetable.cpp.o
+
+wavetable.i: wavetable.cpp.i
+.PHONY : wavetable.i
+
+# target to preprocess a source file
+wavetable.cpp.i:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/wavetable.cpp.i
+.PHONY : wavetable.cpp.i
+
+wavetable.s: wavetable.cpp.s
+.PHONY : wavetable.s
+
+# target to generate assembly for a file
+wavetable.cpp.s:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/wavetable.cpp.s
+.PHONY : wavetable.cpp.s
+
+wtoscillator.o: wtoscillator.cpp.o
+.PHONY : wtoscillator.o
+
+# target to build an object file
+wtoscillator.cpp.o:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/wtoscillator.cpp.o
+.PHONY : wtoscillator.cpp.o
+
+wtoscillator.i: wtoscillator.cpp.i
+.PHONY : wtoscillator.i
+
+# target to preprocess a source file
+wtoscillator.cpp.i:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/wtoscillator.cpp.i
+.PHONY : wtoscillator.cpp.i
+
+wtoscillator.s: wtoscillator.cpp.s
+.PHONY : wtoscillator.s
+
+# target to generate assembly for a file
+wtoscillator.cpp.s:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/wtoscillator.cpp.s
+.PHONY : wtoscillator.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -173,6 +379,31 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... audiocomponents"
+	@echo "... audiointerface.o"
+	@echo "... audiointerface.i"
+	@echo "... audiointerface.s"
+	@echo "... bufferservice.o"
+	@echo "... bufferservice.i"
+	@echo "... bufferservice.s"
+	@echo "... bus.o"
+	@echo "... bus.i"
+	@echo "... bus.s"
+	@echo "... channel.o"
+	@echo "... channel.i"
+	@echo "... channel.s"
+	@echo "... oscillator.o"
+	@echo "... oscillator.i"
+	@echo "... oscillator.s"
+	@echo "... ringbuffer.o"
+	@echo "... ringbuffer.i"
+	@echo "... ringbuffer.s"
+	@echo "... wavetable.o"
+	@echo "... wavetable.i"
+	@echo "... wavetable.s"
+	@echo "... wtoscillator.o"
+	@echo "... wtoscillator.i"
+	@echo "... wtoscillator.s"
 .PHONY : help
 
 

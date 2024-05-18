@@ -14,6 +14,10 @@ public:
     }
     Channel& set_gain (float gain);
 
+    ISignalSource* operator[](size_t index) {
+        return sources[index].get();
+    }
+
 private:
     std::unique_ptr<Ringbuffer> m_ringbuffer = nullptr;
     std::vector<std::unique_ptr<ISignalSource>> sources {}; 

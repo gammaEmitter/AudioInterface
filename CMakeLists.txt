@@ -32,6 +32,8 @@ endif ()
 
 target_include_directories(audiointerface PUBLIC extern/portaudio/include)
 target_include_directories(audiointerface PUBLIC inc/aud)
+target_include_directories(audiocomponents PUBLIC extern/portaudio/include)
+target_include_directories(audiocomponents PUBLIC inc/aud)
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release)
 endif()

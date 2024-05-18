@@ -19,6 +19,7 @@
 /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/CMakeFiles/install.dir
 /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/CMakeFiles/install/local.dir
 /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/CMakeFiles/install/strip.dir
+/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/CMakeFiles/audiocomponents.dir
 /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/CMakeFiles/edit_cache.dir
 /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/CMakeFiles/rebuild_cache.dir
 /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/CMakeFiles/list_install_components.dir

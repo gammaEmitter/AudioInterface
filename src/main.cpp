@@ -1,5 +1,6 @@
 #include <iostream>
 #include "audiointerface.h"
+#include "oscillator.h"
 int main (int argc, char *argv[]) {
     AudioInterface af {};
     af.set_OutDevice(1)

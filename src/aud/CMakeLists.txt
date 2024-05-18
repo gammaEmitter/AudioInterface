@@ -10,4 +10,4 @@ set(SRCS
     )
 
 target_sources(audiointerface PRIVATE ${SRCS})
-add_library(audiointerface PRIVATE ${SRCS}
+add_library(audiocomponents ${SRCS})

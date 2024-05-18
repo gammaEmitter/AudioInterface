@@ -200,6 +200,19 @@ audiointerface/fast:
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/audiointerface.dir/build.make src/CMakeFiles/audiointerface.dir/build
 .PHONY : audiointerface/fast
 
+#=============================================================================
+# Target rules for targets named audiocomponents
+
+# Build rule for target.
+audiocomponents: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 audiocomponents
+.PHONY : audiocomponents
+
+# fast build rule for target.
+audiocomponents/fast:
+	$(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/build
+.PHONY : audiocomponents/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -214,6 +227,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... uninstall"
 	@echo "... PortAudio"
+	@echo "... audiocomponents"
 	@echo "... audiointerface"
 .PHONY : help
 
