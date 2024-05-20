@@ -4,6 +4,7 @@ set(SRCS
     bufferservice.cpp
     channel.cpp
     ringbuffer.cpp
+    clockbase.cpp
     oscillator.cpp
     wavetable.cpp
     wtoscillator.cpp

@@ -3,6 +3,7 @@
 #include "audiointerface.h"
 #include "iodef.h"
 #include "portaudio.h"
+#include <cstddef>
 #include <memory>
 #include <pthread.h>
 #include <string_view>
@@ -44,17 +45,18 @@ void AudioInterface::printDevices(std::ostream& outstream) {
     }
     outstream << oss.str() << std::endl;
 }
+// pupolates stream information from the chosen device
 void AudioInterface::populateOutStreamInfo() {
     if (m_odevice) {
 
         streaminfo.output_param.device = get_device(m_odevice);
         streaminfo.output_param.channelCount = AudIO::Mono;
         streaminfo.output_param.sampleFormat = paFloat32;
-        streaminfo.output_param.suggestedLatency = m_odevice->defaultLowInputLatency;
+        streaminfo.output_param.suggestedLatency = m_odevice->defaultLowOutputLatency;
         streaminfo.output_param.hostApiSpecificStreamInfo = NULL;
-
     }
 }
+// pupolates stream information from the chosen device
 void AudioInterface::populateInStreamInfo() {
     if (m_idevice) {
         streaminfo.input_param.device = get_device(m_idevice);
@@ -62,10 +64,9 @@ void AudioInterface::populateInStreamInfo() {
         streaminfo.input_param.sampleFormat = paFloat32;
         streaminfo.input_param.suggestedLatency = m_idevice->defaultLowInputLatency;
         streaminfo.input_param.hostApiSpecificStreamInfo = NULL;
-
     }
 }
-// pupolates stream information from the chosen device
+
 AudioInterface& AudioInterface::set_OutDevice(const std::string_view name) {
     for (auto dev : m_devices) {
         if (dev.second->name == name) {
@@ -76,14 +77,11 @@ AudioInterface& AudioInterface::set_OutDevice(const std::string_view name) {
     return *this;
 }
 
-
-// pupolates stream information from the chosen device
 AudioInterface& AudioInterface::set_OutDevice (PaDeviceIndex index) {
     m_odevice = Pa_GetDeviceInfo(index);
     populateOutStreamInfo();
     return *this;
 }
-// pupolates stream information from the chosen device
 AudioInterface& AudioInterface::set_InDevice(const std::string_view name) {
     for (auto dev : m_devices) {
         if (dev.second->name == name) {
@@ -133,6 +131,7 @@ int AudioInterface::inOutCallback (const void* inputbuffer,
     return paContinue;
 }
 
+
  int AudioInterface::outputCallback (const void* inputbuffer, 
         void* outputbuffer,
         unsigned long framesPerBuffer,
@@ -140,26 +139,17 @@ int AudioInterface::inOutCallback (const void* inputbuffer,
         PaStreamCallbackFlags statusflags,
         void* userData
         ) {
-
-    Ringbuffer* rb = (Ringbuffer*)userData;
+    uint32_t samplesConsumed {};
+    Ringbuffer* rb = (Ringbuffer*) userData;
     float* write_ptr = (float*) outputbuffer;
     for (size_t i = 0; i < framesPerBuffer; i += 16) {
-        *write_ptr++ = rb->pull(); 
-        *write_ptr++ = rb->pull(); 
-        *write_ptr++ = rb->pull(); 
-        *write_ptr++ = rb->pull(); 
-        *write_ptr++ = rb->pull(); 
-        *write_ptr++ = rb->pull(); 
-        *write_ptr++ = rb->pull(); 
-        *write_ptr++ = rb->pull(); 
-        *write_ptr++ = rb->pull(); 
-        *write_ptr++ = rb->pull(); 
-        *write_ptr++ = rb->pull(); 
-        *write_ptr++ = rb->pull(); 
-        *write_ptr++ = rb->pull(); 
-        *write_ptr++ = rb->pull(); 
-        *write_ptr++ = rb->pull(); 
-        *write_ptr++ = rb->pull();
+        for (int j = 0; j < 16; ++j) {
+            *write_ptr++ = rb->pull();
+            samplesConsumed++;
+        }
+    } 
+    for (int i = 0; i < samplesConsumed; ++i) {
+        Clockbase::increment();
     }
     return paContinue;
 }
@@ -200,11 +190,12 @@ int AudioInterface::inputCallback( const void *inputBuffer, void *outputBuffer,
 
 PaError AudioInterface::play() {
 
+
     streaminfo.err_status = Pa_OpenStream(&streaminfo.stream,
                 NULL,
                 &streaminfo.output_param,
-                m_odevice->defaultSampleRate,
-                m_ringbuffer->capacity(),
+                Clockbase::samplerate,
+                AudIO::RingbufferSize / 4,
                 paClipOff,
                 outputCallback,
                 (void*)m_ringbuffer.get());

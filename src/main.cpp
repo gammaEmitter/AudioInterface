@@ -6,6 +6,7 @@ int main (int argc, char *argv[]) {
     af.set_OutDevice(1)
         .master()
             ->add_channel()->add_source(std::make_unique<SineOscillator>(440.f));
+            //->add_channel();
     af.play();
     std::cin.get();
     return 0;

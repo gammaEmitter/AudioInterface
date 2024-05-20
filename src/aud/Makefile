@@ -271,6 +271,30 @@ channel.cpp.s:
 	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/channel.cpp.s
 .PHONY : channel.cpp.s
 
+clockbase.o: clockbase.cpp.o
+.PHONY : clockbase.o
+
+# target to build an object file
+clockbase.cpp.o:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/clockbase.cpp.o
+.PHONY : clockbase.cpp.o
+
+clockbase.i: clockbase.cpp.i
+.PHONY : clockbase.i
+
+# target to preprocess a source file
+clockbase.cpp.i:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/clockbase.cpp.i
+.PHONY : clockbase.cpp.i
+
+clockbase.s: clockbase.cpp.s
+.PHONY : clockbase.s
+
+# target to generate assembly for a file
+clockbase.cpp.s:
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev && $(MAKE) $(MAKESILENT) -f src/aud/CMakeFiles/audiocomponents.dir/build.make src/aud/CMakeFiles/audiocomponents.dir/clockbase.cpp.s
+.PHONY : clockbase.cpp.s
+
 oscillator.o: oscillator.cpp.o
 .PHONY : oscillator.o
 
@@ -392,6 +416,9 @@ help:
 	@echo "... channel.o"
 	@echo "... channel.i"
 	@echo "... channel.s"
+	@echo "... clockbase.o"
+	@echo "... clockbase.i"
+	@echo "... clockbase.s"
 	@echo "... oscillator.o"
 	@echo "... oscillator.i"
 	@echo "... oscillator.s"

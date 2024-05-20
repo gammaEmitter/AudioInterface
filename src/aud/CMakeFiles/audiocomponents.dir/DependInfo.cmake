@@ -12,6 +12,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/bufferservice.cpp" "src/aud/CMakeFiles/audiocomponents.dir/bufferservice.cpp.o" "gcc" "src/aud/CMakeFiles/audiocomponents.dir/bufferservice.cpp.o.d"
   "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/bus.cpp" "src/aud/CMakeFiles/audiocomponents.dir/bus.cpp.o" "gcc" "src/aud/CMakeFiles/audiocomponents.dir/bus.cpp.o.d"
   "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/channel.cpp" "src/aud/CMakeFiles/audiocomponents.dir/channel.cpp.o" "gcc" "src/aud/CMakeFiles/audiocomponents.dir/channel.cpp.o.d"
+  "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/clockbase.cpp" "src/aud/CMakeFiles/audiocomponents.dir/clockbase.cpp.o" "gcc" "src/aud/CMakeFiles/audiocomponents.dir/clockbase.cpp.o.d"
   "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/oscillator.cpp" "src/aud/CMakeFiles/audiocomponents.dir/oscillator.cpp.o" "gcc" "src/aud/CMakeFiles/audiocomponents.dir/oscillator.cpp.o.d"
   "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/ringbuffer.cpp" "src/aud/CMakeFiles/audiocomponents.dir/ringbuffer.cpp.o" "gcc" "src/aud/CMakeFiles/audiocomponents.dir/ringbuffer.cpp.o.d"
   "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/wavetable.cpp" "src/aud/CMakeFiles/audiocomponents.dir/wavetable.cpp.o" "gcc" "src/aud/CMakeFiles/audiocomponents.dir/wavetable.cpp.o.d"

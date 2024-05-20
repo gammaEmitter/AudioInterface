@@ -16,7 +16,7 @@ namespace AudIO {
     static constexpr float Samplerate44100 = 44100;
     static constexpr int WaveTableSize = 16384;
     static constexpr float SampleSilence = 0.f;
-    static constexpr int RingbufferSize = 512;
+    static constexpr int RingbufferSize = 256;
     static constexpr int RingbufferStart = 0;
     static constexpr int RingbufferHalf = RingbufferSize / 2;
 };
@@ -25,7 +25,7 @@ using WaveTableStrategy = std::function<std::vector<float>()>;
 using SampleOut = std::function<float()>;
 using RingbufferPtr = float*;
 using BufferPtr = std::array<float,AudIO::RingbufferSize>*;
-
+using SampleRate_t = float;
 
 
 class ISignalSource {

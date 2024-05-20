@@ -9,6 +9,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/audiocomponents.dir/bus.cpp.o.d"
   "CMakeFiles/audiocomponents.dir/channel.cpp.o"
   "CMakeFiles/audiocomponents.dir/channel.cpp.o.d"
+  "CMakeFiles/audiocomponents.dir/clockbase.cpp.o"
+  "CMakeFiles/audiocomponents.dir/clockbase.cpp.o.d"
   "CMakeFiles/audiocomponents.dir/oscillator.cpp.o"
   "CMakeFiles/audiocomponents.dir/oscillator.cpp.o.d"
   "CMakeFiles/audiocomponents.dir/ringbuffer.cpp.o"

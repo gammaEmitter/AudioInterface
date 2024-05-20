@@ -9,6 +9,7 @@
 #include "ringbuffer.h"
 #include "bus.h"
 #include "iodef.h"
+#include "clockbase.h"
 
 
 class AudioInterface {
@@ -70,13 +71,13 @@ class AudioInterface {
                                 PaStreamCallbackFlags statusflags,
                                 void* userData
         );
-        std::map<PaDeviceIndex, const PaDeviceInfo* > m_devices;
-        std::unique_ptr<MasterBus> m_masterbus = nullptr;
-        std::unique_ptr<Ringbuffer> m_ringbuffer = nullptr;
-        PaError err;
-        StreamParameters streaminfo;
-        const PaDeviceInfo* m_odevice;
-        const PaDeviceInfo* m_idevice;
+        std::map<PaDeviceIndex, const PaDeviceInfo* >       m_devices {};
+        std::unique_ptr<MasterBus>                          m_masterbus = nullptr;
+        std::unique_ptr<Ringbuffer>                         m_ringbuffer = nullptr;
+        PaError                                             err = paNoError;
+        StreamParameters                                    streaminfo;
+        const PaDeviceInfo*                                 m_odevice;
+        const PaDeviceInfo*                                 m_idevice;
 };
 
 
