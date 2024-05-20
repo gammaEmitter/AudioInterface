@@ -44,5 +44,7 @@ CTestTestfile.cmake
 _deps
 
 compile_commands.json
+bin/
+lib/
 
 .*
