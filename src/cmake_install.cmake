@@ -40,6 +40,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/cmake_install.cmake")
+  include("/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/tool/cmake_install.cmake")
 
 endif()
 
