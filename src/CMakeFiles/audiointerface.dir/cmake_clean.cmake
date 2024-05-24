@@ -11,6 +11,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/audiointerface.dir/aud/channel.cpp.o.d"
   "CMakeFiles/audiointerface.dir/aud/clockbase.cpp.o"
   "CMakeFiles/audiointerface.dir/aud/clockbase.cpp.o.d"
+  "CMakeFiles/audiointerface.dir/aud/metronome.cpp.o"
+  "CMakeFiles/audiointerface.dir/aud/metronome.cpp.o.d"
   "CMakeFiles/audiointerface.dir/aud/oscillator.cpp.o"
   "CMakeFiles/audiointerface.dir/aud/oscillator.cpp.o.d"
   "CMakeFiles/audiointerface.dir/aud/ringbuffer.cpp.o"

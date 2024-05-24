@@ -18,8 +18,10 @@ public:
         return sources[index].get();
     }
 
-private:
+
     std::unique_ptr<Ringbuffer> m_ringbuffer = nullptr;
+
+private:
     std::vector<std::unique_ptr<ISignalSource>> sources {}; 
     float m_gain = 0.3f;
 

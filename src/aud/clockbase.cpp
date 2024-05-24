@@ -1,6 +1,7 @@
 #include "clockbase.h"
 
 
+    std::atomic<size_t>             Clockbase::samples_passed = 0;           // 0 - (sammplerate - 1)
     std::atomic<size_t>             Clockbase::ticks          = 0;           // 0 - 63 
     std::atomic<uint32_t>           Clockbase::seconds        = 0;           // counts up
 

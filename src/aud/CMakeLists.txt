@@ -5,6 +5,7 @@ set(SRCS
     channel.cpp
     ringbuffer.cpp
     clockbase.cpp
+    metronome.cpp
     oscillator.cpp
     wavetable.cpp
     wtoscillator.cpp

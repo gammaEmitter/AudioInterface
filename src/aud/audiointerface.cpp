@@ -139,18 +139,14 @@ int AudioInterface::inOutCallback (const void* inputbuffer,
         PaStreamCallbackFlags statusflags,
         void* userData
         ) {
-    uint32_t samplesConsumed {};
     Ringbuffer* rb = (Ringbuffer*) userData;
     float* write_ptr = (float*) outputbuffer;
     for (size_t i = 0; i < framesPerBuffer; i += 16) {
         for (int j = 0; j < 16; ++j) {
             *write_ptr++ = rb->pull();
-            samplesConsumed++;
+            Clockbase::increment();
         }
     } 
-    for (int i = 0; i < samplesConsumed; ++i) {
-        Clockbase::increment();
-    }
     return paContinue;
 }
 

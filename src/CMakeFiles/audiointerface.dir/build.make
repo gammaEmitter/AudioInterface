@@ -167,10 +167,24 @@ src/CMakeFiles/audiointerface.dir/aud/clockbase.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/audiointerface.dir/aud/clockbase.cpp.s"
 	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/clockbase.cpp -o CMakeFiles/audiointerface.dir/aud/clockbase.cpp.s
 
+src/CMakeFiles/audiointerface.dir/aud/metronome.cpp.o: src/CMakeFiles/audiointerface.dir/flags.make
+src/CMakeFiles/audiointerface.dir/aud/metronome.cpp.o: src/aud/metronome.cpp
+src/CMakeFiles/audiointerface.dir/aud/metronome.cpp.o: src/CMakeFiles/audiointerface.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/CMakeFiles/audiointerface.dir/aud/metronome.cpp.o"
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/audiointerface.dir/aud/metronome.cpp.o -MF CMakeFiles/audiointerface.dir/aud/metronome.cpp.o.d -o CMakeFiles/audiointerface.dir/aud/metronome.cpp.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/metronome.cpp
+
+src/CMakeFiles/audiointerface.dir/aud/metronome.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/audiointerface.dir/aud/metronome.cpp.i"
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/metronome.cpp > CMakeFiles/audiointerface.dir/aud/metronome.cpp.i
+
+src/CMakeFiles/audiointerface.dir/aud/metronome.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/audiointerface.dir/aud/metronome.cpp.s"
+	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/metronome.cpp -o CMakeFiles/audiointerface.dir/aud/metronome.cpp.s
+
 src/CMakeFiles/audiointerface.dir/aud/oscillator.cpp.o: src/CMakeFiles/audiointerface.dir/flags.make
 src/CMakeFiles/audiointerface.dir/aud/oscillator.cpp.o: src/aud/oscillator.cpp
 src/CMakeFiles/audiointerface.dir/aud/oscillator.cpp.o: src/CMakeFiles/audiointerface.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/CMakeFiles/audiointerface.dir/aud/oscillator.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object src/CMakeFiles/audiointerface.dir/aud/oscillator.cpp.o"
 	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/audiointerface.dir/aud/oscillator.cpp.o -MF CMakeFiles/audiointerface.dir/aud/oscillator.cpp.o.d -o CMakeFiles/audiointerface.dir/aud/oscillator.cpp.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/oscillator.cpp
 
 src/CMakeFiles/audiointerface.dir/aud/oscillator.cpp.i: cmake_force
@@ -184,7 +198,7 @@ src/CMakeFiles/audiointerface.dir/aud/oscillator.cpp.s: cmake_force
 src/CMakeFiles/audiointerface.dir/aud/wavetable.cpp.o: src/CMakeFiles/audiointerface.dir/flags.make
 src/CMakeFiles/audiointerface.dir/aud/wavetable.cpp.o: src/aud/wavetable.cpp
 src/CMakeFiles/audiointerface.dir/aud/wavetable.cpp.o: src/CMakeFiles/audiointerface.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object src/CMakeFiles/audiointerface.dir/aud/wavetable.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object src/CMakeFiles/audiointerface.dir/aud/wavetable.cpp.o"
 	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/audiointerface.dir/aud/wavetable.cpp.o -MF CMakeFiles/audiointerface.dir/aud/wavetable.cpp.o.d -o CMakeFiles/audiointerface.dir/aud/wavetable.cpp.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/wavetable.cpp
 
 src/CMakeFiles/audiointerface.dir/aud/wavetable.cpp.i: cmake_force
@@ -198,7 +212,7 @@ src/CMakeFiles/audiointerface.dir/aud/wavetable.cpp.s: cmake_force
 src/CMakeFiles/audiointerface.dir/aud/wtoscillator.cpp.o: src/CMakeFiles/audiointerface.dir/flags.make
 src/CMakeFiles/audiointerface.dir/aud/wtoscillator.cpp.o: src/aud/wtoscillator.cpp
 src/CMakeFiles/audiointerface.dir/aud/wtoscillator.cpp.o: src/CMakeFiles/audiointerface.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object src/CMakeFiles/audiointerface.dir/aud/wtoscillator.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object src/CMakeFiles/audiointerface.dir/aud/wtoscillator.cpp.o"
 	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/audiointerface.dir/aud/wtoscillator.cpp.o -MF CMakeFiles/audiointerface.dir/aud/wtoscillator.cpp.o.d -o CMakeFiles/audiointerface.dir/aud/wtoscillator.cpp.o -c /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/wtoscillator.cpp
 
 src/CMakeFiles/audiointerface.dir/aud/wtoscillator.cpp.i: cmake_force
@@ -218,6 +232,7 @@ audiointerface_OBJECTS = \
 "CMakeFiles/audiointerface.dir/aud/channel.cpp.o" \
 "CMakeFiles/audiointerface.dir/aud/ringbuffer.cpp.o" \
 "CMakeFiles/audiointerface.dir/aud/clockbase.cpp.o" \
+"CMakeFiles/audiointerface.dir/aud/metronome.cpp.o" \
 "CMakeFiles/audiointerface.dir/aud/oscillator.cpp.o" \
 "CMakeFiles/audiointerface.dir/aud/wavetable.cpp.o" \
 "CMakeFiles/audiointerface.dir/aud/wtoscillator.cpp.o"
@@ -232,12 +247,14 @@ bin/audiointerface: src/CMakeFiles/audiointerface.dir/aud/bufferservice.cpp.o
 bin/audiointerface: src/CMakeFiles/audiointerface.dir/aud/channel.cpp.o
 bin/audiointerface: src/CMakeFiles/audiointerface.dir/aud/ringbuffer.cpp.o
 bin/audiointerface: src/CMakeFiles/audiointerface.dir/aud/clockbase.cpp.o
+bin/audiointerface: src/CMakeFiles/audiointerface.dir/aud/metronome.cpp.o
 bin/audiointerface: src/CMakeFiles/audiointerface.dir/aud/oscillator.cpp.o
 bin/audiointerface: src/CMakeFiles/audiointerface.dir/aud/wavetable.cpp.o
 bin/audiointerface: src/CMakeFiles/audiointerface.dir/aud/wtoscillator.cpp.o
 bin/audiointerface: src/CMakeFiles/audiointerface.dir/build.make
+bin/audiointerface: lib/libtooling.a
 bin/audiointerface: src/CMakeFiles/audiointerface.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable ../bin/audiointerface"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable ../bin/audiointerface"
 	cd /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/audiointerface.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
