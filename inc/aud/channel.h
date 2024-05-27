@@ -1,10 +1,13 @@
 #pragma once
 //
+#include <queue>
 #include "ringbuffer.h"
 #include "iodef.h"
+#include "audioevent.h"
+
 class Channel  {
 public:
-
+    
     Channel();
     ~Channel() = default;
 
@@ -22,6 +25,8 @@ public:
     std::unique_ptr<Ringbuffer> m_ringbuffer = nullptr;
 
 private:
+
+    std::priority_queue<AudioEvent, std::vector<AudioEvent>, AudioEventCompare> events {};
     std::vector<std::unique_ptr<ISignalSource>> sources {}; 
     float m_gain = 0.3f;
 

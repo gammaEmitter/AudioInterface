@@ -883,6 +883,7 @@ src/aud/CMakeFiles/audiocomponents.dir/audiointerface.cpp.o: src/aud/audiointerf
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stddef.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stdint.h \
   extern/portaudio/include/portaudio.h \
+  inc/aud/audioevent.h \
   inc/aud/audiointerface.h \
   inc/aud/bus.h \
   inc/aud/channel.h \
@@ -2645,8 +2646,10 @@ src/aud/CMakeFiles/audiocomponents.dir/bus.cpp.o: src/aud/bus.cpp \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stdarg.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stddef.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stdint.h \
+  inc/aud/audioevent.h \
   inc/aud/bus.h \
   inc/aud/channel.h \
+  inc/aud/clockbase.h \
   inc/aud/iodef.h \
   inc/aud/ringbuffer.h
 
@@ -3528,7 +3531,9 @@ src/aud/CMakeFiles/audiocomponents.dir/channel.cpp.o: src/aud/channel.cpp \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stdarg.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stddef.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stdint.h \
+  inc/aud/audioevent.h \
   inc/aud/channel.h \
+  inc/aud/clockbase.h \
   inc/aud/iodef.h \
   inc/aud/ringbuffer.h
 
@@ -8001,6 +8006,8 @@ inc/aud/clockbase.h:
 inc/aud/channel.h:
 
 inc/aud/bus.h:
+
+inc/aud/audioevent.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stddef.h:
 

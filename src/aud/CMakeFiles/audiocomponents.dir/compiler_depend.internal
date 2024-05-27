@@ -884,6 +884,7 @@ src/aud/CMakeFiles/audiocomponents.dir/audiointerface.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stdint.h
  /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/extern/portaudio/include/portaudio.h
+ /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud/audioevent.h
  /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud/audiointerface.h
  /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud/bus.h
  /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud/channel.h
@@ -2648,8 +2649,10 @@ src/aud/CMakeFiles/audiocomponents.dir/bus.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stdint.h
+ /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud/audioevent.h
  /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud/bus.h
  /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud/channel.h
+ /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud/clockbase.h
  /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud/iodef.h
  /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud/ringbuffer.h
 
@@ -3532,7 +3535,9 @@ src/aud/CMakeFiles/audiocomponents.dir/channel.cpp.o
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stdarg.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stddef.h
  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stdint.h
+ /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud/audioevent.h
  /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud/channel.h
+ /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud/clockbase.h
  /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud/iodef.h
  /Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/inc/aud/ringbuffer.h
 

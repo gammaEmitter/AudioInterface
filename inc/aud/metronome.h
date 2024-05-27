@@ -19,7 +19,7 @@ public:
     inline float Out() override {
         float out {};
         auto val = Clockbase::samples_passed.load(); 
-        if (val == (metro_size / 2) - 1) {
+        if (val == metro_size - 1) {
             is_playing = false;
             index = 0;
         } else if (val == 44099 - AudIO::RingbufferSize) {
@@ -27,7 +27,7 @@ public:
         }
         if (is_playing) {
             out = audio_data[index];
-            index += 2;
+            index++;
         } else {
             out = AudIO::SampleSilence;
         }
@@ -40,8 +40,8 @@ private:
     std::vector<float>          audio_data  {};
     size_t                      index       {};
     bool                        is_playing   = false;
-    
-    static constexpr size_t            metro_size = 26112;
+    WavTool::RiffWAV            wav;
+    static constexpr size_t     metro_size = 22364;
 
     void loadFile();
 };

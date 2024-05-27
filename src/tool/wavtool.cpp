@@ -1,12 +1,18 @@
 #include "wavtool.h"
+#include <fstream>
 #include <vector>
 
 namespace WavTool {
 
-uint32_t readUint32LE(std::ifstream &file) {
+int32_t readUint32LE(std::ifstream &file) {
   uint8_t bytes[4];
   file.read(reinterpret_cast<char *>(bytes), 4);
-  return (bytes[3] << 24) | (bytes[2] << 16) | (bytes[1] << 8) | bytes[0];
+  int32_t result = (bytes[3] << 24) | (bytes[2] << 16) | (bytes[1] << 8) | bytes[0];
+
+  if (result & 0x80000000) {
+    result |= ~0xFFFFFFFF;
+  }
+  return result;
 }
 int32_t readUint24LE(std::ifstream &file) {
   uint8_t bytes[3];
@@ -20,10 +26,17 @@ int32_t readUint24LE(std::ifstream &file) {
   return result;
 }
 
-uint16_t readUint16LE(std::ifstream &file) {
+int16_t readUint16LE(std::ifstream &file) {
   uint8_t bytes[2];
   file.read(reinterpret_cast<char *>(bytes), 2);
-  return (bytes[1] << 8) | bytes[0];
+  int16_t result = (bytes[1] << 8) | bytes[0];
+
+
+  if (result & 0x8000) {
+    result |= ~0xFFFF;
+  }
+
+  return result; 
 }
 
 std::vector<float> getDataFloat(const RiffWAV &wav) {
@@ -58,6 +71,68 @@ RiffWAV readWAV(const std::string &filename) {
     throw std::runtime_error("Invalid WAV file format");
   }
 
+  while(file) {
+    uint32_t chunkID = readUint32LE(file); 
+    uint32_t chunkSize = readUint32LE(file);
+
+    switch(chunkID) {
+
+      case ChunkID::JUNK_LE:
+
+        wav.junkID = ChunkID::JUNK_LE;
+        wav.junkSize = chunkSize;
+        file.ignore(wav.junkSize);
+        break;
+
+      case ChunkID::FMT_LE:
+
+        wav.subchunk1ID = ChunkID::FMT_LE;
+        wav.subchunk1Size = chunkSize;
+        wav.audioFormat = readUint16LE(file);
+        wav.numChannels = readUint16LE(file);
+        wav.sampleRate = readUint32LE(file);
+        wav.byteRate = readUint32LE(file);
+        wav.blockAlign = readUint16LE(file);
+        wav.bitsPerSample = readUint16LE(file);
+        // Skip any extra parameters in the fmt subchunk
+        if (wav.subchunk1Size > 16) {
+          file.ignore(wav.subchunk1Size - 16);
+        }
+        break;
+      
+      case ChunkID::DATA_LE:
+        {
+
+          wav.subchunk2ID = ChunkID::DATA_LE;
+          wav.subchunk2Size = chunkSize;
+
+          int numSamples = wav.subchunk2Size / (wav.bitsPerSample / 8);
+          wav.data.resize(numSamples);
+
+          for (int i = 0; i < numSamples; ++i) {
+            if (wav.bitsPerSample == 16) {
+              wav.data[i] = readUint16LE(file);
+            } else if (wav.bitsPerSample == 24) {
+              wav.data[i] = readUint24LE(file);
+            } else if (wav.bitsPerSample == 32) {
+              wav.data[i] = readUint32LE(file);
+            } else {
+              throw std::runtime_error("Unsupported Bits per Sample!");
+            }
+          }
+          break;
+        }
+
+      default:
+        file.ignore(chunkSize);
+
+
+
+
+    }
+
+  }
+/*
   // Read the fmt subchunk
   wav.subchunk1ID = readUint32LE(file);
 
@@ -70,10 +145,12 @@ RiffWAV readWAV(const std::string &filename) {
       wav.subchunk1ID = readUint32LE(file);
     } else {
       throw std::runtime_error(
-          "FMT subchunk not found\nJUNK subchunk not found");
+          "JUNK subchunk not found");
     }
+  } else {
+      printf("JUNK subchunk found\n");
   }
-
+  
   wav.subchunk1Size = readUint32LE(file);
   wav.audioFormat = readUint16LE(file);
   wav.numChannels = readUint16LE(file);
@@ -81,7 +158,10 @@ RiffWAV readWAV(const std::string &filename) {
   wav.byteRate = readUint32LE(file);
   wav.blockAlign = readUint16LE(file);
   wav.bitsPerSample = readUint16LE(file);
-
+  // Skip any extra parameters in the fmt subchunk
+  if (wav.subchunk1Size > 16) {
+    file.ignore(wav.subchunk1Size - 16);
+  }
   // Read the data subchunk
   wav.subchunk2ID = readUint32LE(file);
   wav.subchunk2Size = readUint32LE(file);
@@ -104,7 +184,7 @@ RiffWAV readWAV(const std::string &filename) {
       throw std::runtime_error("Unsupported Bits per Sample!");
     }
   }
-
+*/
   return wav;
 }
 
