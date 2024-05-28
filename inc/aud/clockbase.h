@@ -31,9 +31,10 @@ namespace Clockbase {
         if (samples_passed.load() == samplerate) {
             samples_passed.store(0);
         }
-
     }
 };
+
+Timestamp_t timeFromBeats(uint16_t beats, uint8_t ticks);
 
 struct TransportWatch {
     std::atomic<uint16_t>               seconds         {};

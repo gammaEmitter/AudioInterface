@@ -10,7 +10,7 @@ public:
     return instance;
   }
 
-    void addWAV (const std::string& filename);
+    std::shared_ptr<SoundRes> addWAV (const std::string& filename);
     std::shared_ptr<SoundRes> getFile (const std::string& filename);
 
 private:

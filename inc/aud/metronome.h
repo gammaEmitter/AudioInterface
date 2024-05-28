@@ -23,7 +23,7 @@ public:
         if (index == wav.data.size() - 1) {
             is_playing = false;
             index = 0;
-        } else if (val % (Clockbase::beat_length() - AudIO::RingbufferSize) == 0) {
+        } else if (val % (Clockbase::beat_length()) == 0) {
             is_playing = true;
         }
         if (is_playing) {
@@ -41,7 +41,6 @@ private:
     size_t                      index       {};
     bool                        is_playing   = false;
     WavTool::RiffWAV            wav;
-    static constexpr size_t     metro_size = 22364;
 
     void loadFile();
 };

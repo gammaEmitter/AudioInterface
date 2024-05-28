@@ -19,21 +19,22 @@ public:
     ~Channel() = default;
 
     inline float Out() {
-        float out {};
         if (!nextEvent.has_value()) {
             return m_ringbuffer->pull();
         }
+        float out {};
         auto val = Clockbase::current_time.load(); 
-        if (val == (nextEvent.value().start_time + nextEvent.value().duration - 1)) {
+        if (val == (nextEvent.value().start_time \
+                        + nextEvent.value().duration - 1)) {
             event_active = false;
             index = 0;
             events.pop();
-            if (!events.empty()) {
-                nextEvent = events.top();
-            } else {
+            if (events.empty()) {
                 nextEvent = {};
+            } else {
+                nextEvent = events.top();
             }
-        } else if (val == nextEvent.value().start_time - AudIO::RingbufferSize) {
+        } else if (val == nextEvent.value().start_time) {
             event_active = true;
         }
         if (event_active) {
