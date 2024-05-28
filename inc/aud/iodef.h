@@ -13,7 +13,7 @@ namespace AudIO {
     static constexpr int Mono = 1;
     static constexpr float twoPI = 2.f * M_PI;
     static constexpr int Stereo = 2;
-    static constexpr float Samplerate44100 = 44100;
+    static constexpr int Samplerate44100 = 44100;
     static constexpr int WaveTableSize = 16384;
     static constexpr float SampleSilence = 0.f;
     static constexpr int RingbufferSize = 256;
@@ -25,7 +25,7 @@ using WaveTableStrategy = std::function<std::vector<float>()>;
 using SampleOut = std::function<float()>;
 using RingbufferPtr = float*;
 using BufferPtr = std::array<float,AudIO::RingbufferSize>*;
-using SampleRate_t = float;
+using SampleRate_t = int;
 
 
 class ISignalSource {

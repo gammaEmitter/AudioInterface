@@ -13,6 +13,14 @@ ISignalSource* Channel::add_source(std::unique_ptr<ISignalSource> src){
     return sources.back().get();
 }
 
+Channel& Channel::add_event(const AudioEvent evt) {
+    events.push(evt); 
+    if (events.size() == 1) {
+        nextEvent = events.top();
+    } 
+    return *this;
+}
+
 Channel& Channel::set_gain (float gain) {
     if (gain > 1.0f) {
         m_gain = 1.0f;

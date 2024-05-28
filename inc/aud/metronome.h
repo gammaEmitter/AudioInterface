@@ -10,7 +10,7 @@ class Metronome final : public ISignalSource {
 public:
     
     Metronome() : file_name("tock.wav") {
-        loadFile();
+        wav = WavTool::readWAV(file_name);
     }
 
     void on();
@@ -18,15 +18,16 @@ public:
 
     inline float Out() override {
         float out {};
-        auto val = Clockbase::samples_passed.load(); 
-        if (val == metro_size - 1) {
+        auto val = Clockbase::current_time.load();
+        
+        if (index == wav.data.size() - 1) {
             is_playing = false;
             index = 0;
-        } else if (val == 44099 - AudIO::RingbufferSize) {
+        } else if (val % (Clockbase::beat_length() - AudIO::RingbufferSize) == 0) {
             is_playing = true;
         }
         if (is_playing) {
-            out = audio_data[index];
+            out = wav.data[index];
             index++;
         } else {
             out = AudIO::SampleSilence;
@@ -37,7 +38,6 @@ public:
 
 private:
     std::string                 file_name   {};
-    std::vector<float>          audio_data  {};
     size_t                      index       {};
     bool                        is_playing   = false;
     WavTool::RiffWAV            wav;

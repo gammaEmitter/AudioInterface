@@ -39,13 +39,13 @@ int16_t readUint16LE(std::ifstream &file) {
   return result; 
 }
 
-std::vector<float> getDataFloat(const RiffWAV &wav) {
+std::vector<float> PCMtoFloat(const std::vector<int32_t>& wav, uint8_t bitdepth) {
   std::vector<float> conv{};
-  size_t data_size = wav.data.size();
+  size_t data_size = wav.size();
   conv.resize(data_size);
-  float maxAmplitude = (float)pow(2, wav.bitsPerSample - 1) - 1;
+  float maxAmplitude = (float)pow(2, bitdepth - 1) - 1;
   for (int i = 0; i < data_size; ++i) {
-    conv[i] = wav.data[i] / maxAmplitude;
+    conv[i] = wav[i] / maxAmplitude;
   }
   return conv;
 }
@@ -107,19 +107,21 @@ RiffWAV readWAV(const std::string &filename) {
           wav.subchunk2Size = chunkSize;
 
           int numSamples = wav.subchunk2Size / (wav.bitsPerSample / 8);
+          std::vector<int32_t> tmp (numSamples);
           wav.data.resize(numSamples);
 
           for (int i = 0; i < numSamples; ++i) {
             if (wav.bitsPerSample == 16) {
-              wav.data[i] = readUint16LE(file);
+              tmp[i] = readUint16LE(file);
             } else if (wav.bitsPerSample == 24) {
-              wav.data[i] = readUint24LE(file);
+              tmp[i] = readUint24LE(file);
             } else if (wav.bitsPerSample == 32) {
-              wav.data[i] = readUint32LE(file);
+              tmp[i] = readUint32LE(file);
             } else {
               throw std::runtime_error("Unsupported Bits per Sample!");
             }
           }
+          wav.data = PCMtoFloat(tmp, wav.bitsPerSample);
           break;
         }
 
@@ -132,59 +134,6 @@ RiffWAV readWAV(const std::string &filename) {
     }
 
   }
-/*
-  // Read the fmt subchunk
-  wav.subchunk1ID = readUint32LE(file);
-
-  if (wav.subchunk1ID != ChunkID::FMT_LE) {
-    if (wav.subchunk1ID == ChunkID::JUNK_LE) {
-      printf("JUNK subchunk found\n");
-      wav.junkID = ChunkID::JUNK_LE;
-      wav.junkSize = readUint32LE(file);
-      file.ignore(wav.junkSize);
-      wav.subchunk1ID = readUint32LE(file);
-    } else {
-      throw std::runtime_error(
-          "JUNK subchunk not found");
-    }
-  } else {
-      printf("JUNK subchunk found\n");
-  }
-  
-  wav.subchunk1Size = readUint32LE(file);
-  wav.audioFormat = readUint16LE(file);
-  wav.numChannels = readUint16LE(file);
-  wav.sampleRate = readUint32LE(file);
-  wav.byteRate = readUint32LE(file);
-  wav.blockAlign = readUint16LE(file);
-  wav.bitsPerSample = readUint16LE(file);
-  // Skip any extra parameters in the fmt subchunk
-  if (wav.subchunk1Size > 16) {
-    file.ignore(wav.subchunk1Size - 16);
-  }
-  // Read the data subchunk
-  wav.subchunk2ID = readUint32LE(file);
-  wav.subchunk2Size = readUint32LE(file);
-
-  if (wav.subchunk2ID != ChunkID::DATA_LE) {
-    throw std::runtime_error("Data subchunk not found");
-  }
-  // Read the audio data
-  int numSamples = wav.subchunk2Size / (wav.bitsPerSample / 8);
-  wav.data.resize(numSamples);
-
-  for (int i = 0; i < numSamples; ++i) {
-    if (wav.bitsPerSample == 16) {
-      wav.data[i] = readUint16LE(file);
-    } else if (wav.bitsPerSample == 24) {
-      wav.data[i] = readUint24LE(file);
-    } else if (wav.bitsPerSample == 32) {
-      wav.data[i] = readUint32LE(file);
-    } else {
-      throw std::runtime_error("Unsupported Bits per Sample!");
-    }
-  }
-*/
   return wav;
 }
 

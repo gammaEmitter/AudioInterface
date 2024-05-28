@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "../bin/audiointerface"
   "../bin/audiointerface.pdb"
+  "CMakeFiles/audiointerface.dir/aud/audioevent.cpp.o"
+  "CMakeFiles/audiointerface.dir/aud/audioevent.cpp.o.d"
   "CMakeFiles/audiointerface.dir/aud/audiointerface.cpp.o"
   "CMakeFiles/audiointerface.dir/aud/audiointerface.cpp.o.d"
   "CMakeFiles/audiointerface.dir/aud/bufferservice.cpp.o"
@@ -15,6 +17,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/audiointerface.dir/aud/metronome.cpp.o.d"
   "CMakeFiles/audiointerface.dir/aud/oscillator.cpp.o"
   "CMakeFiles/audiointerface.dir/aud/oscillator.cpp.o.d"
+  "CMakeFiles/audiointerface.dir/aud/resourcemanager.cpp.o"
+  "CMakeFiles/audiointerface.dir/aud/resourcemanager.cpp.o.d"
   "CMakeFiles/audiointerface.dir/aud/ringbuffer.cpp.o"
   "CMakeFiles/audiointerface.dir/aud/ringbuffer.cpp.o.d"
   "CMakeFiles/audiointerface.dir/aud/wavetable.cpp.o"

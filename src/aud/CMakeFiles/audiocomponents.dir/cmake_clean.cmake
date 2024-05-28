@@ -15,6 +15,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/audiocomponents.dir/metronome.cpp.o.d"
   "CMakeFiles/audiocomponents.dir/oscillator.cpp.o"
   "CMakeFiles/audiocomponents.dir/oscillator.cpp.o.d"
+  "CMakeFiles/audiocomponents.dir/resourcemanager.cpp.o"
+  "CMakeFiles/audiocomponents.dir/resourcemanager.cpp.o.d"
   "CMakeFiles/audiocomponents.dir/ringbuffer.cpp.o"
   "CMakeFiles/audiocomponents.dir/ringbuffer.cpp.o.d"
   "CMakeFiles/audiocomponents.dir/wavetable.cpp.o"

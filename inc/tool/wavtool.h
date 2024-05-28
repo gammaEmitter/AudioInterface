@@ -1,3 +1,4 @@
+#pragma once
 #include <vector>
 #include <_types/_uint32_t.h>
 #include <fstream>
@@ -35,12 +36,12 @@ struct RiffWAV {
     // data
     uint32_t subchunk2ID {};
     uint32_t subchunk2Size {};
-    std::vector<int32_t> data {};
+    std::vector<float> data {};
 };
 
 RiffWAV readWAV(const std::string &filename);
 void writeWAV (int sr, int duration, const std::vector<float>& data);
-std::vector<float> getDataFloat(const RiffWAV &wav);
+std::vector<float> PCMtoFloat(const std::vector<int32_t>& wav, uint8_t bitdepth);
 
 }
 
