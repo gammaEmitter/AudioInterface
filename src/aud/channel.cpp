@@ -13,8 +13,8 @@ ISignalSource* Channel::add_source(std::unique_ptr<ISignalSource> src){
     return sources.back().get();
 }
 
-Channel& Channel::add_event(const AudioEvent evt) {
-    events.push(evt); 
+Channel& Channel::add_event(const AudioEvent&& evt) {
+    events.push(std::move(evt)); 
     if (events.size() == 1) {
         nextEvent = events.top();
     } 

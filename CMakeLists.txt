@@ -36,6 +36,7 @@ target_include_directories(audiointerface PUBLIC inc/tool)
 #target_include_directories(audiocomponents PUBLIC extern/portaudio/include)
 #target_include_directories(audiocomponents PUBLIC inc/aud)
 #target_include_directories(audiocomponents PUBLIC inc/tool)
+target_include_directories(tooling PUBLIC inc/aud)
 target_include_directories(tooling PUBLIC inc/tool)
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release)
@@ -43,7 +44,8 @@ endif()
 
 set(CMAKE_CXX_FLAGS "-Wall -Wextra")
 set(CMAKE_CXX_FLAGS_DEBUG "-g")
-set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+set(CMAKE_CXX_FLAGS_RELEASE "-O2")
+set(CMAKE_CXX_FLAGS_RELEASE "-ffast-math")
 
 
 target_link_directories(audiointerface PUBLIC ${CMAKE_BINARY_DIR}/extern/portaudio/)

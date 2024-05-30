@@ -45,7 +45,7 @@ public:
     }
     Channel& set_gain (float gain);
     ISignalSource* add_source(std::unique_ptr<ISignalSource> src);
-    Channel& add_event(const AudioEvent evt);
+    Channel& add_event(const AudioEvent&& evt);
 
     ISignalSource* operator[](size_t index) {
         return sources[index].get();

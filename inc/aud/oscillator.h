@@ -24,7 +24,7 @@ public:
     void setGain(float gain);
     inline float Out() override {
         float dt = m_phase / AudIO::twoPI;
-        float sample = ((2.f*dt) - 1.f) ; 
+        float sample = ((2.f*dt) - 1.f); 
         float polyBLEP = 0.f;
         if (dt < m_frequencyNorm) {
             dt /= m_frequencyNorm;

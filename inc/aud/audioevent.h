@@ -15,7 +15,7 @@ public:
     uint32_t                        duration            {};
     std::vector<float>*             data                {};
 
-    explicit AudioEvent(SoundRes* wav, Timestamp_t start);
+    AudioEvent(SoundRes* wav, Timestamp_t start);
 
 private:
     AudioEvent() = default;

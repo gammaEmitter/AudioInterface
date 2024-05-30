@@ -9,7 +9,7 @@
 class Metronome final : public ISignalSource {
 public:
     
-    Metronome() : file_name("tock.wav") {
+    Metronome() : file_name("res/tock.wav") {
         wav = WavTool::readWAV(file_name);
     }
 
