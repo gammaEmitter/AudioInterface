@@ -1,3 +1,4 @@
+#pragma once
 #include "iodef.h"
 #include <vector>
 #include <cmath>

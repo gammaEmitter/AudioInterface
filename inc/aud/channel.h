@@ -44,11 +44,11 @@ public:
         return out;
     }
     Channel& set_gain (float gain);
-    ISignalSource* add_source(std::unique_ptr<ISignalSource> src);
+    Channel& add_source(SampleOut func);
     Channel& add_event(const AudioEvent&& evt);
 
-    ISignalSource* operator[](size_t index) {
-        return sources[index].get();
+    SampleOut* operator[](size_t index) {
+        return &sources[index];
     }
 
 
@@ -58,7 +58,7 @@ private:
 
     AudioEventQueue                                 events          {};
     AudioEvent_opt                                  nextEvent       {};
-    std::vector<std::unique_ptr<ISignalSource>>     sources         {};
+    std::vector<SampleOut>                          sources         {};
     uint32_t                                        index           {};
     bool                                            event_active    {};
     float                                           m_gain          = 0.3f;

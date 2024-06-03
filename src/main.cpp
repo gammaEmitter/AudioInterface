@@ -23,7 +23,6 @@ int main (int argc, char *argv[]) {
     auto tock = resources.addWAV("res/tock.wav").get();
     
     af.set_OutDevice(devID);
-    af.master()->add_channel()->add_source(std::make_unique<Metronome>());
     af.master()->add_channel()
        ->add_event({kick, timeFromBeats(0, 0)})
         .add_event({kick, timeFromBeats(1, 0)})

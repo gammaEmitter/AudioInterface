@@ -8,6 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/adsr.cpp" "src/aud/CMakeFiles/audiocomponents.dir/adsr.cpp.o" "gcc" "src/aud/CMakeFiles/audiocomponents.dir/adsr.cpp.o.d"
+  "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/audioevent.cpp" "src/aud/CMakeFiles/audiocomponents.dir/audioevent.cpp.o" "gcc" "src/aud/CMakeFiles/audiocomponents.dir/audioevent.cpp.o.d"
   "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/audiointerface.cpp" "src/aud/CMakeFiles/audiocomponents.dir/audiointerface.cpp.o" "gcc" "src/aud/CMakeFiles/audiocomponents.dir/audiointerface.cpp.o.d"
   "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/bufferservice.cpp" "src/aud/CMakeFiles/audiocomponents.dir/bufferservice.cpp.o" "gcc" "src/aud/CMakeFiles/audiocomponents.dir/bufferservice.cpp.o.d"
   "/Users/franzweunsche/Desktop/Programming/cpp_proj/AudioInterface_dev/src/aud/bus.cpp" "src/aud/CMakeFiles/audiocomponents.dir/bus.cpp.o" "gcc" "src/aud/CMakeFiles/audiocomponents.dir/bus.cpp.o.d"

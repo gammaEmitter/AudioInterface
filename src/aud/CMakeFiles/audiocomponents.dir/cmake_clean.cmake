@@ -1,6 +1,10 @@
 file(REMOVE_RECURSE
   "../../lib/libaudiocomponents.a"
   "../../lib/libaudiocomponents.pdb"
+  "CMakeFiles/audiocomponents.dir/adsr.cpp.o"
+  "CMakeFiles/audiocomponents.dir/adsr.cpp.o.d"
+  "CMakeFiles/audiocomponents.dir/audioevent.cpp.o"
+  "CMakeFiles/audiocomponents.dir/audioevent.cpp.o.d"
   "CMakeFiles/audiocomponents.dir/audiointerface.cpp.o"
   "CMakeFiles/audiocomponents.dir/audiointerface.cpp.o.d"
   "CMakeFiles/audiocomponents.dir/bufferservice.cpp.o"

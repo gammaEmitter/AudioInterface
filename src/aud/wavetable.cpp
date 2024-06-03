@@ -62,17 +62,15 @@ WaveTable::WaveTable(WaveTableStrategy waveform, float frequency) {
 }
 
 float WaveTable::Out() {
-       //m_incr = static_cast<int>(std::floor((static_cast<float>(AudIO::WaveTableSize)
-       //            / AudIO::Samplerate44100) * m_freq));
-
         float tmp = m_wt[m_index];
         m_index = (m_index + m_incr ) % AudIO::WaveTableSize;
-        //fmt::print("WaveTable.Out() = {}\n", tmp);
         return tmp;
 }
 
 void WaveTable::set_freq(float freq) {
     m_freq = freq;
+    m_incr = static_cast<int>(std::floor((static_cast<float>(AudIO::WaveTableSize)
+                   / AudIO::Samplerate44100) * m_freq));
 }
 
 size_t WaveTable::size() {
