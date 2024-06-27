@@ -22,8 +22,10 @@ public:
         }
         return *this;
     }
+    Channel* channel(size_t index) {
+        return sources[index].get();
+    }
     Channel* add_channel();
-    std::vector<Channel*> channels();
     float Out();
 private:
     std::vector<std::unique_ptr<Channel>> sources;

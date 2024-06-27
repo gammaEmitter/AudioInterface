@@ -4,11 +4,14 @@
 #include "iodef.h"
 #include "portaudio.h"
 #include <cstddef>
+#include <fstream>
+#include <ios>
 #include <memory>
 #include <pthread.h>
 #include <string_view>
 #include <utility>
 
+static std::ofstream outfile {"testRecord.dat", std::ios::out};
 
 AudioInterface::AudioInterface () {
     m_masterbus = std::make_unique<MasterBus>();
@@ -150,43 +153,28 @@ int AudioInterface::inOutCallback (const void* inputbuffer,
     return paContinue;
 }
 
-int AudioInterface::inputCallback( const void *inputBuffer, void *outputBuffer,
-                           unsigned long framesPerBuffer,
-                           const PaStreamCallbackTimeInfo* timeInfo,
-                           PaStreamCallbackFlags statusFlags,
-                           void *userData )
-{
-    Ringbuffer* data = (Ringbuffer*)userData;
-    const float *rptr = (const float*)inputBuffer; // read pointer zeigt auf InputBuffer, der von PortAudio gefüllt wird
-    int write_index = data->write_index - 10; // write pointer zeigt auf die ausgegebenen daten am jeweiligen Index
-    long i;
-    int finished;
-
-    (void) outputBuffer; /* Prevent unused variable warnings. */
-    (void) timeInfo;
-    (void) statusFlags;
-    (void) userData;
-
-
-        finished = paContinue;
-
-    if( inputBuffer == NULL) {
-        for( i=0; i<framesPerBuffer; i++){
-            data->operator[](write_index++) = AudIO::SampleSilence;  /* left */
+ int AudioInterface::writeOutputCallback (const void* inputbuffer, 
+        void* outputbuffer,
+        unsigned long framesPerBuffer,
+        const PaStreamCallbackTimeInfo* timeinfo,
+        PaStreamCallbackFlags statusflags,
+        void* userData
+        ) {
+    Ringbuffer* rb = (Ringbuffer*) userData;
+    float* write_ptr = (float*) outputbuffer;
+    for (size_t i = 0; i < framesPerBuffer; i += 16) {
+        for (int j = 0; j < 16; ++j) {
+            float out = rb->pull();
+            *write_ptr++ = out;
+            outfile << out << "\n";
+            Clockbase::increment();
         }
-    }
-    else {
-        for( i=0; i<framesPerBuffer; i++ ) {
-            data->operator[](write_index++) = *rptr++;  /* left */
-        }
-    }
-    return finished;
+    } 
+    return paContinue;
 }
 
 
 PaError AudioInterface::play() {
-
-
     streaminfo.err_status = Pa_OpenStream(&streaminfo.stream,
                 NULL,
                 &streaminfo.output_param,
@@ -211,35 +199,31 @@ PaError AudioInterface::play() {
     return paNoError ;
     
 }
-PaError AudioInterface::record() {
-
-    if (m_idevice) {
-        streaminfo.err_status = Pa_OpenStream(&streaminfo.stream,
-                &streaminfo.input_param,
+PaError AudioInterface::play_writeToFile() {
+    streaminfo.err_status = Pa_OpenStream(&streaminfo.stream,
                 NULL,
-                m_idevice->defaultSampleRate,
-                m_ringbuffer->capacity(),
+                &streaminfo.output_param,
+                Clockbase::samplerate,
+                AudIO::RingbufferSize / 4,
                 paClipOff,
-                inputCallback,
+                writeOutputCallback,
                 (void*)m_ringbuffer.get());
-    }
     if (streaminfo.err_status != paNoError) {
         printf("Opening stream failed, Code %d \n", streaminfo.err_status);
     }
     //m_bufferservice->startTransfer();
-    printf("Stream opened successfully on device %s \n", m_idevice->name);
+    printf("Stream opened successfully on device %s \n", m_odevice->name);
     
     streaminfo.err_status = Pa_StartStream(streaminfo.stream);
     if (streaminfo.err_status != paNoError) {
         printf("Starting  stream failed, Code %d \n", streaminfo.err_status);
     }
-    printf("Stream started successfully on device %s \n", m_idevice->name);
+    printf("Stream started successfully on device %s \n", m_odevice->name);
 
 
     return paNoError ;
     
 }
-
 
 Channel* AudioInterface::add_channel () {
     return m_masterbus->add_channel();

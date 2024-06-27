@@ -39,7 +39,7 @@ struct ADSR : public ISignalSource {
     };
 
     void set_source (SampleOut func);
-    void fade_into (ADSR::State);
+    void fade_into (ADSR::State next);
     
 
     inline float Out() override {
@@ -48,11 +48,13 @@ struct ADSR : public ISignalSource {
                 return AudIO::SampleSilence;
                 break;
             case Fade:
-                pos = (float)index / env[Fade].length;
-                index++;
-                if (index == env[Fade].length - 1) {
+                // Delay Env Retrigger
+                pos = (float)fade_index / env[Fade].length;
+                fade_index++;
+                if (fade_index >= env[Fade].length - 1) {
                     index = 0;
-                    state = next_state;
+                    fade_index = 0;
+                    state.store(next_state);
                 }
                 last_sample = env[Fade].out(pos);
                 return last_sample * source();
@@ -61,7 +63,7 @@ struct ADSR : public ISignalSource {
             case Attack:
                 pos = (float)index / env[Attack].length;
                 index++;
-                if (index == env[Attack].length - 1) {
+                if (index >= env[Attack].length - 1) {
                     index = 0;
                     state = Decay;
                 }
@@ -71,7 +73,7 @@ struct ADSR : public ISignalSource {
             case Decay:
                 pos = (float)index / env[Decay].length;
                 index++;
-                if (index == env[Decay].length - 1) {
+                if (index >= env[Decay].length - 1) {
                     index = 0;
                     state = Sustain;
                 }
@@ -81,7 +83,7 @@ struct ADSR : public ISignalSource {
             case Sustain:
                 pos = (float)index / env[Sustain].length;
                 index++;
-                if (index == env[Sustain].length - 1) {
+                if (index >= env[Sustain].length - 1) {
                     index--;
                     //Sustain changes only after NoteOff event to Release
                 }
@@ -91,7 +93,7 @@ struct ADSR : public ISignalSource {
             case Release:
                 pos = (float)index / env[Release].length;
                 index++;
-                if (index == env[Release].length - 1) {
+                if (index >= env[Release].length - 1) {
                     index = 0;
                     state = Off;
                 }
@@ -108,6 +110,7 @@ struct ADSR : public ISignalSource {
 
     SampleOut           source          {};
     uint32_t            index           {};
+    uint32_t            fade_index      {};
     std::atomic<State>  state           = State::Off;
     ADSR_data_t         env             {};
     float               pos             {};

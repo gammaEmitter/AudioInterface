@@ -2,6 +2,7 @@ set(SRCS
     adsr.cpp
     audiointerface.cpp
     audioevent.cpp
+    audioeventqueue.cpp
     bus.cpp
     bufferservice.cpp
     channel.cpp

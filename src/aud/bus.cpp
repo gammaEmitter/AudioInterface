@@ -11,15 +11,6 @@ Channel*  Bus::add_channel () {
     
 }
 
-std::vector<Channel*> Bus::channels(){
-    //return m_channel.get();
-    std::vector<Channel*> res;
-    for (auto& ch_ptr : sources) {
-        res.push_back(ch_ptr.get());
-    }
-    return res;
-}
-
 float Bus::Out() {
     // add filter, effects mechanics
     //fmt::print("Bus.Out()\n");

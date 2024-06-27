@@ -134,6 +134,7 @@ RiffWAV readWAV(const std::string &filename) {
     }
 
   }
+  file.close();
   return wav;
 }
 

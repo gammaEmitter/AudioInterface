@@ -17,5 +17,5 @@ std::shared_ptr<SoundRes> ResourceManager::getFile (const std::string& filename)
     if (it != soundFiles.end()) {
         return it->second;
     }
-    return std::make_shared<SoundRes> ();
+    return nullptr;
 }

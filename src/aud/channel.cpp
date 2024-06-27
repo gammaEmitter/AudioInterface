@@ -1,4 +1,5 @@
 #include "channel.h"
+#include "audioeventqueue.h"
 #include "iodef.h"
 
 Channel::Channel() {
@@ -12,10 +13,7 @@ Channel& Channel::add_source(SampleOut func){
 }
 
 Channel& Channel::add_event(const AudioEvent&& evt) {
-    events.push(std::move(evt)); 
-    if (events.size() == 1) {
-        nextEvent = events.top();
-    } 
+    event_queue.add_event(std::move(evt)); 
     return *this;
 }
 

@@ -31,7 +31,7 @@ class AudioInterface {
         Channel* add_channel ();
         MasterBus* master ();
         PaError play();
-        PaError record();
+        PaError play_writeToFile();
 
         struct StreamParameters {
             
@@ -43,7 +43,6 @@ class AudioInterface {
         };
 
     private:
-        friend void* _Play(void* args);
         PaError populateDevices();
         void printDevices(std::ostream& outstream);
         void populateOutStreamInfo();
@@ -64,7 +63,7 @@ class AudioInterface {
                                 PaStreamCallbackFlags statusflags,
                                 void* userData
         );
-        static int  inputCallback (const void* inputbuffer, 
+        static int  writeOutputCallback (const void* inputbuffer, 
                                 void* outputbuffer,
                                 unsigned long framesPerBuffer,
                                 const PaStreamCallbackTimeInfo* timeinfo,

@@ -5,8 +5,8 @@
 #include "ringbuffer.h"
 #include "iodef.h"
 #include "audioevent.h"
+#include "audioeventqueue.h"
 
-using AudioEventQueue = std::priority_queue<AudioEvent, std::vector<AudioEvent>, AudioEventCompare>;
 
 class Channel  {
 public:
@@ -19,36 +19,18 @@ public:
     ~Channel() = default;
 
     inline float Out() {
-        if (!nextEvent.has_value()) {
+        if (!event_queue.next_event.has_value()) {
             return m_ringbuffer->pull();
+        } else {
+            return event_queue.Out();
         }
-        float out {};
-        auto val = Clockbase::current_time.load(); 
-        if (val == (nextEvent.value().start_time \
-                        + nextEvent.value().duration - 1)) {
-            event_active = false;
-            index = 0;
-            events.pop();
-            if (events.empty()) {
-                nextEvent = {};
-            } else {
-                nextEvent = events.top();
-            }
-        } else if (val == nextEvent.value().start_time) {
-            event_active = true;
-        }
-        if (event_active) {
-            out = nextEvent.value().data->at(index);
-            index++;
-        }
-        return out;
     }
     Channel& set_gain (float gain);
     Channel& add_source(SampleOut func);
     Channel& add_event(const AudioEvent&& evt);
 
-    SampleOut* operator[](size_t index) {
-        return &sources[index];
+    SampleOut* operator[](size_t event_index) {
+        return &sources[event_index];
     }
 
 
@@ -56,11 +38,8 @@ public:
 
 private:
 
-    AudioEventQueue                                 events          {};
-    AudioEvent_opt                                  nextEvent       {};
+    AudioEventQueue                                 event_queue     {};
     std::vector<SampleOut>                          sources         {};
-    uint32_t                                        index           {};
-    bool                                            event_active    {};
     float                                           m_gain          = 0.3f;
 
 
