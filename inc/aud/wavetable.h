@@ -14,7 +14,7 @@ class WaveTable {
 
 public:
 
-    WaveTable(WaveTableStrategy waveform, float frequency);
+    WaveTable(WaveTableStrategy_fn waveform, float frequency);
     WaveTable(const WaveTable& wavetbl) = delete;
     WaveTable& operator=(const WaveTable& wavetbl) = delete;
 

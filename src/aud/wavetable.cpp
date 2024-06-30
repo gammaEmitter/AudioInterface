@@ -53,7 +53,7 @@ std::vector<float> SquareWaveTableStgy()  {
     return wavetable;
 }
 
-WaveTable::WaveTable(WaveTableStrategy waveform, float frequency) {
+WaveTable::WaveTable(WaveTableStrategy_fn waveform, float frequency) {
     m_wt = waveform();
     m_freq = frequency;
     m_incr = static_cast<int>(std::floor((static_cast<float>(AudIO::WaveTableSize)

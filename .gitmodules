@@ -1,0 +1,6 @@
+[submodule "extern/portaudio"]
+	path = extern/portaudio
+	url = https://github.com/PortAudio/portaudio.git
+[submodule "extern/libremidi"]
+	path = extern/libremidi
+	url = https://github.com/celtera/libremidi

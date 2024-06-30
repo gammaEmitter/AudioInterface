@@ -8,30 +8,26 @@
 #include "audioeventqueue.h"
 
 
-class Channel  {
+class ChannelAudio : public IChannel {
 public:
     
-    Channel();
-    Channel(const Channel &) = delete;
-    Channel(Channel &&) = delete;
-    Channel &operator=(const Channel &) = delete;
-    Channel &operator=(Channel &&) = delete;
-    ~Channel() = default;
+    ChannelAudio();
+    ChannelAudio(const ChannelAudio &) = delete;
+    ChannelAudio(ChannelAudio &&) = delete;
+    ChannelAudio &operator=(const ChannelAudio &) = delete;
+    ChannelAudio &operator=(ChannelAudio &&) = delete;
+    ~ChannelAudio() = default;
 
-    inline float Out() {
+    inline float Out() override {
         if (!event_queue.next_event.has_value()) {
             return m_ringbuffer->pull();
         } else {
             return event_queue.Out();
         }
     }
-    Channel& set_gain (float gain);
-    Channel& add_source(SampleOut func);
-    Channel& add_event(const AudioEvent&& evt);
-
-    SampleOut* operator[](size_t event_index) {
-        return &sources[event_index];
-    }
+    ChannelAudio& set_gain (float gain);
+    ChannelAudio& add_source(SampleOut_fn func) override;
+    ChannelAudio& add_event(const AudioEvent&& evt);
 
 
     std::unique_ptr<Ringbuffer>                     m_ringbuffer    = nullptr;
@@ -39,7 +35,7 @@ public:
 private:
 
     AudioEventQueue                                 event_queue     {};
-    std::vector<SampleOut>                          sources         {};
+    std::vector<SampleOut_fn>                       sources         {};
     float                                           m_gain          = 0.3f;
 
 

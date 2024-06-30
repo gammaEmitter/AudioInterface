@@ -1,5 +1,6 @@
 #pragma once
 #include <cmath>
+#include <type_traits>
 #include <vector>
 #include <functional>
 #include <concepts>
@@ -7,26 +8,39 @@
 #include <queue>
 #include <memory>
 
+using WaveTableStrategy_fn = std::function<std::vector<float>()>;
+using SampleOut_fn = std::function<float()>;
+using SetFrequency_fn = std::function<void(float)>;
+using RingbufferPtr = float*;
+using SampleRate_t = int;
 
 namespace AudIO {
 
     static constexpr int Mono = 1;
     static constexpr float twoPI = 2.f * M_PI;
     static constexpr int Stereo = 2;
-    static constexpr int Samplerate44100 = 44100;
+    static constexpr SampleRate_t Samplerate44100 = 44100;
     static constexpr int WaveTableSize = 16384;
     static constexpr float SampleSilence = 0.f;
     static constexpr int RingbufferSize = 256;
     static constexpr int RingbufferStart = 0;
     static constexpr int RingbufferHalf = RingbufferSize / 2;
 };
-
-using WaveTableStrategy = std::function<std::vector<float>()>;
-using SampleOut = std::function<float()>;
-using RingbufferPtr = float*;
-using BufferPtr = std::array<float,AudIO::RingbufferSize>*;
-using SampleRate_t = int;
-
+class IChannel {
+public:
+    virtual float Out() = 0;
+    virtual IChannel& add_source(SampleOut_fn) = 0;
+    virtual ~IChannel() = default;
+};
+enum ChannelType {
+    Audio,
+    Midi,
+};
+class IFreqAdjustable {
+public:
+    virtual void setFreq(float) = 0;
+    virtual ~IFreqAdjustable() = default;
+};
 
 class ISignalSource {
 public:
@@ -36,6 +50,11 @@ public:
 class ISignalSink {
 private:
     virtual ~ISignalSink() = default;
+};
+
+template <typename T>
+concept has_freq_set = requires (T obj, float freq) {
+    {obj.set_freq(freq)}; 
 };
 
 template<typename T>

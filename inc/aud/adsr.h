@@ -38,7 +38,7 @@ struct ADSR : public ISignalSource {
         }
     };
 
-    void set_source (SampleOut func);
+    void set_source (SampleOut_fn func);
     void fade_into (ADSR::State next);
     
 
@@ -108,7 +108,7 @@ struct ADSR : public ISignalSource {
     }
     using ADSR_data_t = std::unordered_map<ADSR::State, Model>;
 
-    SampleOut           source          {};
+    SampleOut_fn        source          {};
     uint32_t            index           {};
     uint32_t            fade_index      {};
     std::atomic<State>  state           = State::Off;

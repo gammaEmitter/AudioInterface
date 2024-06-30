@@ -36,7 +36,7 @@ float Ringbuffer::pull(){
 }
 
 
-void Ringbuffer::set_source(SampleOut func) {
+void Ringbuffer::set_source(SampleOut_fn func) {
     source = func;
 } 
 

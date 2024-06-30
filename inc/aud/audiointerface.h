@@ -28,7 +28,6 @@ class AudioInterface {
         AudioInterface& set_InDevice (PaDeviceIndex index);
         PaDeviceIndex  get_device(const PaDeviceInfo* name) const ;
         const PaDeviceInfo*  get_device (PaDeviceIndex index) const;
-        Channel* add_channel ();
         MasterBus* master ();
         PaError play();
         PaError play_writeToFile();

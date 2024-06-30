@@ -1,6 +1,7 @@
 //
 #pragma once
-#include "channel.h"
+#include "channel_audio.h"
+#include "channel_midi.h"
 #include "iodef.h"
 #include <memory>
 class Bus {
@@ -22,13 +23,14 @@ public:
         }
         return *this;
     }
-    Channel* channel(size_t index) {
+    IChannel* channel(size_t index) {
         return sources[index].get();
     }
-    Channel* add_channel();
+    ChannelMidi* add_channel_midi();
+    ChannelAudio* add_channel_audio();
     float Out();
 private:
-    std::vector<std::unique_ptr<Channel>> sources;
+    std::vector<std::unique_ptr<IChannel>> sources      {};
 };
 
 class MasterBus : public Bus {

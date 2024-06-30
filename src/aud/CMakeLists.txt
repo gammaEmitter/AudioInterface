@@ -4,11 +4,13 @@ set(SRCS
     audioevent.cpp
     audioeventqueue.cpp
     bus.cpp
-    bufferservice.cpp
-    channel.cpp
+    channel_audio.cpp
+    midieventqueue.cpp
+    channel_midi.cpp
     ringbuffer.cpp
     clockbase.cpp
     metronome.cpp
+    midimessaging.cpp
     oscillator.cpp
     resourcemanager.cpp
     wavetable.cpp

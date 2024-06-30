@@ -9,7 +9,7 @@
 //Note on A->D->S
 //Note off ->R
 
-void ADSR::set_source(SampleOut func){
+void ADSR::set_source(SampleOut_fn func){
     source = func;
 }
 

@@ -225,10 +225,6 @@ PaError AudioInterface::play_writeToFile() {
     
 }
 
-Channel* AudioInterface::add_channel () {
-    return m_masterbus->add_channel();
-}
-
 MasterBus* AudioInterface::master() {
     return m_masterbus.get();
 }
