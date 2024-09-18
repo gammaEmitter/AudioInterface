@@ -6,6 +6,7 @@
 #include "iodef.h"
 #include <exception>
 #include <mutex>
+#include <optional>
 
 
 class MidiEventQueue : public Messagable {
