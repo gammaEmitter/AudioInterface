@@ -34,6 +34,8 @@ struct ADSR : public ISignalSource {
                     return linearCurve(start,end, pos);
                 case quad:
                     return quadCurve(start, end, bend, pos);
+                default:
+                    return AudIO::SampleSilence;
             }
             ;
         }
