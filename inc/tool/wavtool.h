@@ -1,8 +1,7 @@
 #pragma once
 #include <vector>
-#include <_types/_uint32_t.h>
 #include <fstream>
-#include <sys/_types/_int32_t.h>
+#include <stdint.h>
 
 namespace WavTool {
 
