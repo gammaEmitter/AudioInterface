@@ -2,6 +2,7 @@
 #include "iodef.h"
 #include "curvetool.h"
 #include <chrono>
+#include <atomic>
 #include <unordered_map>
 
 
