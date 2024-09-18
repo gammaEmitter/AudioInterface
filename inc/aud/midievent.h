@@ -2,6 +2,7 @@
 
 #include "clockbase.h"
 #include "libremidi/message.hpp"
+#include <optional>
 
 class MidiEvent {
 public:
