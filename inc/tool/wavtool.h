@@ -2,6 +2,7 @@
 #include <vector>
 #include <fstream>
 #include <stdint.h>
+#include <cmath>
 
 namespace WavTool {
 
