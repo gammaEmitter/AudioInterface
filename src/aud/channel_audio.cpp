@@ -13,7 +13,7 @@ ChannelAudio& ChannelAudio::add_source(SampleOut_fn func){
 }
 
 ChannelAudio& ChannelAudio::add_event(const AudioEvent&& evt) {
-    event_queue.add_event(std::move(evt)); 
+    event_m.add_event(std::move(evt)); 
     return *this;
 }
 

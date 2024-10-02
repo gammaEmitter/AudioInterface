@@ -1,12 +1,18 @@
 #include "clockbase.h"
 
-    std::atomic<Timestamp_t>        Clockbase::current_time    = 0;
+    std::atomic<Timestamp_t>        Clockbase::current_time     = 0;
 
-    std::atomic<size_t>             Clockbase::samples_passed  = 0;     // 0 - 44100
+    std::atomic<size_t>             Clockbase::samples_passed   = 0;     // 0 - 44100
 
-    SampleRate_t                    Clockbase::samplerate      = AudIO::Samplerate44100;
+    SampleRate_t                    Clockbase::samplerate       = AudIO::Samplerate44100;
     
-    uint8_t                         Clockbase::tempo           = 150;
+    uint8_t                         Clockbase::tempo            = 150;
+
+    bool                            Clockbase::loop_active      = false;
+
+    Timestamp_t                     Clockbase::loop_in          = 0;
+
+    Timestamp_t                     Clockbase::loop_out         = 44100;
 
 /*
  *  Creates a Timestamp from a position in th beat-grid

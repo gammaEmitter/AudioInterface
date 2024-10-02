@@ -17,10 +17,16 @@ void MidiReceiver::Init(IFreqAdjustable* osc, ADSR* env_gen) {
             auto state = adsr->state.load();
             if (state == (ADSR::State::Off)) return;
             if (state == (ADSR::State::Release)) return;
+            // what kind of actions happen at receiving an ON/OFF event should
+            // be more modular than depeninding on an instrument / adsr
+            // we need a more sophisticated interface than ADSR/ IFreqAdjustable
             adsr->fade_into(ADSR::Release);
         });
         this->bind("ON "+ note_num, [&, i]() {
             float freq = 440.0 * pow(2,((i - 69.0f))/12.0f);
+            // what kind of actions happen at receiving an ON/OFF event should
+            // be more modular than depeninding on an instrument / adsr
+            // we need a more sophisticated interface than ADSR/ IFreqAdjustable
             instrument->setFreq(freq);
             adsr->fade_into(ADSR::Attack);
         });

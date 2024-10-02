@@ -19,22 +19,19 @@ public:
     ~ChannelAudio() = default;
 
     inline float Out() override {
-        if (!event_queue.next_event.has_value()) {
-            return m_ringbuffer->pull();
-        } else {
-            return event_queue.Out();
-        }
+        // ringbuffer->pull() ist gerade komplett draussen -> redesign auf processing devices
+        float out = AudIO::SampleSilence;
+        return AudIO::SampleSilence + event_m.Out();
     }
     ChannelAudio& set_gain (float gain);
     ChannelAudio& add_source(SampleOut_fn func) override;
     ChannelAudio& add_event(const AudioEvent&& evt);
 
-
     std::unique_ptr<Ringbuffer>                     m_ringbuffer    = nullptr;
 
 private:
 
-    AudioEventQueue                                 event_queue     {};
+    AudioEventMap                                   event_m         {};
     std::vector<SampleOut_fn>                       sources         {};
     float                                           m_gain          = 0.3f;
 

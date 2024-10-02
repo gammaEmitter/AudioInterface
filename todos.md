@@ -14,15 +14,17 @@
 >
 > - [ ] adjust event on collision with new (added) event: adjust event `duration`
 >
-> - [ ] Looping
+> - [x] Looping ((1) simplest implementation for audioeventmap)
 > - [ ] Loops: behavior of events surpassing loop `end` position
 > - [ ]
 > - [ ]
 >
 
 ### `Midi`
-> - [ ] total revision of signal pathing, just think of how midi clips might get implemented. I cannot just call ring_buffer->pull() on empty because it might change the phase of the underlying source
-> - [ ]
+> - [ ] total revision of signal pathing, just think of how midi clips might get implemented. I cannot just call 
+        ring_buffer->pull() on empty because it might change the phase of the underlying source
+> - [ ] per Midi-Input (keyboard) MidiController class that can have one (or multiple?) active midi-targets, 
+        which get NOTE events sent -> publisher subscriber, how performant is it
 
 
 ### `Midi-Messaging`

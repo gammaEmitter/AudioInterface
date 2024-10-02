@@ -1,9 +1,9 @@
 #include "audioeventqueue.h"
 
 
-void AudioEventQueue::add_event (const AudioEvent&& evt) {
-    queue.push(std::move(evt)); 
-    if (queue.size() == 1) {
-        next_event = queue.top();
-    } 
+void AudioEventMap::add_event (const AudioEvent&& evt) {
+    // if in range evt.start_time + evt.start_time + evt.duration
+    // there is (THERE ARE MULTIPLE?) other events, override and adjust duration
+    // of the OTHER events. this new event will fully covered
+    e_map.emplace(evt.start_time, std::move(evt)); 
 }

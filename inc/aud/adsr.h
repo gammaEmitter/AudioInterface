@@ -44,6 +44,7 @@ struct ADSR : public ISignalSource {
     void set_source (SampleOut_fn func);
     void fade_into (ADSR::State next);
     
+    ADSR();
 
     inline float Out() override {
         switch(state.load()) {

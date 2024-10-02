@@ -33,9 +33,8 @@ public:
 using AudioEvent_opt = std::optional<AudioEvent>;
 
 struct AudioEventCompare {
- 
-    bool operator() (const AudioEvent& lhs, const AudioEvent& rhs) {
-        return lhs.start_time > rhs.start_time;
+    bool operator() (const Timestamp_t& lhs, const Timestamp_t& rhs) {
+        return lhs > rhs;
     }
 };
 

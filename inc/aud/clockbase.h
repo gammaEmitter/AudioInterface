@@ -2,7 +2,6 @@
 
 #include <atomic>
 #include "iodef.h"
-//#include <_types/_uint32_t.h>
 #include <cstddef>
 
 /*
@@ -20,13 +19,26 @@ namespace Clockbase {
     extern SampleRate_t                     samplerate;
 
     extern uint8_t                          tempo;
+    
+    extern bool                             loop_active;
+
+    extern Timestamp_t                      loop_in;
+
+    extern Timestamp_t                      loop_out;
 
     static uint16_t beat_length() {
         return samplerate * (60/(float)tempo);
     }
 
     static void increment() {
-        current_time++;
+        auto curr_time = current_time.load();
+        if (loop_active && curr_time >= loop_in) {
+            if (curr_time == loop_out) {
+                current_time.store(loop_in);
+            } else {
+                current_time++;
+            }
+        }
         samples_passed++;
         if (samples_passed.load() == samplerate) {
             samples_passed.store(0);
@@ -45,10 +57,11 @@ struct TransportWatch {
     void refresh() {
         Timestamp_t currTime = Clockbase::current_time.load();
         seconds.store(currTime / Clockbase::samplerate);
+        uint16_t beatlen = Clockbase::beat_length();
         milliseconds.store((float) (currTime % Clockbase::samplerate) / Clockbase::samplerate);
-        beats.store(currTime / Clockbase::beat_length());
-        int tick64_length = Clockbase::beat_length() / 64;
-        tempo_ticks.store(currTime % Clockbase::beat_length() / Clockbase::beat_length());
+        beats.store(currTime / beatlen);
+        int tick64_length = beatlen / 64;
+        tempo_ticks.store(currTime % beatlen / beatlen);
     }
 };
 
