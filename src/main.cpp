@@ -26,7 +26,7 @@ int main (int argc, char *argv[]) {
    ChannelAudio* ch_aud1 = af.master()->add_channel_audio();
    Clockbase::loop_active = true;
    Clockbase::loop_in = timeFromBeats(0,0);
-   Clockbase::loop_out = timeFromBeats(8,0);
+   Clockbase::loop_out = timeFromBeats(4,10);
    ch_aud1->set_gain(0.7);
    ch_aud1->add_event({kick, timeFromBeats(0, 0)});
    ch_aud1->add_event({kick, timeFromBeats(1, 0)});

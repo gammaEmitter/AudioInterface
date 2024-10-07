@@ -10,6 +10,8 @@
 
     bool                            Clockbase::loop_active      = false;
 
+    bool                            Clockbase::loop_pivot       = false;
+
     Timestamp_t                     Clockbase::loop_in          = 0;
 
     Timestamp_t                     Clockbase::loop_out         = 44100;

@@ -12,12 +12,14 @@
 class AudioEvent {
 public:
     Timestamp_t                     start_time          {};
+    Timestamp_t                     end_time            {};
     uint32_t                        duration            {};
     std::vector<float>*             data                {};
 
     AudioEvent(const AudioEvent &) = default;
     AudioEvent(AudioEvent && other) {
         start_time = other.start_time;
+        end_time = other.end_time;
         duration = other.duration;
         data = other.data;
     };
@@ -32,11 +34,7 @@ public:
 
 using AudioEvent_opt = std::optional<AudioEvent>;
 
-struct AudioEventCompare {
-    bool operator() (const Timestamp_t& lhs, const Timestamp_t& rhs) {
-        return lhs > rhs;
-    }
-};
+bool AudioEventCompare (const AudioEvent& lhs, const AudioEvent& rhs);
 
 
 

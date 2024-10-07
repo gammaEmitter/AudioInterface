@@ -22,6 +22,8 @@ namespace Clockbase {
     
     extern bool                             loop_active;
 
+    extern bool                             loop_pivot;
+
     extern Timestamp_t                      loop_in;
 
     extern Timestamp_t                      loop_out;
@@ -31,13 +33,17 @@ namespace Clockbase {
     }
 
     static void increment() {
+        if (loop_pivot) loop_pivot = false;
         auto curr_time = current_time.load();
         if (loop_active && curr_time >= loop_in) {
-            if (curr_time == loop_out) {
+            if (curr_time == loop_out - 1) {
                 current_time.store(loop_in);
+                loop_pivot = true;
             } else {
                 current_time++;
             }
+        } else {
+            current_time++;
         }
         samples_passed++;
         if (samples_passed.load() == samplerate) {

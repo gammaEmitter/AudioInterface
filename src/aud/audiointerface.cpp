@@ -3,6 +3,8 @@
 #include "audiointerface.h"
 #include "iodef.h"
 #include "portaudio.h"
+#include <__chrono/duration.h>
+#include <chrono>
 #include <cstddef>
 #include <fstream>
 #include <ios>
@@ -142,6 +144,7 @@ int AudioInterface::inOutCallback (const void* inputbuffer,
         PaStreamCallbackFlags statusflags,
         void* userData
         ) {
+    // auto start = std::chrono::high_resolution_clock::now(); 
     Ringbuffer* rb = (Ringbuffer*) userData;
     float* write_ptr = (float*) outputbuffer;
     for (size_t i = 0; i < framesPerBuffer; i += 16) {
@@ -150,6 +153,8 @@ int AudioInterface::inOutCallback (const void* inputbuffer,
             Clockbase::increment();
         }
     } 
+    // auto end = std::chrono::high_resolution_clock::now(); 
+    // printf("Out() Chain Time for %lu samples: %lld\n",framesPerBuffer, std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count());
     return paContinue;
 }
 
@@ -179,7 +184,7 @@ PaError AudioInterface::play() {
                 NULL,
                 &streaminfo.output_param,
                 Clockbase::samplerate,
-                AudIO::RingbufferSize / 4,
+                AudIO::RingbufferSize,
                 paClipOff,
                 outputCallback,
                 (void*)m_ringbuffer.get());

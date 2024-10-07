@@ -16,5 +16,10 @@ AudioEvent::AudioEvent(SoundRes* res, Timestamp_t start) {
     duration = event.duration;
     data = event.data;
     start_time = start;
+    end_time = start_time + duration - 1;
+
 }
 
+bool AudioEventCompare (const AudioEvent& lhs, const AudioEvent& rhs) {
+        return lhs.start_time < rhs.start_time;
+};
