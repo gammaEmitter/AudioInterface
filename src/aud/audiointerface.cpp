@@ -230,6 +230,11 @@ PaError AudioInterface::play_writeToFile() {
     
 }
 
+PaError AudioInterface::stop() {
+    return Pa_StopStream(streaminfo.stream);
+}
+
+
 MasterBus* AudioInterface::master() {
     return m_masterbus.get();
 }

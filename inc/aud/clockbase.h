@@ -31,7 +31,6 @@ namespace Clockbase {
     static uint16_t beat_length() {
         return samplerate * (60/(float)tempo);
     }
-
     static void increment() {
         if (loop_pivot) loop_pivot = false;
         auto curr_time = current_time.load();
@@ -52,7 +51,27 @@ namespace Clockbase {
     }
 };
 
+struct BeatUnit {
+    uint16_t beats;
+    uint8_t ticks;
+
+    void operator+(BeatUnit& other) {
+        beats += other.beats;
+        ticks += other.ticks;
+        if (ticks > 63) {
+            beats += ticks / 64;
+            ticks %= 64;
+        }
+    }
+    void operator-(BeatUnit& other) {
+        beats -= other.beats;
+        ticks -= other.ticks;
+        // TODO: implement
+    }
+};
+
 Timestamp_t timeFromBeats(uint16_t beats, uint8_t ticks);
+BeatUnit    beatsFromTime(Timestamp_t time);
 
 struct TransportWatch {
     std::atomic<uint16_t>               seconds         {};

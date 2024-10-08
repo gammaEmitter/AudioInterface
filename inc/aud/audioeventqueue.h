@@ -48,6 +48,7 @@ public:
             } else {
                 auto idx = find_start_event(val, events);
                 if (idx != -1) {
+                    printf("idx active event: %d\n", idx);
                     curr_event = events[idx];
                     event_active = true;
                 } else {
@@ -55,14 +56,19 @@ public:
                 }
             }
         }
-
         if (val == curr_event.value().end_time) {
             event_active = false;
             event_index = 0;
             curr_event = {};
         }
         if (event_active) {
-            out = curr_event.value().data->at(event_index);
+            try {
+                out = curr_event.value().Out(event_index);
+            }
+            catch (const std::exception&) {
+                printf("here\n");
+                exit(1);
+            }
             event_index++;
         }
         return out;

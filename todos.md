@@ -7,15 +7,25 @@
 > channel source vector of SampleOut_fn --> channel has no access to `has_set_source` conforming object
 >
 > - [ ] adding source to vector shall invoke connect (in of new element, out of previous element): free function also handling inserting in the middle
+> - [ ] adding a "effects" processing chain from AudioEvent --> final output of Out()
 > - [ ]  
+> - [ ]  
+
+### `AudioEvent`
+
+>
+> - [x] add `Fade_in` and `Fade_out` to AudioEvent
+> - [x] add offset_front to AudioEvent
+> - [x] add Out() function to AudioEvent 
+>
 
 ### `Event-Queues`
 
 >
-> - [ ] adjust event on collision with new (added) event: adjust event `duration`
+> - [x] adjust event on collision with new (added) event: adjust event `duration`
 >
 > - [x] Looping ((1) simplest implementation for audioeventmap)
-> - [ ] Loops: behavior of events surpassing loop `end` position
+> - [x] Loops: behavior of events surpassing loop `end` position
 > - [ ]
 > - [ ]
 >

@@ -17,6 +17,11 @@ AudioEvent::AudioEvent(SoundRes* res, Timestamp_t start) {
     data = event.data;
     start_time = start;
     end_time = start_time + duration - 1;
+    offset = 0;
+    fade_in = CurveModel{.shape = unity, .length = 1, .offset = 0, 
+                                        .start = 1, .end = 1, .bend = 0};
+    fade_out = CurveModel{.shape = unity, .length = 1, .offset = end_time - fade_out.length, 
+                                        .start = 1, .end = 1, .bend = 0};
 
 }
 

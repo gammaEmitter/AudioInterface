@@ -1,5 +1,6 @@
 #pragma once
 #include <cmath>
+#include <cstdint>
 #include <type_traits>
 #include <vector>
 #include <functional>
@@ -7,6 +8,9 @@
 #include <array>
 #include <queue>
 #include <memory>
+
+#define min(a,b) ((a)<(b)?(a):(b))
+#define max(a,b) ((a)>(b)?(a):(b))
 
 using WaveTableStrategy_fn = std::function<std::vector<float>()>;
 using SampleOut_fn = std::function<float()>;

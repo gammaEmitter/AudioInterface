@@ -30,6 +30,7 @@ class AudioInterface {
         const PaDeviceInfo*  get_device (PaDeviceIndex index) const;
         MasterBus* master ();
         PaError play();
+        PaError stop();
         PaError play_writeToFile();
 
         struct StreamParameters {

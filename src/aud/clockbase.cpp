@@ -26,3 +26,11 @@ Timestamp_t timeFromBeats(uint16_t beats, uint8_t ticks) {
     Timestamp_t time = (beats * Clockbase::beat_length()) + (ticks * tick64_length);
     return time;
 }
+BeatUnit beatsFromTime(Timestamp_t time) {
+    BeatUnit res {};
+    uint16_t beatlen =  Clockbase::beat_length();
+    res.beats = time / beatlen;
+    int tick64_length = beatlen / 64;
+    res.ticks = (time % beatlen) / tick64_length;  
+    return res;
+}
