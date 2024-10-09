@@ -25,22 +25,34 @@ int main (int argc, char *argv[]) {
    auto tock = resources.addWAV("res/tock.wav").get();
    auto kick = resources.addWAV("res/kick.wav").get();
    auto mod = resources.addWAV("res/mod.wav").get();
+   auto bass = resources.addWAV("res/bass.wav").get();
    af.set_OutDevice(devID);
 
    SineOscillator osc {440.f};
    Clockbase::loop_active = true;
    Clockbase::loop_in = 0;
-   Clockbase::loop_out =  timeFromBeats(9,0);
+   Clockbase::loop_out =  timeFromBeats(2,0);
    // SawOscillator osc {440.f};
    // WaveTableOscillator osc {SineWaveTableStgy, 440.f};
-   ChannelMidi* ch_midi = af.master()->add_channel_midi();
-   ch_midi->set_instrument(&osc);
-   ch_midi->add_event({timeFromBeats(0,0), NoteType::ON, 45});
-   ch_midi->add_event({timeFromBeats(1,0), NoteType::OFF, 45});
-   ch_midi->add_event({timeFromBeats(3,0), NoteType::ON, 45});
-   ch_midi->add_event({timeFromBeats(4,0), NoteType::OFF, 45});
-   ch_midi->add_event({timeFromBeats(6,0), NoteType::ON, 45});
-   ch_midi->add_event({timeFromBeats(7,0), NoteType::OFF, 45});
+   auto ch_aud = af.master()->add_channel_audio();
+   ch_aud->set_gain(0.3);
+   ch_aud->add_event({kick, timeFromBeats(0,0)});
+   ch_aud->add_event({kick, timeFromBeats(1,0)});
+   ch_aud->add_event({kick, timeFromBeats(2,0)});
+   ch_aud->add_event({kick, timeFromBeats(3,0)});
+   // TODO: third channel makes everything stop at loop_pivot
+   auto ch_aud2 = af.master()->add_channel_audio();
+   ch_aud2->set_gain(0.3);
+   ch_aud2->add_event({tock, timeFromBeats(1, 0)});
+   ch_aud2->add_event({tock, timeFromBeats(3, 0)});
+   auto ch_aud3 = af.master()->add_channel_audio();
+   ch_aud3->set_gain(0.3);
+   ch_aud3->add_event({bass, timeFromBeats(0, 16)});
+   ch_aud3->add_event({bass, timeFromBeats(0, 32)});
+   ch_aud3->add_event({bass, timeFromBeats(0, 48)});
+   ch_aud3->add_event({bass, timeFromBeats(1, 16)});
+   ch_aud3->add_event({bass, timeFromBeats(1, 32)});
+   ch_aud3->add_event({bass, timeFromBeats(1, 48)});
 
    // ChannelAudio* ch_aud1 = af.master()->add_channel_audio();
    // Clockbase::loop_active = true;

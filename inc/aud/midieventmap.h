@@ -20,7 +20,6 @@ public:
         Timestamp_t curr_time = Clockbase::current_time.load();
         auto idx = find_start_event(curr_time, events);
         if (idx != -1) {
-            // printf("idx active event: %d\n", idx);
             evt = &events[idx];
         }
         return evt;

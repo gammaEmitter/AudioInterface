@@ -34,25 +34,25 @@ public:
             } else {
                 auto idx = find_start_event(curr_time, events);
                 if (idx != -1) {
-                    printf("idx active event: %d\n", idx);
                     curr_event = events[idx];
                     event_active = true;
                 } else {
                     return out;
                 }
             }
-        }
-        if (curr_time == curr_event.value().end_time) {
-            event_active = false;
-            event_index = 0;
-            curr_event = {};
+        } else {
+                if (curr_time == curr_event.value().end_time) {
+                    event_active = false;
+                    event_index = 0;
+                    curr_event = {};
+                }
         }
         if (event_active) {
             try {
                 out = curr_event.value().Out(event_index);
             }
             catch (const std::exception&) {
-                printf("here\n");
+                printf("we should not be here\n");
                 exit(1);
             }
             event_index++;

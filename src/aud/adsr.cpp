@@ -14,7 +14,7 @@ ADSR::ADSR() {
    env[ADSR::Attack].start = 0;
    env[ADSR::Attack].end = 1.0;
 
-   env[ADSR::Attack].length = 250;
+   env[ADSR::Attack].length = 500;
 
    env[ADSR::Decay].start = 1.0;
    env[ADSR::Decay].end = 0.4;
@@ -30,9 +30,9 @@ ADSR::ADSR() {
    env[ADSR::Release].end = 0.0;
    env[ADSR::Release].bend = 0.4;
 
-   env[ADSR::Release].length = 15000;
+   env[ADSR::Release].length = 2500;
    env[ADSR::Release].shape = ADSR::CurveShape::quad;
-   env[ADSR::Fade].length = 2000;
+   env[ADSR::Fade].length = 3000;
    env[ADSR::Fade].bend = 0.6;
    env[ADSR::Release].bend = 0.4;
 

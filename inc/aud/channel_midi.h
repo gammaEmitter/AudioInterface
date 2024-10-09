@@ -20,6 +20,7 @@ public:
     ~ChannelMidi() = default;
 
     inline float Out() override {
+        // TODO: click at loop_pivot --> cannot(?) place fade-out on midi.clip
         MidiEvent* evt = event_map.Out_midi();
         if (evt) {
             instrument->send_midi((int) evt->ntype, evt->note); 

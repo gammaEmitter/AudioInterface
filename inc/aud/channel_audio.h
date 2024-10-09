@@ -20,8 +20,8 @@ public:
 
     inline float Out() override {
         // ringbuffer->pull() ist gerade komplett draussen -> redesign auf processing devices
-        float out = AudIO::SampleSilence;
-        return AudIO::SampleSilence + event_m.Out();
+        // float out = AudIO::SampleSilence;
+        return event_m.Out();
     }
     ChannelAudio& set_gain (float gain);
     ChannelAudio& add_source(SampleOut_fn func) override;
