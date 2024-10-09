@@ -6,7 +6,7 @@ WaveTableOscillator::WaveTableOscillator(WaveTableStrategy_fn waveform,  float f
    m_frequency = frequency;
    // out_fn = std::bind(&WaveTableOscillator::Out, *this);
    //
-   // funktioniert das?? oder ergibt das nullptr? capturing this ergibt eine std::function ??
+   // funktioniert, aber das knirscht ganz dolle
    out_fn = [this](){return Out();};
 
 }

@@ -2,7 +2,6 @@
 #include <__concepts/convertible_to.h>
 #include <cmath>
 #include <cstdint>
-#include <type_traits>
 #include <vector>
 #include <functional>
 #include <concepts>
@@ -31,7 +30,6 @@ namespace AudIO {
     static constexpr SampleRate_t Samplerate44100 = 44100;
     static constexpr int WaveTableSize = 16384;
     static constexpr float SampleSilence = 0.f;
-    static constexpr float NoNote = -1.f;
     static constexpr int RingbufferSize = 256;
     static constexpr int RingbufferStart = 0;
     static constexpr int RingbufferHalf = RingbufferSize / 2;
@@ -50,7 +48,7 @@ class IInstrument {
 public:
     virtual float Out() = 0;
     SampleOut_fn out_fn = 0;
-    virtual void set_freq(float) = 0;
+    virtual void send_midi(int, int) = 0;
     virtual ~IInstrument() = default;
 };
 
@@ -79,6 +77,10 @@ concept time_interval = requires (T obj) {
     {obj.start_time} -> std::convertible_to<u32>;
     {obj.end_time}   -> std::convertible_to<u32>;
 };
+template <typename T>
+concept time_point = requires (T obj) {
+    {obj.start_time} -> std::convertible_to<u32>;
+};
 
 enum Intersect {
     none,
@@ -88,7 +90,7 @@ enum Intersect {
     cuts_start, // new event cuts beginning of existing event
 };
 
-template <time_interval T>
+template <time_point T>
 int find_start_event(u32 time, const std::vector<T>& events){
    int left = 0;
    int right = events.size();

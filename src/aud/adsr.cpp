@@ -34,17 +34,11 @@ ADSR::ADSR() {
    env[ADSR::Release].shape = ADSR::CurveShape::quad;
    env[ADSR::Fade].length = 2000;
    env[ADSR::Fade].bend = 0.6;
-;
    env[ADSR::Release].bend = 0.4;
 
    env[ADSR::Fade].shape = ADSR::CurveShape::quad;
 
 }
-
-void ADSR::set_source(SampleOut_fn func){
-    source = func;
-}
-
 
 void ADSR::fade_into (ADSR::State next) {
     next_state = next;  
@@ -53,3 +47,4 @@ void ADSR::fade_into (ADSR::State next) {
     fade_index = 0;
     state.store(ADSR::Fade);
 }
+

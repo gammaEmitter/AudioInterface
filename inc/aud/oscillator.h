@@ -1,9 +1,11 @@
+#include "adsr.h"
 #include "iodef.h"
 
 class SineOscillator : public ISignalSource, public IInstrument {
 public:
     SineOscillator (float freq);
-    void set_freq(float freq) override;
+    void set_freq(float freq);
+    void send_midi(int type, int note) override;
     void set_gain(float gain);
     SampleOut_fn out_fn = nullptr;
 
@@ -11,8 +13,9 @@ public:
         float sample =sin(m_phase); 
         m_phase += m_phaseIncr;
         m_phase = (m_phase >= AudIO::twoPI) ? (m_phase - AudIO::twoPI) : m_phase;
-        return sample * m_gain;
+        return sample * m_gain * adsr.Out();
     }
+    ADSR adsr {};
 private:
     float m_phase {};
     float m_gain {};
@@ -22,7 +25,8 @@ private:
 class SawOscillator : public ISignalSource, public IInstrument {
 public:
     SawOscillator (float freq);
-    void set_freq(float freq) override;
+    void set_freq(float freq);
+    void send_midi(int type, int note) override;
     void set_gain(float gain);
     SampleOut_fn out_fn = nullptr;
 
@@ -40,8 +44,9 @@ public:
         sample -= polyBLEP;
         m_phase += m_phaseIncr;
         m_phase = (m_phase >= AudIO::twoPI) ? (m_phase - AudIO::twoPI) : m_phase;
-        return sample * m_gain;
+        return sample * m_gain * adsr.Out();
     }
+    ADSR adsr {};
 private:
     float m_phase {};
     float m_gain {};

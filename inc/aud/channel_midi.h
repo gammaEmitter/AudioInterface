@@ -20,14 +20,11 @@ public:
     ~ChannelMidi() = default;
 
     inline float Out() override {
-        float out = AudIO::SampleSilence;
-        float curr_pitch = event_map.Out_pitch();
-        // careful on float comparison!
-        if (curr_pitch >= 0) {
-            instrument->set_freq(curr_pitch); 
-            out += instrument->Out();
+        MidiEvent* evt = event_map.Out_midi();
+        if (evt) {
+            instrument->send_midi((int) evt->ntype, evt->note); 
         }
-        return out;
+        return instrument->Out();
     }
     ChannelMidi& set_gain (float gain);
     ChannelMidi& add_source(SampleOut_fn func) override;

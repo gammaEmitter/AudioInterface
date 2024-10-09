@@ -4,7 +4,10 @@
 #include "audiointerface.h"
 #include "clockbase.h"
 #include "iodef.h"
+#include "midievent.h"
 #include "oscillator.h"
+#include "wavetable.h"
+#include "wtoscillator.h"
 #include "metronome.h"
 #include "resourcemanager.h"
 
@@ -25,17 +28,24 @@ int main (int argc, char *argv[]) {
    af.set_OutDevice(devID);
 
    SineOscillator osc {440.f};
+   Clockbase::loop_active = true;
+   Clockbase::loop_in = 0;
+   Clockbase::loop_out =  timeFromBeats(9,0);
+   // SawOscillator osc {440.f};
+   // WaveTableOscillator osc {SineWaveTableStgy, 440.f};
    ChannelMidi* ch_midi = af.master()->add_channel_midi();
    ch_midi->set_instrument(&osc);
-   ch_midi->add_event({timeFromBeats(0,0), timeFromBeats(1,0), 60});
-   ch_midi->add_event({timeFromBeats(2,0), timeFromBeats(1,0), 65});
-   ch_midi->add_event({timeFromBeats(4,0), timeFromBeats(1,0), 70});
-   ch_midi->add_event({timeFromBeats(6,0), timeFromBeats(1,0), 75});
+   ch_midi->add_event({timeFromBeats(0,0), NoteType::ON, 45});
+   ch_midi->add_event({timeFromBeats(1,0), NoteType::OFF, 45});
+   ch_midi->add_event({timeFromBeats(3,0), NoteType::ON, 45});
+   ch_midi->add_event({timeFromBeats(4,0), NoteType::OFF, 45});
+   ch_midi->add_event({timeFromBeats(6,0), NoteType::ON, 45});
+   ch_midi->add_event({timeFromBeats(7,0), NoteType::OFF, 45});
 
    // ChannelAudio* ch_aud1 = af.master()->add_channel_audio();
    // Clockbase::loop_active = true;
    // Clockbase::loop_in = timeFromBeats(0,0);
-   // Clockbase::loop_out = timeFromBeats(8,0);
+   // Clockbase::loop_out = timeFromBeats(9,0);
    // auto ev = AudioEvent(mod, 0);
    // auto t = beatsFromTime(ev.duration);
    // ch_aud1->set_gain(0.7);

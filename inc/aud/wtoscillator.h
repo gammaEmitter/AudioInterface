@@ -1,7 +1,6 @@
 //
 #pragma once
 #include <iostream>
-#include <algorithm>
 #include "wavetable.h"
 #include "iodef.h"
 class WaveTableOscillator : public ISignalSource, public IInstrument {
@@ -24,8 +23,11 @@ public:
     }
 
     SampleOut_fn out_fn = nullptr;
-
-    void set_freq(float freq) override {
+    // TODO: implement
+    void send_midi (int type, int note) override {
+        set_freq(440.0 * pow(2,((note - 69.0f))/12.0f));
+    }
+    void set_freq(float freq) {
         m_wavetable->set_freq(freq);
     }
 
