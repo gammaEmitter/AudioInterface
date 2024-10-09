@@ -5,7 +5,7 @@
 #include "ringbuffer.h"
 #include "iodef.h"
 #include "audioevent.h"
-#include "audioeventqueue.h"
+#include "audioeventmap.h"
 
 
 class ChannelAudio : public IChannel {

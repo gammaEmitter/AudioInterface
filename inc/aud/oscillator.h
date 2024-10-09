@@ -1,10 +1,12 @@
 #include "iodef.h"
 
-class SineOscillator : public ISignalSource, public IFreqAdjustable {
+class SineOscillator : public ISignalSource, public IInstrument {
 public:
     SineOscillator (float freq);
-    void setFreq(float freq) override;
-    void setGain(float gain);
+    void set_freq(float freq) override;
+    void set_gain(float gain);
+    SampleOut_fn out_fn = nullptr;
+
     inline float Out() override {
         float sample =sin(m_phase); 
         m_phase += m_phaseIncr;
@@ -17,11 +19,13 @@ private:
     float m_frequencyNorm {}; 
     float m_phaseIncr {};
 };
-class SawOscillator : public ISignalSource, public IFreqAdjustable {
+class SawOscillator : public ISignalSource, public IInstrument {
 public:
     SawOscillator (float freq);
-    void setFreq(float freq) override;
-    void setGain(float gain);
+    void set_freq(float freq) override;
+    void set_gain(float gain);
+    SampleOut_fn out_fn = nullptr;
+
     inline float Out() override {
         float dt = m_phase / AudIO::twoPI;
         float sample = ((2.f*dt) - 1.f); 

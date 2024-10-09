@@ -15,8 +15,8 @@ public:
 
     Timestamp_t                     start_time          {};
     Timestamp_t                     end_time            {};
-    uint32_t                        duration            {};
-    uint32_t                        offset              {};
+    u32                             duration            {};
+    u32                             offset              {};
     std::vector<float>*             data                {};
     CurveModel                      fade_in             {};
     CurveModel                      fade_out            {};
@@ -35,7 +35,7 @@ public:
     AudioEvent &operator=(const AudioEvent &) = default;
     AudioEvent &operator=(AudioEvent &&) = default;
 
-    inline float Out(uint32_t index) {
+    inline float Out(u32 index) {
         float out = data->at(index + offset);
 
         if (index >= fade_in.offset && index <= (fade_in.offset + fade_in.length)) {
@@ -44,10 +44,7 @@ public:
         } else if (index >= fade_out.offset && index <= (fade_out.offset + fade_out.length)) {
             float pos = (float)index / fade_out.length;
             out *= fade_out.out(pos);
-        } else {
-            
         }
-
         return out;
     }
 

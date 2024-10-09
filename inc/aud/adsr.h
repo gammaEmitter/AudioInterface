@@ -23,7 +23,7 @@ struct ADSR : public ISignalSource {
 
     struct Model {
         CurveShape      shape   = linear;
-        uint32_t        length  {};
+        u32        length  {};
         float           start   {};
         float           end     {};
         float           bend    = 1.f;
@@ -113,8 +113,8 @@ struct ADSR : public ISignalSource {
     using ADSR_data_t = std::unordered_map<ADSR::State, Model>;
 
     SampleOut_fn        source          {};
-    uint32_t            index           {};
-    uint32_t            fade_index      {};
+    u32            index           {};
+    u32            fade_index      {};
     std::atomic<State>  state           = State::Off;
     ADSR_data_t         env             {};
     float               pos             {};

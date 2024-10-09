@@ -2,11 +2,10 @@
 //
 #include <queue>
 #include "clockbase.h"
-#include "midimessaging.h"
 #include "ringbuffer.h"
 #include "iodef.h"
 #include "midievent.h"
-#include "midieventqueue.h"
+#include "midieventmap.h"
 
 
 
@@ -21,26 +20,29 @@ public:
     ~ChannelMidi() = default;
 
     inline float Out() override {
-        if (!event_queue.next_event.has_value()) {
-            return m_ringbuffer->pull();
-        } else {
-            return event_queue.Out();
+        float out = AudIO::SampleSilence;
+        float curr_pitch = event_map.Out_pitch();
+        // careful on float comparison!
+        if (curr_pitch >= 0) {
+            instrument->set_freq(curr_pitch); 
+            out += instrument->Out();
         }
+        return out;
     }
     ChannelMidi& set_gain (float gain);
     ChannelMidi& add_source(SampleOut_fn func) override;
+    ChannelMidi& set_instrument(IInstrument* func);
     ChannelMidi& add_event(const MidiEvent&& evt);
-    ChannelMidi& set_midi (IFreqAdjustable* instrument, ADSR* env_gen);
 
 
     std::unique_ptr<Ringbuffer>                     m_ringbuffer    = nullptr;
 
 private:
 
-    MidiReceiver                                    midi_recv       {};
-    MidiEventQueue                                  event_queue     {midi_recv};
-    MidiListener                                    midi_listen     {midi_recv, 0};
-    std::vector<SampleOut_fn>                       sources         {};
+    MidiEventMap                                    event_map       {};
+    std::vector<SampleOut_fn>                       effects         {};
+    IInstrument*                                    instrument      {};
+    SampleOut_fn                                    source          {};
     float                                           m_gain          = 0.3f;
 
 

@@ -1,5 +1,5 @@
 #include "channel_audio.h"
-#include "audioeventqueue.h"
+#include "audioeventmap.h"
 #include "iodef.h"
 
 ChannelAudio::ChannelAudio() {

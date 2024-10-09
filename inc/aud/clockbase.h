@@ -8,7 +8,7 @@
 *   Timebase incremented from PortAudio-Callback
 */
 
-using Timestamp_t = uint32_t;
+using Timestamp_t = u32;
 
 namespace Clockbase {
 
@@ -28,7 +28,7 @@ namespace Clockbase {
 
     extern Timestamp_t                      loop_out;
 
-    static uint16_t beat_length() {
+    static u16 beat_length() {
         return samplerate * (60/(float)tempo);
     }
     static void increment() {
@@ -52,7 +52,7 @@ namespace Clockbase {
 };
 
 struct BeatUnit {
-    uint16_t beats;
+    u16 beats;
     uint8_t ticks;
 
     void operator+(BeatUnit& other) {
@@ -70,19 +70,19 @@ struct BeatUnit {
     }
 };
 
-Timestamp_t timeFromBeats(uint16_t beats, uint8_t ticks);
+Timestamp_t timeFromBeats(u16 beats, uint8_t ticks);
 BeatUnit    beatsFromTime(Timestamp_t time);
 
 struct TransportWatch {
-    std::atomic<uint16_t>               seconds         {};
+    std::atomic<u16>               seconds         {};
     std::atomic<float>                  milliseconds    {};
     std::atomic<uint8_t>                tempo_ticks     {};
-    std::atomic<uint16_t>               beats           {};
+    std::atomic<u16>               beats           {};
 
     void refresh() {
         Timestamp_t currTime = Clockbase::current_time.load();
         seconds.store(currTime / Clockbase::samplerate);
-        uint16_t beatlen = Clockbase::beat_length();
+        u16 beatlen = Clockbase::beat_length();
         milliseconds.store((float) (currTime % Clockbase::samplerate) / Clockbase::samplerate);
         beats.store(currTime / beatlen);
         int tick64_length = beatlen / 64;

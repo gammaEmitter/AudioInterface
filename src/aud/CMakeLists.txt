@@ -2,15 +2,15 @@ set(SRCS
     adsr.cpp
     audiointerface.cpp
     audioevent.cpp
-    audioeventqueue.cpp
+    audioeventmap.cpp
     bus.cpp
     channel_audio.cpp
-    midieventqueue.cpp
+    midievent.cpp
+    midieventmap.cpp
     channel_midi.cpp
     ringbuffer.cpp
     clockbase.cpp
     metronome.cpp
-    midimessaging.cpp
     oscillator.cpp
     resourcemanager.cpp
     wavetable.cpp
