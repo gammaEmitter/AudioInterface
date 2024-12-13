@@ -1,13 +1,12 @@
 set(SRCS 
     adsr.cpp
+    allocator.cpp
     audiointerface.cpp
     audioevent.cpp
     audioeventmap.cpp
-    bus.cpp
-    channel_audio.cpp
     midievent.cpp
     midieventmap.cpp
-    channel_midi.cpp
+    mixer.cpp
     ringbuffer.cpp
     clockbase.cpp
     metronome.cpp

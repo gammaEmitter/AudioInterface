@@ -35,8 +35,6 @@ class Ringbuffer {
         void insert(float& val);
         void increment();
         size_t capacity () const;
-        float pull();
-        void set_source(SampleOut_fn func);
         
     
         int read_index; // gets pushed into Pa Callback Output Buffer | or next buffer
@@ -44,8 +42,6 @@ class Ringbuffer {
 
     private:
         
-        SampleOut_fn source;
-        //Ringbuffer* source = nullptr; // points at ringbufer.buff[read_index] one lower in the hierachy
         size_t _cap = AudIO::RingbufferSize;
         float buf[AudIO::RingbufferSize];
 };

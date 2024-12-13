@@ -1,6 +1,7 @@
 #pragma once
 #include <__concepts/convertible_to.h>
 #include <cmath>
+#include <cassert>
 #include <cstdint>
 #include <vector>
 #include <functional>
@@ -13,8 +14,8 @@
 #define max(a,b) ((a)>(b)?(a):(b))
 
 using WaveTableStrategy_fn = std::function<std::vector<float>()>;
-using SampleOut_fn = std::function<float()>;
-using SetFrequency_fn = std::function<void(float)>;
+// using SampleOut_fn = std::function<float()>;
+typedef void(*SampleOut_fn)(void*);
 using RingbufferPtr = float*;
 using SampleRate_t = int;
 
@@ -34,43 +35,34 @@ namespace AudIO {
     static constexpr int RingbufferStart = 0;
     static constexpr int RingbufferHalf = RingbufferSize / 2;
 };
-class IChannel {
-public:
-    virtual float Out() = 0;
-    virtual IChannel& add_source(SampleOut_fn) = 0;
-    virtual ~IChannel() = default;
-};
-enum ChannelType {
-    Audio,
-    Midi,
-};
-class IInstrument {
-public:
-    virtual float Out() = 0;
-    SampleOut_fn out_fn = 0;
-    virtual void send_midi(int, int) = 0;
-    virtual ~IInstrument() = default;
+
+struct OscFreq {
+    float frequency_norm;
+    float incr_phase;
 };
 
-class ISignalSource {
-public:
-    virtual float Out() = 0;
-    virtual ~ISignalSource() = default;
-};
-class ISignalSink {
-private:
-    virtual ~ISignalSink() = default;
+struct SignalPath {
+    float* in;
+    float* out;
+    SampleOut_fn proc;
 };
 
-template <typename T>
-concept has_freq_set = requires (T obj, float freq) {
-    {obj.set_freq(freq)}; 
-};
 
-template<typename T>
-concept is_signal_source = requires (T obj) {
-    {obj.Out()} -> std::floating_point;
-};
+inline void set_freq(OscFreq& osc_freq, float hz) {
+    osc_freq.frequency_norm = hz/AudIO::Samplerate44100;
+    osc_freq.incr_phase = osc_freq.frequency_norm * AudIO::twoPI;
+}
+
+inline void set_gain(float& attr, float gain) {
+    if (gain >= 1.f) {
+        attr = 1.f;
+    } else if (gain <= 0){
+        attr = 0.f;
+    } else {
+        attr = gain;
+    }
+}
+
 
 template <typename T>
 concept time_interval = requires (T obj) {
@@ -91,16 +83,16 @@ enum Intersect {
 };
 
 template <time_point T>
-int find_start_event(u32 time, const std::vector<T>& events){
+int find_start_event(u32 time, const std::vector<T*>* events){
    int left = 0;
-   int right = events.size();
-   if (time > events[right - 1].start_time) return -1;
+       int right = events->size();
+       if (time > (*events)[right - 1]->start_time) return -1;
    while (left <= right) {
       int mid = (left+right) / 2;
-      if (events[mid].start_time == time) return mid;
-      if (time < events[mid].start_time) {
+      if ((*events)[mid]->start_time == time) return mid;
+      if (time < (*events)[mid]->start_time) {
          right = mid - 1; 
-      } else if (time > events[mid].start_time) {
+      } else if (time > (*events)[mid]->start_time) {
          left = mid + 1; 
       }
    }
@@ -110,16 +102,16 @@ int find_start_event(u32 time, const std::vector<T>& events){
 // binary search on AudioEvent interval from some Timestamp_t
 // find event in whiches duration interval the Timestamp_t lies
 template <time_interval T>
-int find_active_event (u32 time, const std::vector<T>& events) {
+int find_active_event (u32 time, const std::vector<T*>& events) {
    int left = 0;
    int right = events.size();
-   if (time > events[right - 1].end_time) return -1;
+   if (time > events[right - 1]->end_time) return -1;
    while (left <= right) {
       int mid = (left+right) / 2;
-      if (events[mid].start_time <= time && time <= events[mid].end_time) return mid;
-      if (time < events[mid].start_time) {
+      if (events[mid]->start_time <= time && time <= events[mid]->end_time) return mid;
+      if (time < events[mid]->start_time) {
          right = mid - 1; 
-      } else if (time > events[mid].end_time) {
+      } else if (time > events[mid]->end_time) {
          left = mid + 1; 
       }
    }

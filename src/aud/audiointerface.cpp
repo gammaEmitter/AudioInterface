@@ -13,228 +13,132 @@
 #include <string_view>
 #include <utility>
 
-static std::ofstream outfile {"testRecord.dat", std::ios::out};
-
-AudioInterface::AudioInterface () {
-    m_masterbus = std::make_unique<MasterBus>();
-    m_ringbuffer = std::make_unique<Ringbuffer>();
-    auto tmp = std::bind(&MasterBus::Out, m_masterbus.get());
-    m_ringbuffer->set_source(tmp);
-    err = Pa_Initialize();
-    std::cout << err << std::endl;
-    if (err ==  paNoError) {
-        populateDevices();
+//static std::ofstream outfile {"testRecord.dat", std::ios::out};
+AudioInterface& init_audio_interface(AudioInterface& aud) {
+    aud.err = Pa_Initialize();
+    std::cout << "PortAudio initialization  " << ((aud.err) ? "failed" : "succeeded") << std::endl;
+    if (aud.err ==  paNoError) {
+        populateDevices(aud);
     } else {
         std::cout << "Error initialising devices on hostapi " << Pa_GetDefaultHostApi()  << std::endl;
-        
     }
-    //  printDevices(std::cout); 
+     printDevices(aud, std::cout); 
+    return aud;
 }
 
-PaError AudioInterface::populateDevices() {
+PaError populateDevices(AudioInterface& aud) {
     PaError err;
     int num = Pa_GetDeviceCount();
-    std::cout << num << std::endl;
+    std::cout << num << " Devices found"<< std::endl;
     for (int i = 0; i < num; ++i) {
-        m_devices[i] = Pa_GetDeviceInfo(i);
+        aud.devices[i] = Pa_GetDeviceInfo(i);
 
     }
-    printDevices(std::cout);
     return err;
 }
 
-void AudioInterface::printDevices(std::ostream& outstream) { 
+void printDevices(AudioInterface& aud, std::ostream& outstream) { 
     std::ostringstream oss;
-    for (auto& e : m_devices) {
+    for (auto& e : aud.devices) {
         oss << "ID: [" << e.first << "]: " << e.second->name << std::endl; 
     }
     outstream << oss.str() << std::endl;
 }
 // pupolates stream information from the chosen device
-void AudioInterface::populateOutStreamInfo() {
-    if (m_odevice) {
-
-        streaminfo.output_param.device = get_device(m_odevice);
-        streaminfo.output_param.channelCount = AudIO::Mono;
-        streaminfo.output_param.sampleFormat = paFloat32;
-        streaminfo.output_param.suggestedLatency = m_odevice->defaultLowOutputLatency;
-        streaminfo.output_param.hostApiSpecificStreamInfo = NULL;
+AudioInterface& populateOutStreamInfo(AudioInterface& aud) {
+    if (aud.odevice) {
+        aud.streaminfo.output_param.device = get_device(aud, aud.odevice);
+        aud.streaminfo.output_param.channelCount = AudIO::Mono;
+        aud.streaminfo.output_param.sampleFormat = paFloat32;
+        aud.streaminfo.output_param.suggestedLatency = aud.odevice->defaultLowOutputLatency;
+        aud.streaminfo.output_param.hostApiSpecificStreamInfo = NULL;
     }
+    return aud;
 }
 // pupolates stream information from the chosen device
-void AudioInterface::populateInStreamInfo() {
-    if (m_idevice) {
-        streaminfo.input_param.device = get_device(m_idevice);
-        streaminfo.input_param.channelCount = AudIO::Mono;
-        streaminfo.input_param.sampleFormat = paFloat32;
-        streaminfo.input_param.suggestedLatency = m_idevice->defaultLowInputLatency;
-        streaminfo.input_param.hostApiSpecificStreamInfo = NULL;
+AudioInterface& populateInStreamInfo(AudioInterface& aud) {
+    if (aud.idevice) {
+        aud.streaminfo.input_param.device = get_device(aud, aud.idevice);
+        aud.streaminfo.input_param.channelCount = AudIO::Mono;
+        aud.streaminfo.input_param.sampleFormat = paFloat32;
+        aud.streaminfo.input_param.suggestedLatency = aud.idevice->defaultLowInputLatency;
+        aud.streaminfo.input_param.hostApiSpecificStreamInfo = NULL;
     }
+    return aud;
 }
 
-AudioInterface& AudioInterface::set_OutDevice(const std::string_view name) {
-    for (auto dev : m_devices) {
-        if (dev.second->name == name) {
-            m_odevice = dev.second;
-        }
-    }
-    populateOutStreamInfo();
-    return *this;
+AudioInterface& set_odevice (AudioInterface& aud, PaDeviceIndex index) {
+    aud.odevice = Pa_GetDeviceInfo(index);
+    populateOutStreamInfo(aud);
+    return aud;
 }
-
-AudioInterface& AudioInterface::set_OutDevice (PaDeviceIndex index) {
-    m_odevice = Pa_GetDeviceInfo(index);
-    populateOutStreamInfo();
-    return *this;
-}
-AudioInterface& AudioInterface::set_InDevice(const std::string_view name) {
-    for (auto dev : m_devices) {
-        if (dev.second->name == name) {
-            m_idevice = dev.second;
-        }
-    }
-    populateInStreamInfo();
-    return *this;
-}
-AudioInterface& AudioInterface::set_InDevice (PaDeviceIndex index) {
-    m_idevice = Pa_GetDeviceInfo(index);
-    populateInStreamInfo();
-    return *this;
+AudioInterface& set_idevice (AudioInterface& aud, PaDeviceIndex index) {
+    aud.idevice = Pa_GetDeviceInfo(index);
+    populateInStreamInfo(aud);
+    return aud;
 }
 
 
-PaDeviceIndex AudioInterface::get_device(const PaDeviceInfo* name) const {
-    for (auto& entry : m_devices) {
+const PaDeviceIndex get_device(AudioInterface& aud, const PaDeviceInfo* name) {
+    for (auto& entry : aud.devices) {
         if (entry.second == name)
             return entry.first;
     }
     return -1;
 }
 
-
-const PaDeviceInfo* AudioInterface::get_device (PaDeviceIndex index) const {
-    for (auto& entry : m_devices) {
-        if (entry.first == index)
-            return entry.second;
-    }
-    return nullptr;
-}
-
-int AudioInterface::inOutCallback (const void* inputbuffer, 
-        void* outputbuffer,
-        unsigned long framesPerBuffer,
-        const PaStreamCallbackTimeInfo* timeinfo,
-        PaStreamCallbackFlags statusflags,
-        void* userData) {
-
-    Ringbuffer* rb = (Ringbuffer*)userData;
-    const float* rptr = (const float*)inputbuffer;
-    float* write_ptr = (float*) outputbuffer;
-    for (size_t i = 0; i < framesPerBuffer; i++) {
-        *write_ptr++ = rb->pull() + ((inputbuffer) ? AudIO::SampleSilence : *rptr++); 
-    }
-    return paContinue;
-}
-
-
- int AudioInterface::outputCallback (const void* inputbuffer, 
+ int outputCallback (const void* inputbuffer, 
         void* outputbuffer,
         unsigned long framesPerBuffer,
         const PaStreamCallbackTimeInfo* timeinfo,
         PaStreamCallbackFlags statusflags,
         void* userData
         ) {
-    // auto start = std::chrono::high_resolution_clock::now(); 
-    Ringbuffer* rb = (Ringbuffer*) userData;
+    auto start = std::chrono::high_resolution_clock::now(); 
+    Mixer* mixer = (Mixer*) userData;
     float* write_ptr = (float*) outputbuffer;
     for (size_t i = 0; i < framesPerBuffer; i += 16) {
         for (int j = 0; j < 16; ++j) {
-            *write_ptr++ = rb->pull();
+            *write_ptr++ = sum_mixer(mixer);
             Clockbase::increment();
         }
     } 
-    // auto end = std::chrono::high_resolution_clock::now(); 
-    // printf("Out() Chain Time for %lu samples: %lld\n",framesPerBuffer, std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count());
+    auto end = std::chrono::high_resolution_clock::now(); 
+    printf("Out() Chain Time for %lu samples: %lld\n",framesPerBuffer, std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count());
     return paContinue;
 }
 
- int AudioInterface::writeOutputCallback (const void* inputbuffer, 
-        void* outputbuffer,
-        unsigned long framesPerBuffer,
-        const PaStreamCallbackTimeInfo* timeinfo,
-        PaStreamCallbackFlags statusflags,
-        void* userData
-        ) {
-    Ringbuffer* rb = (Ringbuffer*) userData;
-    float* write_ptr = (float*) outputbuffer;
-    for (size_t i = 0; i < framesPerBuffer; i += 16) {
-        for (int j = 0; j < 16; ++j) {
-            float out = rb->pull();
-            *write_ptr++ = out;
-            outfile << out << "\n";
-            Clockbase::increment();
-        }
-    } 
-    return paContinue;
-}
+PaError play_interface(AudioInterface& aud) {
 
-
-PaError AudioInterface::play() {
-    streaminfo.err_status = Pa_OpenStream(&streaminfo.stream,
+    aud.streaminfo.err_status = Pa_OpenStream(&aud.streaminfo.stream,
                 NULL,
-                &streaminfo.output_param,
+                &aud.streaminfo.output_param,
                 Clockbase::samplerate,
                 AudIO::RingbufferSize,
                 paClipOff,
                 outputCallback,
-                (void*)m_ringbuffer.get());
-    if (streaminfo.err_status != paNoError) {
-        printf("Opening stream failed, Code %d \n", streaminfo.err_status);
+                (void*)aud.mixer);
+    if (aud.streaminfo.err_status != paNoError) {
+        printf("Opening stream failed, Code %d \n", aud.streaminfo.err_status);
     }
     //m_bufferservice->startTransfer();
-    printf("Stream opened successfully on device %s \n", m_odevice->name);
+    printf("Stream opened successfully on device %s \n", aud.odevice->name);
     
-    streaminfo.err_status = Pa_StartStream(streaminfo.stream);
-    if (streaminfo.err_status != paNoError) {
-        printf("Starting  stream failed, Code %d \n", streaminfo.err_status);
+    aud.streaminfo.err_status = Pa_StartStream(aud.streaminfo.stream);
+    if (aud.streaminfo.err_status != paNoError) {
+        printf("Starting  stream failed, Code %d \n", aud.streaminfo.err_status);
     }
-    printf("Stream started successfully on device %s \n", m_odevice->name);
-
-
-    return paNoError ;
-    
-}
-PaError AudioInterface::play_writeToFile() {
-    streaminfo.err_status = Pa_OpenStream(&streaminfo.stream,
-                NULL,
-                &streaminfo.output_param,
-                Clockbase::samplerate,
-                AudIO::RingbufferSize / 4,
-                paClipOff,
-                writeOutputCallback,
-                (void*)m_ringbuffer.get());
-    if (streaminfo.err_status != paNoError) {
-        printf("Opening stream failed, Code %d \n", streaminfo.err_status);
-    }
-    //m_bufferservice->startTransfer();
-    printf("Stream opened successfully on device %s \n", m_odevice->name);
-    
-    streaminfo.err_status = Pa_StartStream(streaminfo.stream);
-    if (streaminfo.err_status != paNoError) {
-        printf("Starting  stream failed, Code %d \n", streaminfo.err_status);
-    }
-    printf("Stream started successfully on device %s \n", m_odevice->name);
+    printf("Stream started successfully on device %s \n", aud.odevice->name);
 
 
     return paNoError ;
     
 }
 
-PaError AudioInterface::stop() {
-    return Pa_StopStream(streaminfo.stream);
+PaError stop_interface(AudioInterface &aud) {
+    return Pa_StopStream(aud.streaminfo.stream);
 }
 
 
-MasterBus* AudioInterface::master() {
-    return m_masterbus.get();
-}
+
+

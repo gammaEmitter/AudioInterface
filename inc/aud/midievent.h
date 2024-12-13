@@ -17,7 +17,6 @@ struct MidiEvent {
     MidiEvent() = delete;
 };
 
-using MidiEvent_opt = std::optional<MidiEvent*>;
 
-bool MidiEventCompare (const MidiEvent& lhs, const MidiEvent& rhs);
+bool MidiEventCompare (const MidiEvent* lhs, const MidiEvent* rhs);
 

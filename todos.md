@@ -1,5 +1,14 @@
 # TODO
 
+`Rewrite section`
+
+- [ ] have 1 AudioEventMap, not one for every channel.
+- [ ] still tree like recursion from function pointer to function pointer, but: ...
+  > Out function for every type of data source (oscillator, audioeventmap, adsr, fade...)
+  > together with index of the source in the array that holds its data
+
+- [ ] 
+
 ## AudioInterface
 
 ### `xChannel`
@@ -31,23 +40,17 @@
 >
 
 ### `Midi`
-> - [ ] total revision of signal pathing, just think of how midi clips might get implemented. I cannot just call 
+> - [x] total revision of signal pathing, just think of how midi clips might get implemented. I cannot just call 
         ring_buffer->pull() on empty because it might change the phase of the underlying source
 > - [ ] per Midi-Input (keyboard) MidiController class that can have one (or multiple?) active midi-targets, 
         which get NOTE events sent -> publisher subscriber, how performant is it
 
 
-### `Midi-Messaging`
-> - [ ] `Note OFF` event triggers fade from different Note active.
-   should instead only trigger fade, if `note_num` corresponds to active note
-> - [ ] classes `MidiReceiver` and `MidiListener` have different initialisation methods upon needing to be default-constructable, should have consistent way
->
-
 ### `Audio File Formats`
 >
 > - [ ] mp3
-> - [ ] ogg
-> - [ ] flac
+> - [ ] ogg - work in progress
+> - [x] flac
 >
 
 ### `New Component`

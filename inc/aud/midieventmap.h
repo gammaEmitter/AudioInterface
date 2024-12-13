@@ -18,15 +18,13 @@ public:
     inline MidiEvent* Out_midi() {
         MidiEvent* evt = nullptr;
         Timestamp_t curr_time = Clockbase::current_time.load();
-        auto idx = find_start_event(curr_time, events);
+        auto idx = find_start_event(curr_time, &events);
         if (idx != -1) {
-            evt = &events[idx];
+            evt = events[idx];
         }
         return evt;
     }
 
-    void add_event (const MidiEvent&& evt);
-
 private:
-    std::vector<MidiEvent>                          events          {};
+    std::vector<MidiEvent*>                          events          {};
 };

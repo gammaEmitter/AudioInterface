@@ -1,9 +1,5 @@
 #include "metronome.h"
 
-void Metronome::on() {}
-
-void Metronome::off() {}
-
-void Metronome::loadFile() {
-
+void init_metronome (Metronome& metr, std::string& file_name) {
+   metr.wav = WavTool::readWAV(file_name);
 }
