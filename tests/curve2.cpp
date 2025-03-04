@@ -7,7 +7,7 @@
 int main (int argc, char *argv[]) {
     
     ADSR adsr {};
-    adsr.source = [](){return 1.f;};
+    auto out_fn = [](){return 1.f;};
 
     adsr.last_sample = 0.f;
 
@@ -38,12 +38,12 @@ int main (int argc, char *argv[]) {
     adsr.state = ADSR::Attack;
     adsr.index = 0;
     for (int i = 0; i < 94; ++i) {
-        res.push_back(adsr.Out());
+        res.push_back(out_adsr(&adsr));
     }
-    adsr.fade_into(ADSR::Attack);
+    fade_into_adsr(&adsr, ADSR::Attack);
     adsr.index = 0;
     for (int i = 0; i < 200; ++i) {
-        res.push_back(adsr.Out());
+        res.push_back(out_adsr(&adsr));
     }
     std::ofstream outfile {};
     outfile.open("adsr_curve_test.dat");

@@ -1,4 +1,5 @@
 #pragma once
+#include "allocator.h"
 #include <vector>
 #include <fstream>
 #include <stdint.h>
@@ -36,10 +37,11 @@ struct RiffWAV {
     // data
     uint32_t subchunk2ID {};
     uint32_t subchunk2Size {};
-    std::vector<float> data {};
+    float* data {};
+    size_t len_data {};
 };
 
-RiffWAV readWAV(const std::string &filename);
+RiffWAV* readWAV(AAllocator& alloc, const std::string &filename);
 void writeWAV (int sr, int duration, const std::vector<float>& data);
 std::vector<float> PCMtoFloat(const std::vector<int32_t>& wav, uint8_t bitdepth);
 

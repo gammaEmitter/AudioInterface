@@ -48,7 +48,8 @@ void printDevices(AudioInterface& aud, std::ostream& outstream) {
 AudioInterface& populateOutStreamInfo(AudioInterface& aud) {
     if (aud.odevice) {
         aud.streaminfo.output_param.device = get_device(aud, aud.odevice);
-        aud.streaminfo.output_param.channelCount = AudIO::Mono;
+        // aud.streaminfo.output_param.channelCount = AudIO::Mono;
+        aud.streaminfo.output_param.channelCount = AudIO::Stereo;
         aud.streaminfo.output_param.sampleFormat = paFloat32;
         aud.streaminfo.output_param.suggestedLatency = aud.odevice->defaultLowOutputLatency;
         aud.streaminfo.output_param.hostApiSpecificStreamInfo = NULL;
@@ -87,7 +88,7 @@ const PaDeviceIndex get_device(AudioInterface& aud, const PaDeviceInfo* name) {
     return -1;
 }
 
- int outputCallback (const void* inputbuffer, 
+ int outputCallbackMono(const void* inputbuffer, 
         void* outputbuffer,
         unsigned long framesPerBuffer,
         const PaStreamCallbackTimeInfo* timeinfo,
@@ -107,6 +108,28 @@ const PaDeviceIndex get_device(AudioInterface& aud, const PaDeviceInfo* name) {
     printf("Out() Chain Time for %lu samples: %lld\n",framesPerBuffer, std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count());
     return paContinue;
 }
+ int outputCallbackStereo(const void* inputbuffer, 
+        void* outputbuffer,
+        unsigned long framesPerBuffer,
+        const PaStreamCallbackTimeInfo* timeinfo,
+        PaStreamCallbackFlags statusflags,
+        void* userData
+        ) {
+    auto start = std::chrono::high_resolution_clock::now(); 
+    Mixer* mixer = (Mixer*) userData;
+    float* write_ptr = (float*) outputbuffer;
+    for (size_t i = 0; i < framesPerBuffer; i += 16) {
+        for (int j = 0; j < 16; ++j) {
+            *write_ptr++ = sum_mixer(mixer);
+            *write_ptr++ = sum_mixer(mixer);
+            Clockbase::increment();
+        }
+    } 
+    auto end = std::chrono::high_resolution_clock::now(); 
+    printf("Out() Chain Time for %lu samples: %lld\n",framesPerBuffer, std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count());
+    return paContinue;
+}
+
 
 PaError play_interface(AudioInterface& aud) {
 
@@ -116,7 +139,7 @@ PaError play_interface(AudioInterface& aud) {
                 Clockbase::samplerate,
                 AudIO::RingbufferSize,
                 paClipOff,
-                outputCallback,
+                (aud.streaminfo.output_param.channelCount == 2) ? outputCallbackStereo : outputCallbackMono,
                 (void*)aud.mixer);
     if (aud.streaminfo.err_status != paNoError) {
         printf("Opening stream failed, Code %d \n", aud.streaminfo.err_status);

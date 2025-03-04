@@ -1,6 +1,6 @@
 #include "adsr.h"
 #include "iodef.h"
-#include "../allocator.h"
+#include "allocator.h"
 
 
 enum WaveType {
@@ -13,7 +13,7 @@ enum WaveType {
 struct Oscillator {
     SignalPath path;
     OscFreq freq;
-    //ADSR adsr {};
+    ADSR* adsr {};
     float phase {};
     float gain {};
 };
@@ -22,7 +22,7 @@ inline void out_osc_sine (void* arg){
     float sample = sin(osc->phase); 
     osc->phase += osc->freq.incr_phase;
     osc->phase = (osc->phase >= AudIO::twoPI) ? (osc->phase - AudIO::twoPI) : osc->phase;
-    *osc->path.out = sample * osc->gain; //* out_adsr(osc->adsr);
+    *osc->path.out = sample * osc->gain * out_adsr(osc->adsr);
     if (osc->path.in) *osc->path.out *= *osc->path.in;
 }
 
@@ -41,10 +41,10 @@ inline void out_osc_saw(void* arg) {
     sample -= polyBLEP;
     osc->phase += osc->freq.incr_phase;
     osc->phase = (osc->phase >= AudIO::twoPI) ? (osc->phase - AudIO::twoPI) : osc->phase;
-    *osc->path.out = sample * osc->gain;// * out_adsr(osc->adsr);
+    *osc->path.out = sample * osc->gain * out_adsr(osc->adsr);
     
     if (osc->path.in) *osc->path.out *= *osc->path.in;
 
 }
 
-Oscillator* init_osc(AAllocator& alloc,float freq = 440.f, float gain = .7f, WaveType type = SINE);
+void init_osc(Oscillator* osc,float freq = 440.f, float gain = .7f, WaveType type = SINE);

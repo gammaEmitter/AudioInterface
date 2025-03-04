@@ -27,25 +27,25 @@ inline float quadCurve(float start, float end, float bend,  float pos) {
 
 
 struct CurveModel {
-    CurveShape      shape   = linear;
     uint32_t        length  {};
     uint32_t        offset  {};
     float           start   {};
     float           end     {};
     float           bend    = 1.f;
+    CurveShape      shape   = linear;
 
-    float out(float pos) {
-        switch(shape) {
-            case linear:
-                return linearCurve(start,end, pos);
-            case quad:
-                return quadCurve(start, end, bend, pos);
-            case unity:
-                return 1;
-        }
-        ;
-    }
 };
+inline float out_curve(CurveModel* curve, float pos) {
+    switch(curve->shape) {
+        case linear:
+            return linearCurve(curve->start,curve->end, pos);
+        case quad:
+            return quadCurve(curve->start, curve->end, curve->bend, pos);
+        case unity:
+            return 1;
+    }
+    ;
+}
 
 void short_fade_in(CurveModel& model, uint32_t len);
 void short_fade_out(CurveModel& model, uint32_t len);

@@ -1,7 +1,18 @@
 #pragma once
+#include "wavtool.h"
 #include <memory>
-#include "soundresource.h"
 #include <unordered_map>
+
+struct SoundRes {
+  enum Type {
+    WAV,
+    FLAC,
+  };
+  Type type;
+  union data {
+    WavTool::RiffWAV* wav;
+  } data;
+};
 
 class ResourceManager {
 public:
@@ -10,11 +21,11 @@ public:
     return instance;
   }
 
-    std::shared_ptr<SoundRes> addWAV (const std::string& filename);
-    std::shared_ptr<SoundRes> getFile (const std::string& filename);
+    SoundRes* addWAV(AAllocator& alloc, const std::string& filename);
+    SoundRes* getFile (const std::string& filename);
 
 private:
     ResourceManager() {}
-    std::unordered_map<std::string, std::shared_ptr<SoundRes>> soundFiles;
+    std::unordered_map<std::string, SoundRes> soundFiles;
     std::mutex mutex_;
 };

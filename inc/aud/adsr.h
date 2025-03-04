@@ -1,6 +1,7 @@
 #pragma once
 #include "iodef.h"
 #include "curvetool.h"
+#include "allocator.h"
 #include <chrono>
 #include <atomic>
 #include <unordered_map>
@@ -9,12 +10,12 @@
 
 struct ADSR {
     enum State {
-        Off,
-        Fade,
         Attack,
         Decay,
         Sustain,
         Release,
+        Fade,
+        Off,
         };
     enum CurveShape {
         linear,
@@ -39,21 +40,18 @@ struct ADSR {
             }
         }
     };
-    void fade_into (ADSR::State next);
     
 
-    using ADSR_data_t = std::unordered_map<ADSR::State, Model>;
 
     u32                 index           {};
     u32                 fade_index      {};
     std::atomic<State>  state           = State::Off;
-    ADSR_data_t         env             {};
+    Model               env[5]          {};
     float               pos             {};
     float               last_sample     {};
     State               next_state      = State::Attack;
 };
 
-using ADSR_opt = std::optional<ADSR>;
-
-float out_adsr (ADSR& adsr);
-void init_adsr(ADSR& adsr);
+void init_adsr(ADSR* adsr);
+float out_adsr (ADSR* adsr);
+void fade_into_adsr(ADSR* adsr, ADSR::State next);

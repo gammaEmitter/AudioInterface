@@ -45,7 +45,11 @@ const PaDeviceIndex get_device(AudioInterface &, const PaDeviceInfo *);
 AudioInterface &set_odevice(AudioInterface &, PaDeviceIndex);
 AudioInterface &set_idevice(AudioInterface &, PaDeviceIndex);
 
-static int outputCallback(const void *inputbuffer, void *outputbuffer,
+static int outputCallbackMono(const void *inputbuffer, void *outputbuffer,
+                          unsigned long framesPerBuffer,
+                          const PaStreamCallbackTimeInfo *timeinfo,
+                          PaStreamCallbackFlags statusflags, void *userData);
+static int outputCallbackStereo(const void *inputbuffer, void *outputbuffer,
                           unsigned long framesPerBuffer,
                           const PaStreamCallbackTimeInfo *timeinfo,
                           PaStreamCallbackFlags statusflags, void *userData);

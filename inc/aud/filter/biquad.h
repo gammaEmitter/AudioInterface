@@ -1,3 +1,8 @@
+#pragma once
+
+#include "allocator.h"
+#include "iodef.h"
+#include "libremidi/libremidi-c.h"
 #include <vector>
 #include <functional>
 
@@ -13,56 +18,41 @@
  *      - (a2/a0) * y[n-2]
  *
  *
- *
- *
- *
- *
  * */
-namespace Biq {
-    struct coe {
-        float a0;
-        float a1;
-        float a2;
-        float b0;
-        float b1;
-        float b2;
-    };
-    // Output is vector of coefficients {a0,a1,a2,b0,b1,b2}
-    class FilterStrategy {
-        public:
-            virtual coe calc_coe() const =0;
-
-    };
-
-    class LowPassStgy : public FilterStrategy {
-        public:
-            coe calc_coe() const override;
-        
-    };
-
-}  
-class Biquad {
-
-    public:
-       Biquad (Biq::FilterStrategy&& type, float frequency); 
-       Biquad(const Biquad& other) = delete;
-       Biquad& operator=(const Biquad& other) = delete;
-
-       Biquad(Biquad&& other) {
-
-       }
-       Biquad& operator=(Biquad&& other) {
-           return *this;
-       }
-        void set_source(std::function<float()> func);
-
-    private:
-        std::function<float()> source;
-        std::vector<float> coe_a;
-        std::vector<float> coe_b;
-        std::vector<float> prev_in;
-        std::vector<float> prev_out;
-
-        float m_gain;
-
+enum FilterType {
+    lowpass,
+    highpass
 };
+struct BiquadFilter {
+    SignalPath path;
+    float in_prev[2] {0};
+    float out_prev[2] {0};
+    float coe_a[3] {0};
+    float coe_b[3] {0};
+    float constants_directform_I[5] {0};
+    float shelf;
+    float q_factor;
+    float gain;
+    u8 bandwidth;
+
+    
+};
+
+void init_filter_biquad(BiquadFilter* filter, FilterType type, float freq);
+void calc_coe_filter_biquad(BiquadFilter* filter, FilterType type, float freq);
+
+inline void out_filter_biquad(void* arg) {
+    BiquadFilter* filter = (BiquadFilter*) arg;
+    float sample = filter->constants_directform_I[0] * (*filter->path.in)
+                   + filter->constants_directform_I[1] * filter->in_prev[0]
+                   + filter->constants_directform_I[2] * filter->in_prev[1]
+                   - filter->constants_directform_I[3] * filter->out_prev[0]
+                   - filter->constants_directform_I[4] * filter->out_prev[1];
+    *filter->path.out = sample * filter->gain;
+
+    filter->in_prev[1] = filter->in_prev[0];
+    filter->out_prev[1] = filter->out_prev[0];
+    filter->in_prev[0] = *filter->path.in;
+    filter->out_prev[0] = sample;
+    return;
+}

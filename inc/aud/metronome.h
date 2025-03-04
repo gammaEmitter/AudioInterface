@@ -16,7 +16,7 @@ struct Metronome {
     std::string                 file_name   {};
     size_t                      index       {};
     bool                        is_playing   = false;
-    WavTool::RiffWAV            wav;
+    WavTool::RiffWAV*           wav;
 
     void loadFile();
 };
@@ -25,14 +25,14 @@ inline float out_metronome(Metronome& metr) {
         float out {};
         auto val = Clockbase::current_time.load();
         
-        if (metr.index == metr.wav.data.size() - 1) {
+        if (metr.index == metr.wav->len_data - 1) {
             metr.is_playing = false;
             metr.index = 0;
         } else if (val % (Clockbase::beat_length()) == 0) {
             metr.is_playing = true;
         }
         if (metr.is_playing) {
-            out = metr.wav.data[metr.index];
+            out = metr.wav->data[metr.index];
             metr.index++;
         } else {
             out = AudIO::SampleSilence;
