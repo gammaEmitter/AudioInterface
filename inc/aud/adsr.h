@@ -29,16 +29,6 @@ struct ADSR {
         float           end     {};
         float           bend    = 1.f;
 
-        float out(float pos) {
-            switch(shape) {
-                case linear:
-                    return linearCurve(start,end, pos);
-                case quad:
-                    return quadCurve(start, end, bend, pos);
-                default:
-                    return AudIO::SampleSilence;
-            }
-        }
     };
     
 
@@ -52,6 +42,7 @@ struct ADSR {
     State               next_state      = State::Attack;
 };
 
+float out_model(ADSR::Model* model, float pos);
 void init_adsr(ADSR* adsr);
 float out_adsr (ADSR* adsr);
 void fade_into_adsr(ADSR* adsr, ADSR::State next);

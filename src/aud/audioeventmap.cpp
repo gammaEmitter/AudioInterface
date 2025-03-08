@@ -11,12 +11,9 @@ void init_audio_event_map(AAllocator &alloc, AudioEventMap *&map) {
   map->path.proc = &out_audio_event_map;
   map->size_events = 0;
   map->curr_event = nullptr;
-  map->carry_stereo = 0;
 }
 
 void add_event_audio_event_map(AudioEventMap *map, AudioEvent *evt) {
-  printf("map deref done %d\n", map->size_events);
-  printf("event dereference done %f\n", evt->data[20]);
   if (map->size_events > 0) {
     for (int i = find_active_event(evt->start_time, map->events, map->size_events);
          i < map->size_events; ++i) {
@@ -57,9 +54,10 @@ void add_event_audio_event_map(AudioEventMap *map, AudioEvent *evt) {
       }
     }
   }
-  printf("went well\n");
+   for (int i = 0; i < evt->duration; ++i) { // TRUE
+    if (abs(evt->data[i]) > 1) printf("%s %f\n", __FUNCTION__ ,evt->data[i]);
+   }
   map->events[map->size_events] = evt;
   map->size_events++;
-  printf("went well\n");
   // mergeSort(map->events, 0, map->size_events);
 }

@@ -3,6 +3,7 @@
 #include <memory>
 #include <functional>
 #include <strings.h>
+#include <thread>
 #include "../allocator.h"
 #include "audioevent.h"
 #include "audioeventmap.h"
@@ -14,6 +15,7 @@
 #include "iodef.h"
 #include "midievent.h"
 #include "midieventmap.h"
+#include "mixer.h"
 #include "oscillator.h"
 #include "wavetable.h"
 #include "wtoscillator.h"
@@ -22,11 +24,12 @@
 #include "filter/biquad.h"
 #include "filter/delay.h"
 
+#define SZ_ALLOC 10 * 1024 * 1024
 
 #define OSC1_CH 3
 #define EVENTMAP1_CH 4
 #define EVENTMAP2_CH 1
-#define EVENTMAP3_CH 127
+#define EVENTMAP3_CH 115
 #define EVENTMAP4_CH 17
 #define EVENTMAP5_CH 16
 
@@ -34,11 +37,10 @@ ResourceManager &resources{ResourceManager::getInstance()};
 
 int main (int argc, char *argv[]) {
    AAllocator mem_devices {};
-   init_allocator(mem_devices, 65536);
+   init_allocator(mem_devices, SZ_ALLOC);
    AudioInterface af;
    init_audio_interface(af);
-   af.mixer = (Mixer*) allocate_aa(mem_devices, sizeof(Mixer));
-   // init_mixer currently not there, function got emptied out
+   init_mixer(mem_devices, af.mixer);
 
 
    if (argc < 2) {
@@ -55,24 +57,25 @@ int main (int argc, char *argv[]) {
    auto hats = resources.addWAV(mem_devices, "res/hats.wav");
    auto tamb =  resources.addWAV(mem_devices, "res/tamb.wav");
    auto stick_wide =  resources.addWAV(mem_devices, "res/stick_wide.wav");
-
-   // Oscillator* osc = (Oscillator*) allocate_aa(mem_devices, sizeof(Oscillator));
-   // init_osc(osc, 110, 0.7, SAW);
-   // osc->adsr->state.store(ADSR::Off);
-
-   printf("im here\n");
+   //
+   Oscillator* osc = (Oscillator*) allocate_aa(mem_devices, sizeof(Oscillator));
+   osc->adsr = (ADSR*) allocate_aa(mem_devices, sizeof(ADSR)); 
+   init_osc(osc, 110, 0.7, SAW);
+   osc->adsr->state.store(ADSR::Off);
+   //
+   // printf("im here\n");
    AudioEventMap* aem, *bass_events, *wide_events, *hats_events;
    init_audio_event_map(mem_devices, aem);
    init_audio_event_map(mem_devices, bass_events);
    init_audio_event_map(mem_devices, wide_events);
-   // init_audio_event_map(mem_devices, hats_events);
-   // MidiEventMap* osc_events;
-   // init_midi_event_map(mem_devices, osc_events, &osc->freq, osc->adsr);
-   // generator_set_midi_event_map(osc_events, &osc->path, false);
-   // BiquadFilter* biq = (BiquadFilter*) allocate_aa(mem_devices, sizeof(BiquadFilter));
-   // init_filter_biquad(biq, FilterType::lowpass, 200.0);
+   init_audio_event_map(mem_devices, hats_events);
+   MidiEventMap* osc_events;
+   init_midi_event_map(mem_devices, osc_events, &osc->freq, osc->adsr);
+   generator_set_midi_event_map(osc_events, &osc->path, false);
+   BiquadFilter* biq = (BiquadFilter*) allocate_aa(mem_devices, sizeof(BiquadFilter));
+   // init_filter_biquad(biq, FilterType::highpass, 50.0);
    // set_clampabs1(biq->gain, 0.7);
-   // set_clampabs1(osc->gain, 0.4);
+   set_clampabs1(&osc->gain, 0.4);
 
    // Delay* delay = (Delay*) allocate_aa(mem_devices,sizeof(Delay));
    // init_delay(mem_devices, delay, timeFromBeats(1,32));
@@ -90,19 +93,21 @@ int main (int argc, char *argv[]) {
    Clockbase::loop_active = true;
    Clockbase::loop_in = 0;
    Clockbase::loop_out =  timeFromBeats(2,0);
-   printf("%f\n", kick->data.wav->data[20]);
    printf("aem index: %u\n",mixer_signal_add(af.mixer, &aem->path, EVENTMAP1_CH));
    printf("bass index: %u\n",mixer_signal_add(af.mixer, &bass_events->path, EVENTMAP2_CH));
    printf("wide_events index: %u\n",mixer_signal_add(af.mixer, &wide_events->path, EVENTMAP4_CH));
-   // printf("hats index: %u\n",mixer_signal_add(af.mixer, &hats_events->path, EVENTMAP5_CH));
+   printf("hats index: %u\n",mixer_signal_add(af.mixer, &hats_events->path, EVENTMAP5_CH));
    // printf("biq filter index: %u\n",mixer_signal_add(af.mixer, &biq->path, EVENTMAP2_CH));
    // printf("delay2 on hats_events index: %u\n",mixer_signal_add(af.mixer, &delay2->path, EVENTMAP5_CH));
-   // printf("osc index: %u\n",mixer_signal_add(af.mixer, &osc->path, EVENTMAP3_CH));
-   // printf("osc_events index: %u\n",mixer_signal_add(af.mixer, &osc_events->path, EVENTMAP3_CH));
+   printf("osc index: %u\n",mixer_signal_add(af.mixer, &osc->path, EVENTMAP3_CH));
+   printf("osc_events index: %u\n",mixer_signal_add(af.mixer, &osc_events->path, EVENTMAP3_CH));
    // printf("biq filter on osc_events index: %u\n",mixer_signal_add(af.mixer, &biq->path, EVENTMAP3_CH));
    // printf("delay on osc_events index: %u\n",mixer_signal_add(af.mixer, &delay->path, EVENTMAP3_CH));
 
    auto ev1 = audio_event(mem_devices,kick, timeFromBeats(0,0));
+   for (int i = 0; i < ev1->duration; ++i) { // TRUE
+    if (abs(ev1->data[i]) > 1) printf("%s %f\n", __FUNCTION__ ,ev1->data[i]);
+   }
    // short_fade_out(ev1->fade_out, 500);
    auto ev2 = audio_event(mem_devices,kick, timeFromBeats(1,0));
 
@@ -117,10 +122,19 @@ int main (int argc, char *argv[]) {
    add_event_audio_event_map(bass_events, audio_event(mem_devices,bass, timeFromBeats(1,16)));
    add_event_audio_event_map(bass_events, audio_event(mem_devices,bass, timeFromBeats(1,32)));
    add_event_audio_event_map(bass_events, audio_event(mem_devices,bass, timeFromBeats(1,48)));
-   // auto hats_trunc = audio_event(mem_devices, hats, timeFromBeats(0,0));
-   // add_event_audio_event_map(hats_events, hats_trunc);
-   // add_event_audio_event_map(hats_events, audio_event(mem_devices, hats, timeFromBeats(1,0)));
-   // add_event_audio_event_map(hats_events, audio_event(mem_devices, hats, timeFromBeats(1,32)));
+   auto hats_trunc = audio_event(mem_devices, hats, timeFromBeats(0,0));
+   add_event_audio_event_map(hats_events, hats_trunc);
+   add_event_audio_event_map(hats_events, audio_event(mem_devices, hats, timeFromBeats(1,0)));
+   add_event_audio_event_map(hats_events, audio_event(mem_devices, hats, timeFromBeats(1,32)));
+   // for (int i = 0; i < sizeof(Mixer); ++i) {
+   //    printf("%x", af.mixer[i]);
+   //    if (i % 32 == 0) printf("\n");
+   // }
+   // printf("\n\n");
+   // for (int i = 0; i < SZ_ALLOC; ++i) {
+   //    printf("%x", mem_devices.mem[i]);
+   //    if (i % 32 == 0) printf("\n");
+   // }
    play_interface(af);
    std::cin.get();
    stop_interface(af);

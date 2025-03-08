@@ -42,7 +42,7 @@ inline void out_audio_event_map(void* arg) {
         auto idx = find_active_event(curr_time, map->events, map->size_events);
         if (idx != -1) {
             map->curr_event = map->events[idx];
-            map->event_index = curr_time - map->events[idx]->start_time;
+            map->event_index = curr_time - map->curr_event->start_time;
             if ((map->event_index & 1) == 0) {
                 map->left_pos =  false;
             } else {
@@ -55,14 +55,17 @@ inline void out_audio_event_map(void* arg) {
             return;
         }
     } else {
-        if (map->event_index >= map->curr_event->end_time - map->curr_event->start_time) {
+        // if (map->event_index > map->curr_event->end_time - map->curr_event->start_time) {
+        // if (map->event_index > map->curr_event->duration - 1) {
+        if (curr_time == map->curr_event->start_time + map->curr_event->duration) {
             map->event_active = false;
             map->event_index = 0;
             map->curr_event = nullptr;
+            map->left_pos = true;
         }
     }
     if (map->event_active) {
-        try {
+        // try {
             if (map->curr_event->stereo) {
                 out = out_audio_event(map->curr_event, map->event_index);
                 map->event_index++;
@@ -79,11 +82,13 @@ inline void out_audio_event_map(void* arg) {
                 } 
                 map->left_pos = !map->left_pos;
             }
-        } catch (const std::out_of_range& e) {
-            printf("we should not be here (index %d on event len %d): %s\n",
-                   map->event_index, map->curr_event->duration, e.what());
-        }
+        // } catch (const std::out_of_range& e) {
+        //     printf("we should not be here (index %d on event len %d): %s\n",
+        //            map->event_index, map->curr_event->duration, e.what());
+        // }
     }
+    // if (out >= 1) printf("%f\n", out);
+    // set_clampabs1(out, out);
     *map->path.out = out;
     return;
 }

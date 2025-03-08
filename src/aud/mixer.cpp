@@ -1,8 +1,24 @@
 #include "mixer.h"
+#include "iodef.h"
 
 /*
  * TODO:debug here
  */
+void init_mixer(AAllocator& alloc, Mixer*& mixer) {
+   mixer = (Mixer*) allocate_aa(alloc, sizeof(Mixer));
+   for (int i = 0; i < 4096; ++i) {
+      mixer->paths[i] = nullptr;
+      mixer->out_signals[i] = 0.f;
+   }
+   for (int i = 0; i < 128; ++i) {
+      mixer->ch_signals[i] = nullptr;
+      mixer->used_signals[i] = 0;
+      mixer->order_channel[i] = 0;
+   }
+   mixer->channels_in_use = 0;
+
+   
+}
 
 uint16_t mixer_signal_add(Mixer* mixer, SignalPath* path, uint8_t channel) {
 
@@ -39,5 +55,6 @@ float sum_mixer(Mixer* mixer) {
       }
       total_sum += *mixer->ch_signals[mixer->order_channel[num_ch]];
    }
+   // set_clampabs1(total_sum, total_sum);
    return total_sum;
 }

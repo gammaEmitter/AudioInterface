@@ -34,6 +34,18 @@ void init_adsr(ADSR* adsr) {
 
 }
 
+float out_model(ADSR::Model* model, float pos) {
+   switch(model->shape) {
+      case ADSR::CurveShape::linear:
+         return linearCurve(model->start,model->end, pos);
+      case ADSR::CurveShape::quad:
+         return quadCurve(model->start, model->end, model->bend, pos);
+      default:
+         return AudIO::SampleSilence;
+   }
+}
+
+
 float out_adsr (ADSR* adsr) {
 
    switch(adsr->state.load()) {
@@ -49,7 +61,7 @@ float out_adsr (ADSR* adsr) {
             adsr->fade_index = 0;
             adsr->state.store(adsr->next_state);
          }
-         adsr->last_sample = adsr->env[ADSR::Fade].out(adsr->pos);
+         adsr->last_sample = out_model(&adsr->env[ADSR::Fade], adsr->pos);
          return adsr->last_sample;
          break;
 
@@ -60,7 +72,7 @@ float out_adsr (ADSR* adsr) {
             adsr->index = 0;
             adsr->state.store(ADSR::Decay);
          }
-         adsr->last_sample = adsr->env[ADSR::Attack].out(adsr->pos);
+         adsr->last_sample = out_model(&adsr->env[ADSR::Attack], adsr->pos);
          return adsr->last_sample;
          break;
       case ADSR::Decay:
@@ -70,7 +82,7 @@ float out_adsr (ADSR* adsr) {
             adsr->index = 0;
             adsr->state.store(ADSR::Sustain);
          }
-         adsr->last_sample = adsr->env[ADSR::Decay].out(adsr->pos);
+         adsr->last_sample = out_model(&adsr->env[ADSR::Decay], adsr->pos);
          return adsr->last_sample;
          break;
       case ADSR::Sustain:
@@ -80,7 +92,7 @@ float out_adsr (ADSR* adsr) {
             adsr->index--;
             //Sustain changes only after NoteOff event to Release
          }
-         adsr->last_sample = adsr->env[ADSR::Sustain].out(adsr->pos);
+         adsr->last_sample = out_model(&adsr->env[ADSR::Sustain], adsr->pos);
          return adsr->last_sample;
          break;
       case ADSR::Release:
@@ -90,7 +102,7 @@ float out_adsr (ADSR* adsr) {
             adsr->index = 0;
             adsr->state.store(ADSR::Off);
          }
-         adsr->last_sample = adsr->env[ADSR::Release].out(adsr->pos);
+         adsr->last_sample = out_model(&adsr->env[ADSR::Release], adsr->pos);
          return adsr->last_sample;
          break;
       default:

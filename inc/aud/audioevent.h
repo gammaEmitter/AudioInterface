@@ -25,14 +25,21 @@ struct AudioEvent {
 AudioEvent* audio_event(AAllocator& alloc, SoundRes *wav, Timestamp_t start);
 
 inline float out_audio_event(AudioEvent* ev, u32 index) {
+    if(index > ev->duration)  {
+        printf("index %d out of range %d\n", index, ev->duration);
+        return AudIO::SampleSilence;
+    }
     float out = ev->data[index + ev->offset];
-    assert(index <= ev->duration);
+    if (out >= 1) {
+        printf("index: %d duration: %d value: %f offset: %d\n", index, ev->duration, out, ev->offset);
+        return AudIO::SampleSilence;
+    }
     if (index >= ev->fade_in.offset && index <= (ev->fade_in.offset + ev->fade_in.length)) {
         float pos = (float)index / ev->fade_in.length;
-        out *= out_curve(&ev->fade_in, pos);
+        out *= out_curve(&ev->fade_in, pos); 
     } else if (index >= ev->fade_out.offset && index <= (ev->fade_out.offset + ev->fade_out.length)) {
         float pos = (float)index / ev->fade_out.length;
-        out *= out_curve(&ev->fade_out, pos);
+        out *= out_curve(&ev->fade_out, pos); 
     }
     return out;
 }

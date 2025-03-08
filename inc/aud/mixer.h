@@ -14,6 +14,7 @@ struct Mixer {
     u8 channels_in_use {};
 };
 
+void init_mixer(AAllocator& alloc, Mixer*& mixer);
 float sum_mixer(Mixer*);
 /*
  *  returns the index of the SignalPath in the mixer

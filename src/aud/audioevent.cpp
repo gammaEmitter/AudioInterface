@@ -7,11 +7,7 @@ AudioEvent* audio_event(AAllocator& alloc, SoundRes* res, Timestamp_t start) {
     if (res->type == SoundRes::WAV) {
         event->duration   = res->data.wav->len_data;
         event->data   = res->data.wav->data;
-        if (res->data.wav->numChannels == 2) {
-            event->stereo = true;
-        } else {
-            event->stereo = false;
-        }
+        event->stereo = (res->data.wav->numChannels == 2);
     }
 
     event->start_time = start;

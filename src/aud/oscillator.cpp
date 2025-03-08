@@ -4,7 +4,7 @@ void init_osc(Oscillator* osc, float freq, float gain, WaveType type) {
 
     init_adsr(osc->adsr);
     set_freq(&osc->freq, freq); 
-    set_clampabs1(osc->gain, gain);
+    set_clampabs1(&osc->gain, gain);
     switch (type) {
         case SINE:
             osc->path.proc = &out_osc_sine;

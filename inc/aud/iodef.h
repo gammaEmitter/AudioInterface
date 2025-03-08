@@ -52,13 +52,13 @@ inline void set_freq(OscFreq* osc_freq, float hz) {
     osc_freq->incr_phase = osc_freq->frequency_norm * AudIO::twoPI;
 }
 
-inline void set_clampabs1(float& attr, float value) {
+inline void set_clampabs1(float* attr, float value) {
     if (value >= 1.f) {
-        attr = 1.f;
-    } else if (value <= 0){
-        attr = 0.f;
+        *attr = 1.f;
+    } else if (value <= -1){
+        *attr = -1.f;
     } else {
-        attr = value;
+        *attr = value;
     }
 }
 
