@@ -4,7 +4,7 @@
 AudioEvent* audio_event(AAllocator& alloc, SoundRes* res, Timestamp_t start) {
     AudioEvent*  event = (AudioEvent*) allocate_aa(alloc, sizeof(AudioEvent));
     
-    if (res->type == SoundRes::WAV) {
+    if (SoundRes::WAV == res->type) {
         event->duration   = res->data.wav->len_data;
         event->data   = res->data.wav->data;
         event->stereo = (res->data.wav->numChannels == 2);

@@ -10,6 +10,4 @@ MidiEvent* midi_event(AAllocator& alloc, Timestamp_t start, NoteType type, int n
         return event;
 
 }
-bool MidiEventCompare (const MidiEvent* lhs, const MidiEvent* rhs) {
-        return lhs->start_time < rhs->start_time;
-};
+

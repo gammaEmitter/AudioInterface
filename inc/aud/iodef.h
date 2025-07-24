@@ -21,6 +21,9 @@ using SampleRate_t = int;
 using u8 = uint8_t;
 using u16 = uint16_t;
 using u32 = uint32_t;
+using i8 = int8_t;
+using i16 = int16_t;
+using i32 = int32_t;
 
 namespace AudIO {
 
@@ -81,43 +84,22 @@ enum Intersect {
     cuts_start, // new event cuts beginning of existing event
 };
 
-template <time_interval T>
-int find_next_event(u32 time, const std::vector<T*>* events) {
-    int left = 0;
-    int right = events->size();
-    if (time > (*events)[right - 1]->end_time) return -1;
-    if (time < (*events)[left]->start_time) return left;
-    while (left <= right) {
-        int mid = (left+right) / 2;
-        if ((*events)[mid]->start_time <= time && time <= (*events)[mid]->end_time)  {
-            if (mid < (right - 1))  {
-                return mid + 1;
-            } else {
-                return -1;
-            }
-        }
-        if (time < (*events)[mid]->start_time) {
-            right = mid - 1; 
-        } else if (time > (*events)[mid]->end_time) {
-            left = mid + 1; 
-        }
-    }
-    return -1;
-}
-
 
 template <time_point T>
-int find_start_event(u32 time, const std::vector<T*>* events){
+int find_start_event(u32 time, T** events, u16 size_events){
     int left = 0;
-    int right = events->size();
-    if (time > (*events)[right - 1]->start_time) return -1;
-    if (time < (*events)[left]->start_time) return -1;
+    int right = size_events;
+    // if (time == 17640 or time == 26440) {
+    //     printf("right start: %d\n",(*events)[right - 1].start_time);
+    //     printf("left start: %d\n",(*events)[left].start_tiMidiEventQueue* queue }
+    if (time > (*events)[right - 1].start_time) return -1;
+    if (time < (*events)[left].start_time) return -1;
     while (left <= right) {
         int mid = (left+right) / 2;
-        if ((*events)[mid]->start_time == time) return mid;
-        if (time < (*events)[mid]->start_time) {
+        if (time == (*events)[mid].start_time) return mid;
+        if (time < (*events)[mid].start_time) {
             right = mid - 1; 
-        } else if (time > (*events)[mid]->start_time) {
+        } else if (time > (*events)[mid].start_time) {
             left = mid + 1; 
         }
     }
@@ -126,19 +108,41 @@ int find_start_event(u32 time, const std::vector<T*>* events){
 
 // binary search on AudioEvent interval from some Timestamp_t
 // find event in whiches duration interval the Timestamp_t lies
+//
+enum TimelinePosition : int{
+    BeforeFirst = -2,
+    AfterLast = -1,
+};
 template <time_interval T>
 int find_active_event (u32 time, T** events, u16 size_events) {
     int left = 0;
     int right = size_events;
 
-    if (time > (*events)[right - 1].end_time) return -1;
-    if (time < (*events)[left].start_time) return -1;
+    // if (size_events == 6 && time == 4400) {
+    //     for (int i = 0; i < size_events; ++i) {
+    //         printf("[%d]start %d @ %p\n", i, events[i]->start_time, events[i]);
+    //     }
+    //     // exit(0);
+    // }
+    // if (size_events == 6 && time == 4400) {
+    //     printf("time: %d, right - 1 = %d\n", time, right - 1);
+    //     printf("right start: %d\n",events[right - 1]->start_time);
+    //     printf("right end: %d\n",events[right - 1]->end_time);
+    //     printf("left start: %d\n",events[left]->start_time);
+    // }
+    // printf("right start: %d\n",(*events)[right - 1].start_time);
+    // printf("left start: %d\n",(*events)[left].start_time);
+    if (time > events[right - 1]->end_time) return AfterLast;
+    if (time < events[left]->start_time) return BeforeFirst;
     while (left <= right) {
         int mid = (left+right) / 2;
-        if ((*events)[mid].start_time <= time && time <= (*events)[mid].end_time) return mid;
-        if (time < (*events)[mid].start_time) {
+        if (events[mid]->start_time <= time && time <= events[mid]->end_time) {
+            // printf("we are inside index %d, curr time: %d, start time was %d\n", mid, time, (*events)[mid].start_time);
+            return mid;
+        }
+        if (time < events[mid]->start_time) {
             right = mid - 1; 
-        } else if (time > (*events)[mid].end_time) {
+        } else if (time > events[mid]->end_time) {
             left = mid + 1; 
         }
     }

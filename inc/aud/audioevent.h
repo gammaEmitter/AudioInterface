@@ -15,6 +15,7 @@ struct AudioEvent {
     Timestamp_t                     end_time            {};
     u32                             duration            {};
     u32                             offset              {};
+    u32                             duration_data       {};
     float*                          data                {};
     CurveModel                      fade_in             {};
     CurveModel                      fade_out            {};
@@ -30,8 +31,8 @@ inline float out_audio_event(AudioEvent* ev, u32 index) {
         return AudIO::SampleSilence;
     }
     float out = ev->data[index + ev->offset];
-    if (out >= 1) {
-        printf("index: %d duration: %d value: %f offset: %d\n", index, ev->duration, out, ev->offset);
+    if (abs(out) >= 1) {
+        printf("CLIP index: %d duration: %d value: %f offset: %d\n", index, ev->duration, out, ev->offset);
         return AudIO::SampleSilence;
     }
     if (index >= ev->fade_in.offset && index <= (ev->fade_in.offset + ev->fade_in.length)) {

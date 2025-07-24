@@ -37,7 +37,9 @@ uint16_t mixer_signal_add(Mixer* mixer, SignalPath* path, uint8_t channel) {
    
    mixer->used_signals[channel - 1]++;
    mixer->order_channel[mixer->channels_in_use] = channel - 1;
-   mixer->channels_in_use++;
+   if (1 == mixer->used_signals[channel - 1]) {
+      mixer->channels_in_use++;
+   }
    return index;
 }
 

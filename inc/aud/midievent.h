@@ -9,7 +9,6 @@ enum NoteType{
     ON,
     OFF,
 };
-// MidiInstruction is controlling behavior of the Instrument
 struct MidiEvent {
     Timestamp_t start_time {};
     NoteType ntype = NONE;

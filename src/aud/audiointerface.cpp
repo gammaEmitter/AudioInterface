@@ -3,7 +3,6 @@
 #include "audiointerface.h"
 #include "iodef.h"
 #include "portaudio.h"
-#include <__chrono/duration.h>
 #include <chrono>
 #include <cstddef>
 #include <fstream>
@@ -49,6 +48,7 @@ AudioInterface& populateOutStreamInfo(AudioInterface& aud) {
     if (aud.odevice) {
         aud.streaminfo.output_param.device = get_device(aud, aud.odevice);
         // aud.streaminfo.output_param.channelCount = AudIO::Mono;
+
         aud.streaminfo.output_param.channelCount = (aud.odevice->maxOutputChannels > 1) ?  AudIO::Stereo : AudIO::Mono;
         aud.streaminfo.output_param.sampleFormat = paFloat32;
         aud.streaminfo.output_param.suggestedLatency = aud.odevice->defaultLowOutputLatency;

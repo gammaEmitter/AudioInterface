@@ -77,10 +77,10 @@ int main (int argc, char *argv[]) {
    // set_clampabs1(biq->gain, 0.7);
    set_clampabs1(&osc->gain, 0.4);
 
-   // Delay* delay = (Delay*) allocate_aa(mem_devices,sizeof(Delay));
-   // init_delay(mem_devices, delay, timeFromBeats(1,32));
-   // delay->buf = (float*) allocate_aa(mem_devices, sizeof(float) * (delay->duration + 1));
-   // set_clampabs1(delay->feedback, 0.5);
+   Delay* delay = (Delay*) allocate_aa(mem_devices,sizeof(Delay));
+   init_delay(mem_devices, delay, timeFromBeats(1,32));
+   delay->buf = (float*) allocate_aa(mem_devices, sizeof(float) * (delay->duration + 1));
+   set_clampabs1(&delay->feedback, 0.5);
    // Delay* delay2 = (Delay*) allocate_aa(mem_devices,sizeof(Delay));
    // init_delay(mem_devices, delay2, timeFromBeats(1,0));
    // delay2->buf = (float*) allocate_aa(mem_devices, sizeof(float) * (delay2->duration + 1));
@@ -110,22 +110,35 @@ int main (int argc, char *argv[]) {
    }
    // short_fade_out(ev1->fade_out, 500);
    auto ev2 = audio_event(mem_devices,kick, timeFromBeats(1,0));
+   auto b2 = audio_event(mem_devices,bass, timeFromBeats(0,32));
+   auto h1 = audio_event(mem_devices, hats, timeFromBeats(1,0));
+   auto b3 = audio_event(mem_devices,bass, timeFromBeats(0,48));
+   auto b1 = audio_event(mem_devices,bass, timeFromBeats(0,16));
+   auto b4 = audio_event(mem_devices,bass, timeFromBeats(1,16));
+   auto b6 = audio_event(mem_devices,bass, timeFromBeats(1,48));
+   auto b5 = audio_event(mem_devices,bass, timeFromBeats(1,32));
 
    add_event_audio_event_map(aem, ev1);
-   add_event_audio_event_map(wide_events, audio_event(mem_devices,stick_wide, timeFromBeats(0,0)));
-   add_event_audio_event_map(bass_events, audio_event(mem_devices,bass, timeFromBeats(0,16)));
-   add_event_audio_event_map(bass_events, audio_event(mem_devices,bass, timeFromBeats(0,32)));
-   add_event_audio_event_map(bass_events, audio_event(mem_devices,bass, timeFromBeats(0,48)));
    add_event_audio_event_map(aem, ev2);
-   // add_event_midi_event_map(osc_events, midi_event(mem_devices,timeFromBeats(1,0), NoteType::ON, 14));
-   // add_event_midi_event_map(osc_events, midi_event(mem_devices,timeFromBeats(1,16), NoteType::OFF, 14));
-   add_event_audio_event_map(bass_events, audio_event(mem_devices,bass, timeFromBeats(1,16)));
-   add_event_audio_event_map(bass_events, audio_event(mem_devices,bass, timeFromBeats(1,32)));
-   add_event_audio_event_map(bass_events, audio_event(mem_devices,bass, timeFromBeats(1,48)));
+   add_event_audio_event_map(bass_events, b2);
+   add_event_audio_event_map(bass_events, b1);
+   add_event_audio_event_map(bass_events, b3);
+   add_event_audio_event_map(bass_events, b4);
+   add_event_audio_event_map(bass_events, b5);
+   add_event_audio_event_map(bass_events, b6);
+   // add_event_midi_event_map(osc_events, midi_event(mem_devices,timeFromBeats(1,0), NoteType::ON, 20));
+   // add_event_midi_event_map(osc_events, midi_event(mem_devices,timeFromBeats(1,16), NoteType::OFF, 20));
+   add_event_audio_event_map(wide_events, audio_event(mem_devices,stick_wide, timeFromBeats(0,0)));
+   for (int i = 0; i < osc_events->size_events; ++i) {
+      printf("midi event (osc events) %d: %u\n",i, osc_events->events[i]->start_time);
+   }
+   for (int i = 0; i < bass_events->size_events; ++i) {
+      printf("audio event (bass events) %d: start time %u ,data* %p,offset %d, duration %u at %p\n",i, bass_events->events[i]->start_time,bass_events->events[i]->data, bass_events->events[i]->offset,bass_events->events[i]->duration, bass_events->events[i]);
+   }
    auto hats_trunc = audio_event(mem_devices, hats, timeFromBeats(0,0));
    add_event_audio_event_map(hats_events, hats_trunc);
-   add_event_audio_event_map(hats_events, audio_event(mem_devices, hats, timeFromBeats(1,0)));
-   add_event_audio_event_map(hats_events, audio_event(mem_devices, hats, timeFromBeats(1,32)));
+   // add_event_audio_event_map(hats_events, audio_event(mem_devices, hats, timeFromBeats(1,0)));
+   // add_event_audio_event_map(hats_events, audio_event(mem_devices, hats, timeFromBeats(1,32)));
    // for (int i = 0; i < sizeof(Mixer); ++i) {
    //    printf("%x", af.mixer[i]);
    //    if (i % 32 == 0) printf("\n");

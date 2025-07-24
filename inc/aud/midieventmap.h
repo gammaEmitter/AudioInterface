@@ -13,7 +13,8 @@ struct MidiEventMap {
     SignalPath*                     generator_path  {};
     OscFreq*                        recv_freq       {};
     ADSR*                           recv_note       {};
-    std::vector<MidiEvent*>         events          {};
+    MidiEvent*                      events[64]      {};
+    u8                              size_events     {};
     float                           carry_stereo    {};
     float                           gain            {};
     bool                            left_pos        {};
@@ -27,31 +28,38 @@ inline void out_midi_eventmap(void* arg) {
 
     MidiEventMap* map = (MidiEventMap*) arg;
     float out = AudIO::SampleSilence;
-    if (map->events.empty()) {
-        *map->path.out = out;
+    if (map->size_events == 0) {
+        *(map->path.out) = out;
         return;
     }
+
+    /*
+     *  TODO: rewrite to incremental event finding. the events array is already sorted
+     */
     Timestamp_t curr_time = Clockbase::current_time.load();
-    auto idx = find_start_event(curr_time, &map->events);
+    auto idx = find_start_event(curr_time, map->events, map->size_events);
+    if (curr_time == timeFromBeats(1,0) or curr_time == timeFromBeats(1,16)) {
+        printf("%d index\n", idx);
+    }
     if (idx != -1) {
-        if (map->events[idx]->ntype == NoteType::ON) {
+        printf("(%u) found event with start time: %d, index %d, note type %d\n",curr_time, map->events[idx]->start_time, idx, map->events[idx]->ntype );
+        if (NoteType::ON == map->events[idx]->ntype) {
             set_freq(map->recv_freq, note_to_hz(map->events[idx]->note, 440.f));
             map->recv_note->state.store(ADSR::State::Attack);
-        } else if (map->events[idx]->ntype == NoteType::OFF) {
+        } else if (NoteType::OFF == map->events[idx]->ntype) {
             ADSR::State state = map->recv_note->state.load();
             if (state == ADSR::State::Off || state == ADSR::State::Release) return;
             fade_into_adsr(map->recv_note, ADSR::State::Release);
         }
     }
-    map->generator_path->proc(map->generator_path);
     if (map->stereo_gen) {
-        *map->path.out = *map->generator_path->out;
+        *(map->path.out) = *(map->generator_path->out);
     } else {
         if (map->left_pos) {
-            *map->path.out =  *map->generator_path->out;
-            map->carry_stereo = *map->path.out;  
+            *(map->path.out) =  *(map->generator_path->out);
+            map->carry_stereo = *(map->path.out);  
         } else {
-            *map->path.out = map->carry_stereo;
+            *(map->path.out) = map->carry_stereo;
         }
         map->left_pos = !map->left_pos;
     }
