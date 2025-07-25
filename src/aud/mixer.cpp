@@ -6,23 +6,26 @@
  */
 void init_mixer(AAllocator& alloc, Mixer*& mixer) {
    mixer = (Mixer*) allocate_aa(alloc, sizeof(Mixer));
-   for (int i = 0; i < 4096; ++i) {
+   for (int i = 0; i < SIGNALS; ++i) {
       mixer->paths[i] = nullptr;
       mixer->out_signals[i] = 0.f;
    }
-   for (int i = 0; i < 128; ++i) {
+   for (int i = 0; i < CHANNELS; ++i) {
       mixer->ch_signals[i] = nullptr;
       mixer->used_signals[i] = 0;
       mixer->order_channel[i] = 0;
    }
    mixer->channels_in_use = 0;
-
-   
+}
+void init_mixbus(AAllocator& alloc, MixBus*& bus) {
+  bus = (MixBus *)allocate_aa(alloc, sizeof(MixBus));
+  bus->path.proc = &sum_mixbus;
 }
 
 uint16_t mixer_signal_add(Mixer* mixer, SignalPath* path, uint8_t channel) {
 
-   uint16_t index = ((channel - 1) * 32) + mixer->used_signals[channel - 1];
+   if ((SIGNALS_CHANNEL-1) == mixer->used_signals[channel - 1]) return -1;
+   uint16_t index = ((channel - 1) * SIGNALS_CHANNEL) + mixer->used_signals[channel - 1];
 
    path->out = &mixer->out_signals[index];
    if(mixer->used_signals[channel - 1] > 0) {
@@ -30,11 +33,8 @@ uint16_t mixer_signal_add(Mixer* mixer, SignalPath* path, uint8_t channel) {
    };
 
    mixer->paths[index] = path;
-   mixer->paths[index]->out = path->out;
-   mixer->paths[index]->in = path->in;
-   mixer->paths[index]->proc = path->proc;
    mixer->ch_signals[channel - 1] = &mixer->out_signals[index];
-   
+
    mixer->used_signals[channel - 1]++;
    mixer->order_channel[mixer->channels_in_use] = channel - 1;
    if (1 == mixer->used_signals[channel - 1]) {
@@ -43,12 +43,18 @@ uint16_t mixer_signal_add(Mixer* mixer, SignalPath* path, uint8_t channel) {
    return index;
 }
 
+u8 mixbus_signal_add(MixBus* bus, float* signal) {
+   if ((SIGNALS_CHANNEL-1) == bus->signals_in_use) return -1;
+   bus->signals[bus->signals_in_use++].mixer_out_path = signal;
+   return bus->signals_in_use - 1;
+}
+
 float sum_mixer(Mixer* mixer) {
 
    float total_sum = AudIO::SampleSilence;
    uint16_t index;
    for (int num_ch = 0; num_ch  < mixer->channels_in_use; ++num_ch) {
-      index =  (mixer->order_channel[num_ch]) * 32;
+      index =  (mixer->order_channel[num_ch]) * SIGNALS_CHANNEL;
       for (int num_sig = 0; num_sig < mixer->used_signals[mixer->order_channel[num_ch]]; ++num_sig, ++index) {
          //casting signalpath pointer to the osc/eventmap/... pointer
          // this assumes that SignalPath is the first struct of a generator
@@ -59,4 +65,15 @@ float sum_mixer(Mixer* mixer) {
    }
    // set_clampabs1(total_sum, total_sum);
    return total_sum;
+}
+
+void sum_mixbus(void *arg) {
+   MixBus* bus = (MixBus*) arg;
+   float out = AudIO::SampleSilence;
+   for (int i = 0; i < bus->signals_in_use; ++i) {
+      out += *(bus->signals[i].mixer_out_path) * bus->signals[i].gain;
+      // out += *(bus->signals[i].mixer_out_path);
+   }
+   *bus->path.out = out;
+   return;
 }

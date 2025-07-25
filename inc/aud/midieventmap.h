@@ -38,11 +38,7 @@ inline void out_midi_eventmap(void* arg) {
      */
     Timestamp_t curr_time = Clockbase::current_time.load();
     auto idx = find_start_event(curr_time, map->events, map->size_events);
-    if (curr_time == timeFromBeats(1,0) or curr_time == timeFromBeats(1,16)) {
-        printf("%d index\n", idx);
-    }
     if (idx != -1) {
-        printf("(%u) found event with start time: %d, index %d, note type %d\n",curr_time, map->events[idx]->start_time, idx, map->events[idx]->ntype );
         if (NoteType::ON == map->events[idx]->ntype) {
             set_freq(map->recv_freq, note_to_hz(map->events[idx]->note, 440.f));
             map->recv_note->state.store(ADSR::State::Attack);

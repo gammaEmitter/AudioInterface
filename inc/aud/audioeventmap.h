@@ -48,10 +48,6 @@ inline void out_audio_event_map(void* arg) {
     }
     if (0 > map->curr_idx_event)  {
         map->curr_idx_event = find_active_event(curr_time, map->events, map->size_events);
-        // if (map->size_events == 6 && curr_time == 4400) {
-        //     printf("index: %d\n", map->curr_idx_event);
-        //     exit(0);
-        // }
         // TODO: Handle special cases BeforeFirst and AfterLast
         if (-1 < map->curr_idx_event) {
             map->event_index = curr_time - map->events[map->curr_idx_event]->start_time + map->events[map->curr_idx_event]->offset;
