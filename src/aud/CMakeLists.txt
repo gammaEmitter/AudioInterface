@@ -4,6 +4,7 @@ set(SRCS
     audiointerface.cpp
     audioevent.cpp
     audioeventmap.cpp
+    bouce.cpp
     filter/biquad.cpp
     filter/delay.cpp
     midievent.cpp

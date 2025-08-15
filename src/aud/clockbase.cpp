@@ -1,4 +1,6 @@
 #include "clockbase.h"
+    
+    std::atomic<bool>                Clockbase::changer          = false;
 
     std::atomic<Timestamp_t>        Clockbase::current_time     = 0;
 

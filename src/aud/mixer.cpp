@@ -65,6 +65,7 @@ float sum_mixer(Mixer* mixer) {
    }
    // set_clampabs1(total_sum, total_sum);
    return total_sum;
+
 }
 
 void sum_mixbus(void *arg) {
@@ -76,4 +77,11 @@ void sum_mixbus(void *arg) {
    }
    *bus->path.out = out;
    return;
+}
+
+void write_record(Mixer* mixer, float* input_buffer, u8 channels) {
+   for (int i = 0; i < channels; ++i) {
+      mixer->in_signals[i] = input_buffer[i];
+
+   } 
 }

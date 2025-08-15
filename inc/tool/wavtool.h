@@ -42,7 +42,7 @@ struct RiffWAV {
 };
 
 RiffWAV* readWAV(AAllocator& alloc, const std::string &filename);
-void writeWAV (int sr, int duration, const std::vector<float>& data);
+void writeWAV(int sr, int duration, float* data);
 std::vector<float> PCMtoFloat(const std::vector<int32_t>& wav, uint8_t bitdepth);
 
 }

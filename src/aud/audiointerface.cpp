@@ -88,6 +88,14 @@ const PaDeviceIndex get_device(AudioInterface& aud, const PaDeviceInfo* name) {
     return -1;
 }
 
+/*
+ * inputCallback {
+ *
+ * }
+ *
+ */
+
+
  int outputCallbackMono(const void* inputbuffer, 
         void* outputbuffer,
         unsigned long framesPerBuffer,

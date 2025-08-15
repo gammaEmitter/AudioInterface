@@ -20,14 +20,13 @@ struct MixBus {
  *  which are stored in the path->proc function pointer.
  */
 struct Mixer {
-    /*
-     *  128channels x 32signals == 4096signals
-     */
     SignalPath* paths[SIGNALS] {};
     float out_signals[SIGNALS] {0.f};
+    float in_signals[CHANNELS] {0.f};
     float* ch_signals[CHANNELS] {};
     u8 used_signals[CHANNELS] {0};
     u8 order_channel[CHANNELS] {0};
+    u8 in_channels_in_use {};
     u8 channels_in_use {};
 };
 
@@ -36,8 +35,9 @@ void init_mixbus(AAllocator& alloc, MixBus*& bus);
 
 float sum_mixer(Mixer*);
 void sum_mixbus(void*);
+void write_record(Mixer*, float*, u8);
 /*
- *  returns the index of the SignalPath in the mixer
+ *  returns the index of the SignalPath in the mixer or mixbus
  */
 u16 mixer_signal_add(Mixer*, SignalPath*, u8);
 u8 mixbus_signal_add(MixBus*, float*);

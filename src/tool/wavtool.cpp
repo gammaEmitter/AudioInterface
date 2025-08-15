@@ -140,11 +140,11 @@ RiffWAV* readWAV(AAllocator& alloc, const std::string &filename) {
   return wav;
 }
 
-void writeWAV(int sr, int duration, const std::vector<float> &data) {
-  int kCh = 1;
+void writeWAV(int sr, int duration, float* data) {
+  int kCh = 2;
   int bitD = 24;
   std::ofstream audioFile;
-  audioFile.open("waveform.wav", std::ios::binary);
+  audioFile.open("output_bounce.wav", std::ios::binary);
 
   // Header Chunk of WAV File Format --> see WAVE Format Documentation
   audioFile << "RIFF";
@@ -155,7 +155,7 @@ void writeWAV(int sr, int duration, const std::vector<float> &data) {
   audioFile << "fmt ";
   writeToFile(audioFile, 16, 4);                  // Size of format chunk
   writeToFile(audioFile, 1, 2);                   // Comperssion Codee
-  writeToFile(audioFile, 1, 2);                   // Number of Channels
+  writeToFile(audioFile, kCh, 2);                   // Number of Channels
   writeToFile(audioFile, sr, 4);                  // Samplerate
   writeToFile(audioFile, kCh * sr * bitD / 8, 4); // ByteRate
   writeToFile(audioFile, kCh * bitD / 8, 2);      // BlockAlign
@@ -166,7 +166,7 @@ void writeWAV(int sr, int duration, const std::vector<float> &data) {
   audioFile << "----";
   int preAudioPosition = audioFile.tellp();
   auto maxAmplitude = pow(2, bitD - 1) - 1;
-  for (int i = 0; i < sr * duration; i++) { // Samples schreiben
+  for (int i = 0; i < duration; i++) { // Samples schreiben
     auto sample = data[i];
     int intSample = static_cast<int>(sample * maxAmplitude);
     writeToFile(audioFile, intSample, bitD / 8);

@@ -8,9 +8,12 @@
 *   Timebase incremented from PortAudio-Callback
 */
 
+
 using Timestamp_t = u32;
 
 namespace Clockbase {
+
+    extern std::atomic<bool>                       changer;
 
     extern std::atomic<Timestamp_t>         current_time;
 
@@ -48,6 +51,9 @@ namespace Clockbase {
         if (samples_passed.load() == samplerate) {
             samples_passed.store(0);
         }
+    bool b = changer.load();
+    changer.compare_exchange_weak(b, !b);
+    changer.notify_all();
     }
 };
 
